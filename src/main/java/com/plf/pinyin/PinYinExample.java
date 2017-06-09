@@ -41,4 +41,28 @@ public class PinYinExample {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void TestHanyuString(){
+		//带声调
+		String[] data=PinyinHelper.toHanyuPinyinStringArray('潘');
+		for (String string : data) {
+			System.out.println(string);
+		}
+		
+		HanyuPinyinOutputFormat outFormat = new HanyuPinyinOutputFormat();  
+        outFormat.setCaseType(HanyuPinyinCaseType.UPPERCASE);//控制拼音的大小写
+        //是否带声调WITH_TONE_NUMBER：带声调 PAN1 LIANG2 FENG1
+        //WITH_TONE_MARK 用声调符号表示
+        outFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        //特殊拼音u的显示格式
+        outFormat.setVCharType(HanyuPinyinVCharType.WITH_V);
+		try {
+			//感觉比较奇怪的语法
+			System.out.println(PinyinHelper.toHanyuPinyinStringArray('潘', outFormat)[0]);
+		} catch (BadHanyuPinyinOutputFormatCombination e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
