@@ -18,8 +18,8 @@ public class PinYinExample {
 	
 	@Test
 	public void TestPinyin(){
-		//获取一个汉字的拼音
-		String[] array=PinyinHelper.toGwoyeuRomatzyhStringArray('潘');
+		//获取一个汉字的拼音,返回多音字，不带音标
+		String[] array=PinyinHelper.toGwoyeuRomatzyhStringArray('都');//转为国语罗马字。
 		for (String string : array) {
 			System.out.println(string);
 		}
@@ -35,7 +35,8 @@ public class PinYinExample {
         //特殊拼音u的显示格式
         outFormat.setVCharType(HanyuPinyinVCharType.WITH_V);
 		try {
-			System.out.println(PinyinHelper.toHanYuPinyinString("潘良烽", outFormat, " ",true));
+			//多个汉字
+			System.out.println(PinyinHelper.toHanYuPinyinString("潘良烽", outFormat, "*",true));
 		} catch (BadHanyuPinyinOutputFormatCombination e) {
 			// TODO Auto-generated catch block 
 			e.printStackTrace();
@@ -45,7 +46,8 @@ public class PinYinExample {
 	@Test
 	public void TestHanyuString(){
 		//带声调
-		String[] data=PinyinHelper.toHanyuPinyinStringArray('潘');
+		//转为汉字拼音。中国大陆使用
+		String[] data=PinyinHelper.toHanyuPinyinStringArray('都');
 		for (String string : data) {
 			System.out.println(string);
 		}
@@ -63,6 +65,19 @@ public class PinYinExample {
 		} catch (BadHanyuPinyinOutputFormatCombination e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	@SuppressWarnings("unused")
+	public void TestPinyinType(){
+		//返回多音字，带音标
+		String[] data=PinyinHelper.toMPS2PinyinStringArray('地');//转为注音符号拼音。
+		String[] data1=PinyinHelper.toTongyongPinyinStringArray('都');// 转为通用拼音。中国台湾使用
+		String[] data2=PinyinHelper.toWadeGilesPinyinStringArray('都');//转为威妥玛拼音。
+		String[] data3=PinyinHelper.toYalePinyinStringArray('都');//转为耶魯拼音。
+		for (String string : data3) {
+			System.out.println(string);
 		}
 	}
 }
