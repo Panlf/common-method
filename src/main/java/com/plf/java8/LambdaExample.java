@@ -1,5 +1,9 @@
 package com.plf.java8;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.Test;
 
 /**
@@ -49,5 +53,26 @@ public class LambdaExample {
 	}
 	static interface Action{
 		void execute(String content);
+	}
+	
+	@Test
+	public void NewLambda(){
+		List<String> idList=new ArrayList<String>();
+		idList.add("1");
+		idList.add("4");
+		idList.add("2");
+		idList.add("3");
+		idList.forEach(x->System.out.println(x));
+		
+		Mysort(idList);
+		idList.forEach(System.out::println);
+		
+		String ids=String.join(",", idList);
+		System.out.println(ids);
+	}
+	
+	
+	public static void Mysort(List<String> id){
+		Collections.sort(id,(o1,o2)->o1.compareTo(o2));
 	}
 }

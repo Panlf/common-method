@@ -70,4 +70,10 @@ public class StreamExample {
 		people.add(person);
 		return people;
 	}
+	
+	@Test
+	public void NewStream(){
+		Stream<String> fruit=Stream.of("apple","orange","banner","pear");
+		fruit.sorted().map(String::toUpperCase).forEach(System.out::println);
+	}
 }
