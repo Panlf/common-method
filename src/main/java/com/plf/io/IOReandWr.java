@@ -1,5 +1,8 @@
 package com.plf.io;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,6 +39,38 @@ public class IOReandWr {
 				System.out.println(new String(buf,0,len));
 			}
 			fr.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void writeByBuffer(){
+		try {
+			FileWriter fw=new FileWriter(new File("E:\\demo.txt"),true);
+			BufferedWriter bw=new BufferedWriter(fw);
+			bw.write("plf");
+			bw.newLine();
+			bw.write("pcq");
+			bw.flush();
+			fw.close();
+			bw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void readByBuffer(){
+		try {
+			FileReader fr=new FileReader(new File("E:\\demo.txt"));
+			BufferedReader br=new BufferedReader(fr);
+			String line=null;
+			while((line=br.readLine())!=null){
+				System.out.println(line);
+			}
+			fr.close();
+			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
