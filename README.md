@@ -7,5 +7,5 @@ There is some common method about Java.
 ## 4、Java8
 ## 5、IO流
 ## 6、Java常用方法
-    > 1、反射
-    > 2、StringBuilder、StringBuffer
+- a、反射
+- b、StringBuilder、StringBuffer
