@@ -1,5 +1,6 @@
 package com.plf.common;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 import org.junit.Test;
@@ -21,9 +22,9 @@ public class ReflectExample {
 	 */
 	@Test
 	public void TestReflect(){
-		//获取Class对象
 		String className="com.plf.common.Person";
 		try {
+			//获取Class对象
 			//1、根据给定的类名获得   用于类加载
 			Class<?> clazz=Class.forName(className);
 			System.out.println(clazz);//此对象代表Person.class
@@ -37,10 +38,41 @@ public class ReflectExample {
 			Class<?> clazz2 = Person.class;
 			System.out.println(clazz2);
 			
+			//获取类中的所有方法
+			Method[] methods=clazz.getMethods();
+			methods=clazz.getDeclaredMethods();//获取类中的方法包括私有方法
+			for (Method method : methods) {
+				System.out.println(method);
+			}
+			System.out.println("--------------------------");
+			
+			//用带参数的构造函数新建对象
+			Constructor<?> constructor=clazz.getConstructor(String.class,int.class);
+			Object obj1=constructor.newInstance("pcq",23);
+			//Method m=clazz.getMethod("Say",String.class,int.class);
+			//m.invoke(obj1,"",0);
+			System.out.println(obj1);
+			
+			//获取构造函数
+			Constructor<?>[] constructors=clazz.getConstructors();
+			constructors=clazz.getDeclaredConstructors();
+			for (Constructor<?> constructor2 : constructors) {
+				System.out.println(constructor2);
+			}
 			//调用方法
-			Method method=clazz.getMethod("Say",int.class,String.class);
+			Method method=clazz.getMethod("Say",String.class,int.class);
+			//该实例化对象的方法调用就是指定类中的空参数构造函数，给创建对象进行初始化。
 			Object person=clazz.newInstance();
-			method.invoke(person,19, "plf");
+			method.invoke(person,"plf",19);
+			
+			//运行私有方法，但是不建议使用，因为私有方法本来就是不希望外部使用
+//			Method method1=clazz.getDeclaredMethod("Eat",null);
+//			method1.setAccessible(true);
+//			System.out.println(method1.invoke(person, null));
+			
+			//静态方法
+			//Method method2=clazz.getMethod("Run", null);
+			//method2.invoke(null, null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -77,7 +109,14 @@ class Person{
 		this.age = age;
 	}
 	
-	public void Say(int age,String name){
-		System.out.println("I am "+age+".My name is "+name);
+	public void Say(String name,int age){
+		System.out.println("I am "+age+".My name is "+name+"!"+Eat());
+	}
+	
+	private String Eat(){
+		return "I eat rice!";
+	}
+	public static void Run(){
+		System.out.println("I can run");
 	}
 }
