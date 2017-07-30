@@ -76,4 +76,16 @@ public class LocalDateExample {
 		DateTimeFormatter formater=DateTimeFormatter.ofPattern("yyyy/MM/dd HH/mm/ss");
 		System.out.println(time.format(formater));
 	}
+	
+	@Test
+	//增加时间
+	public void addTime(){
+		LocalDateTime time=LocalDateTime.now();
+		System.out.println(time.plusHours(-3));
+	
+		DateTimeFormatter formater=DateTimeFormatter.ofPattern("yyyy/MM/dd HH/mm/ss");
+		System.out.println(formater.format(time));
+		//增加3s
+		System.out.println(formater.format(time.plusSeconds(3)));
+	}
 }
