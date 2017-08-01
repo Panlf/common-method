@@ -52,7 +52,7 @@ public class IOReandWr {
 			bw.write("plf");
 			bw.newLine();
 			bw.write("pcq");
-			//\r\nø…ªª––
+			//\r\nÊç¢Ë°å
 			bw.write("two people\r\nThey are lover");
 			bw.flush();
 			fw.close();
