@@ -5,47 +5,47 @@ import java.nio.IntBuffer;
 import org.junit.Test;
 
 /*
- * NIOÌØÐÔ
- * ÎªËùÓÐµÄÔ­Ê¼ÀàÐÍÌá¹©(Buffer)»º´æÖ§³Ö
- * ×Ö·û¼¯±àÂë½âÂë½â¾ö·½°¸
- * Channel:Ò»¸öÐÂµÄÔ­Ê¼I/O³éÏó
- * Ö§³ÖËøºÍÄÚ´æÓ³ÉäÎÄ¼þµÄÎÄ¼þ·ÃÎÊ½Ó¿Ú
- * Ìá¹©¶àÂ·(non-bloking)·Ç×èÈûÊ½µÄ¸ßÉìËõÐÔÍøÂçI/O
+ * NIOç‰¹æ€§
+ * ä¸ºæ‰€æœ‰çš„åŽŸå§‹ç±»åž‹æä¾›(Buffer)ç¼“å­˜æ”¯æŒ
+ * å­—ç¬¦é›†ç¼–ç è§£ç è§£å†³æ–¹æ¡ˆ
+ * Channel:ä¸€ä¸ªæ–°çš„åŽŸå§‹I/OæŠ½è±¡
+ * æ”¯æŒé”å’Œå†…å­˜æ˜ å°„æ–‡ä»¶çš„æ–‡ä»¶è®¿é—®æŽ¥å£
+ * æä¾›å¤šè·¯(non-bloking)éžé˜»å¡žå¼çš„é«˜ä¼¸ç¼©æ€§ç½‘ç»œI/O
  */
 public class NIOExample {
-	//ËùÓÐ»º³åÇø¶¼¾ßÓÐËÄ¸öÊôÐÔÀ´Ìá¹©¹ØÓÚÆäËù°üº¬µÄÊý¾ÝÔªËØµÄÐÅÏ¢
+	//æ‰€æœ‰ç¼“å†²åŒºéƒ½å…·æœ‰å››ä¸ªå±žæ€§æ¥æä¾›å…³äºŽå…¶æ‰€åŒ…å«çš„æ•°æ®å…ƒç´ çš„ä¿¡æ¯
 	@SuppressWarnings("static-access")
-	/*1¡¢ÈÝÁ¿  »º³åÇøÄÜ¹»ÈÝÄÉµÄÊý¾ÝÔªËØµÄ×î´óÊýÁ¿
-	 *2¡¢ÉÏ½ç »º³åÇøµÄµÚÒ»¸ö²»ÄÜ±»¶Á»òÐ´µÄÔªËØ
-	 *3¡¢Î»ÖÃ ÏÂÒ»¸öÒª±»¶Á»òÐ´µÄÔªËØµÄË÷Òý
-	 *4¡¢±ê¼Ç Ò»¸ö±¸ÍüÎ»ÖÃ
+	/*1ã€å®¹é‡  ç¼“å†²åŒºèƒ½å¤Ÿå®¹çº³çš„æ•°æ®å…ƒç´ çš„æœ€å¤§æ•°é‡
+	 *2ã€ä¸Šç•Œ ç¼“å†²åŒºçš„ç¬¬ä¸€ä¸ªä¸èƒ½è¢«è¯»æˆ–å†™çš„å…ƒç´ 
+	 *3ã€ä½ç½® ä¸‹ä¸€ä¸ªè¦è¢«è¯»æˆ–å†™çš„å…ƒç´ çš„ç´¢å¼•
+	 *4ã€æ ‡è®° ä¸€ä¸ªå¤‡å¿˜ä½ç½®
 	 **/
-	//»º³åÇø·ÖÀà:ByteBuffer¡¢CharBuffer¡¢DoubleBuffer¡¢FloatBuffer¡¢IntBuffer¡¢LongBuffer¡¢ShortBuffer
+	//ç¼“å†²åŒºåˆ†ç±»:ByteBufferã€CharBufferã€DoubleBufferã€FloatBufferã€IntBufferã€LongBufferã€ShortBuffer
 	@Test
 	public void TestBuffer(){
-		//´´½¨Ö¸¶¨³¤¶ÈµÄ»º³åÇø
+		//åˆ›å»ºæŒ‡å®šé•¿åº¦çš„ç¼“å†²åŒº
 		IntBuffer buff=IntBuffer.allocate(10);
 		int[] array=new int[]{1,3,5};
 		
-		//Ê¹ÓÃÊý×éÀ´´´½¨Ò»¸ö»º³åÇøÊÓÍ¼
+		//ä½¿ç”¨æ•°ç»„æ¥åˆ›å»ºä¸€ä¸ªç¼“å†²åŒºè§†å›¾
 		buff = buff.wrap(array);
 		
-		//ÀûÓÃÊý×éµÄÄ³Ò»¸öÇø¼äÀ´´´½¨ÊÓÍ¼
+		//åˆ©ç”¨æ•°ç»„çš„æŸä¸€ä¸ªåŒºé—´æ¥åˆ›å»ºè§†å›¾
 		//buff = buff.wrap(array,0,2);
 		
-		//¶Ô»º³åÇøÄ³¸öÎ»ÖÃÉÏÃæµÄÔªËØÐÞ¸Ä
+		//å¯¹ç¼“å†²åŒºæŸä¸ªä½ç½®ä¸Šé¢çš„å…ƒç´ ä¿®æ”¹
 		buff.put(0,8);
 		
-		//±éÀú»º³åÇøµÄÊý¾Ý
+		//éåŽ†ç¼“å†²åŒºçš„æ•°æ®
 		for(int i=0;i<buff.limit();i++){
 			System.out.print(buff.get()+"\t");
 		}
-		System.out.println("\nBufferÀàÐÅÏ¢£º"+buff);
-		buff.flip();//¶Ô»º³åÇø½øÐÐ·´×ª£¬(limit=pos;pos=0)
-		System.out.println("\nBufferÀàÐÅÏ¢£º"+buff);
+		System.out.println("\nBufferç±»ä¿¡æ¯ï¼š"+buff);
+		buff.flip();//å¯¹ç¼“å†²åŒºè¿›è¡Œåè½¬ï¼Œ(limit=pos;pos=0)
+		System.out.println("\nBufferç±»ä¿¡æ¯ï¼š"+buff);
 		//buff.clear();
 		
-		//¸³ÖµÒ»¸öÐÂµÄ»º³åÇø
+		//èµ‹å€¼ä¸€ä¸ªæ–°çš„ç¼“å†²åŒº
 		IntBuffer newBuff=buff.duplicate();
 		System.out.println(newBuff);
 	}
