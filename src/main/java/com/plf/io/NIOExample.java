@@ -13,6 +13,7 @@ import org.junit.Test;
  * 提供多路(non-bloking)非阻塞式的高伸缩性网络I/O
  */
 public class NIOExample {
+	
 	//所有缓冲区都具有四个属性来提供关于其所包含的数据元素的信息
 	@SuppressWarnings("static-access")
 	/*1、容量  缓冲区能够容纳的数据元素的最大数量
