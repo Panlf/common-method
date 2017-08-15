@@ -1,5 +1,7 @@
 package com.plf.excel;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.util.CellRangeAddress;
+
 import org.junit.Test;
 
 /**
@@ -122,5 +125,38 @@ public class ExcelExample {
 			e.printStackTrace();
 		}
 		 
+	}
+	
+	//导入excel
+	@Test
+	public void ImportExcel(){
+		String path="E://技能信息表.xls";
+		try {
+			FileInputStream in=new FileInputStream(new File(path));
+			@SuppressWarnings("resource")
+			HSSFWorkbook wb=new HSSFWorkbook(in);
+			//获取第一个sheet
+			HSSFSheet st=wb.getSheetAt(0);
+			//获取总行数
+			int rowNum=st.getLastRowNum();
+			List<SkillInfo> list=new ArrayList<SkillInfo>();
+			for(int i=0;i<=rowNum;i++){
+				HSSFRow hr=st.getRow(i);
+				if(i==0){
+					HSSFCell title=hr.getCell(0);
+					System.out.println(title.getStringCellValue());
+				}else if(i>1){
+					SkillInfo sk=new SkillInfo();
+					sk.setCompany(hr.getCell(0).getStringCellValue());
+					sk.setYear(hr.getCell(1).getStringCellValue());
+					sk.setInfo(hr.getCell(2).getStringCellValue());
+					list.add(sk);
+				}
+			}
+			list.forEach(x->System.out.println(x.getCompany()+"--"+x.getInfo()+"--"+x.getYear()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
