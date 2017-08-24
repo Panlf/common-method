@@ -1,12 +1,17 @@
 package com.plf.pdf;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.junit.Test;
 
+import com.itextpdf.io.font.FontConstants;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.List;
+import com.itextpdf.layout.element.ListItem;
 import com.itextpdf.layout.element.Paragraph;
 
 /**
@@ -20,7 +25,7 @@ import com.itextpdf.layout.element.Paragraph;
 public class PdfExample {
 	
 	@Test
-	public void createPdf() throws FileNotFoundException{
+	public void createPdf() throws IOException{
 	    //初始化PDF Writer
 		PdfWriter writer = new PdfWriter("E:\\hello_world.pdf");
 
@@ -29,9 +34,23 @@ public class PdfExample {
 
 	    //初始化document
 	    Document document = new Document(pdf);
-
+	    
+	    //设置PdfFont
+	    PdfFont font=PdfFontFactory.createFont(FontConstants.TIMES_BOLD);
 	    //将一个段落添加到document中
-	    document.add(new Paragraph("Hello World!"));
+	    document.add(new Paragraph("Hello World!").setFont(font));
+	    
+	    //新建list
+	    List list=new List()
+	    		.setSymbolIndent(12)
+	    		.setListSymbol("\u2202")
+	    		.setFont(font);
+	    
+	    list.add(new ListItem("A line"))
+	    	.add(new ListItem("A new Line"))
+	    	.add(new ListItem("A another new Line"));
+	    
+	    document.add(list);
 
 	    //关闭document
 	    document.close();
