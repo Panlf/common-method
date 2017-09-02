@@ -13,23 +13,23 @@ public class NIOFileChannel {
 	@SuppressWarnings("resource")
 	public static void fileChanneldemo(){
 		try{
-			//¶¨Òå»º³åÇø¶ÔÏó
+			//å®šä¹‰ç¼“å†²åŒºå¯¹è±¡
 			ByteBuffer buff=ByteBuffer.allocate(1024);
-			//Í¨¹ıÎÄ¼şÊäÈëÁ÷»ñµÃÎÄ¼şÍ¨µÀ¶ÔÏó£¨¶ÁÈ¡²Ù×÷£©
+			//é€šè¿‡æ–‡ä»¶è¾“å…¥æµè·å¾—æ–‡ä»¶é€šé“å¯¹è±¡ï¼ˆè¯»å–æ“ä½œï¼‰
 			FileChannel infc=new FileInputStream("E://a.txt").getChannel();
-			//×·¼ÓĞ´ÈëÎÄ¼ş
+			//è¿½åŠ å†™å…¥æ–‡ä»¶
 			FileChannel outfc=new FileOutputStream("E://a.txt",true).getChannel();
-			//¶ÁÈ¡Êı¾İ
+			//è¯»å–æ•°æ®
 			buff.clear();
 			int len=infc.read(buff);
 			System.out.println(new String(buff.array(),0,len));
 			
 			
-			//Ğ´Êı¾İ
+			//å†™æ•°æ®
 			ByteBuffer buff2=ByteBuffer.wrap("jack".getBytes());
 			outfc.write(buff2);
 			
-			//¹Ø±Õ×ÊÔ´
+			//å…³é—­èµ„æº
 			outfc.close();
 			infc.close();
 					

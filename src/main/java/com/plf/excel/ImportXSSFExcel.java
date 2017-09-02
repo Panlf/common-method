@@ -10,8 +10,8 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
- * ÊµÏÖ½«ExcelÖĞµÄ×Ö¶ÎÓ³ÉäÎªsqlÓï¾ä(²Ù×÷.xlsx)
- * @author plf 2017Äê8ÔÂ29ÈÕÏÂÎç10:03:31
+ * å®ç°å°†Excelä¸­çš„å­—æ®µæ˜ å°„ä¸ºsqlè¯­å¥(æ“ä½œ.xlsx)
+ * @author plf 2017å¹´8æœˆ29æ—¥ä¸‹åˆ10:03:31
  *
  */
 public class ImportXSSFExcel {
@@ -29,9 +29,9 @@ public class ImportXSSFExcel {
 			FileInputStream in=new FileInputStream(new File(path));
 			@SuppressWarnings("resource")
 			XSSFWorkbook wb=new XSSFWorkbook(in);
-			//»ñÈ¡µÚÒ»¸ösheet
+			//è·å–ç¬¬ä¸€ä¸ªsheet
 			XSSFSheet st=wb.getSheetAt(0);
-			//»ñÈ¡×ÜĞĞÊı
+			//è·å–æ€»è¡Œæ•°
 			int rowNum=st.getLastRowNum();
 			List<String[]> dataList=new ArrayList<String[]>();
 			String[] str=new String[num];

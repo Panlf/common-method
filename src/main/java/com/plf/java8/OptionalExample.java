@@ -7,51 +7,51 @@ import org.junit.Test;
 public class OptionalExample {
 	@Test
 	public void TestOptional(){
-		//ofÎª·ÇnullµÄÖµ´´½¨Ò»¸öOptional¡£
-		//ÎªÖ¸¶¨µÄÖµ´´½¨Ò»¸öOptional£¬Èç¹ûÖ¸¶¨µÄÖµÎªnull£¬Ôò·µ»ØÒ»¸ö¿ÕµÄOptional¡£
+		//ofä¸ºénullçš„å€¼åˆ›å»ºä¸€ä¸ªOptionalã€‚
+		//ä¸ºæŒ‡å®šçš„å€¼åˆ›å»ºä¸€ä¸ªOptionalï¼Œå¦‚æœæŒ‡å®šçš„å€¼ä¸ºnullï¼Œåˆ™è¿”å›ä¸€ä¸ªç©ºçš„Optionalã€‚
 		
-		//ofNullableÓëof·½·¨ÏàËÆ£¬Î¨Ò»µÄÇø±ğÊÇ¿ÉÒÔ½ÓÊÜ²ÎÊıÎªnullµÄÇé¿ö
+		//ofNullableä¸ofæ–¹æ³•ç›¸ä¼¼ï¼Œå”¯ä¸€çš„åŒºåˆ«æ˜¯å¯ä»¥æ¥å—å‚æ•°ä¸ºnullçš„æƒ…å†µ
 		Optional<String> name=Optional.of("plf");
 		Optional<String> empty=Optional.ofNullable(null);
 		System.out.println(name+""+empty);
 		
-		//isPresent Èç¹ûÖµ´æÔÚ·µ»Øtrue£¬·ñÔò·µ»Øfalse
-		//get Èç¹ûOptionalÓĞÖµÔò½«Æä·µ»Ø£¬·ñÔòÅ×³öNoSuchElementException¡£
+		//isPresent å¦‚æœå€¼å­˜åœ¨è¿”å›trueï¼Œå¦åˆ™è¿”å›false
+		//get å¦‚æœOptionalæœ‰å€¼åˆ™å°†å…¶è¿”å›ï¼Œå¦åˆ™æŠ›å‡ºNoSuchElementExceptionã€‚
 		if(name.isPresent()){
 			System.out.println(name.get());
 		}
 		
-		//Èç¹ûOptionalÊµÀıÓĞÖµÔòÎªÆäµ÷ÓÃconsumer£¬·ñÔò²»×ö´¦Àí
+		//å¦‚æœOptionalå®ä¾‹æœ‰å€¼åˆ™ä¸ºå…¶è°ƒç”¨consumerï¼Œå¦åˆ™ä¸åšå¤„ç†
 		empty.ifPresent((value)->{
 			System.out.println(value.length());
 		});
 		
-		//orElseÈç¹ûÓĞÖµÔò½«Æä·µ»Ø£¬·ñÔò·µ»ØÖ¸¶¨µÄÆäËüÖµ¡£
-		//orElseGet    orElseGetÓëorElse·½·¨ÀàËÆ£¬Çø±ğÔÚÓÚµÃµ½µÄÄ¬ÈÏÖµ¡£
-		//orElse·½·¨½«´«ÈëµÄ×Ö·û´®×÷ÎªÄ¬ÈÏÖµ£¬orElseGet·½·¨¿ÉÒÔ½ÓÊÜSupplier½Ó¿ÚµÄÊµÏÖÓÃÀ´Éú³ÉÄ¬ÈÏÖµ¡£
+		//orElseå¦‚æœæœ‰å€¼åˆ™å°†å…¶è¿”å›ï¼Œå¦åˆ™è¿”å›æŒ‡å®šçš„å…¶å®ƒå€¼ã€‚
+		//orElseGet    orElseGetä¸orElseæ–¹æ³•ç±»ä¼¼ï¼ŒåŒºåˆ«åœ¨äºå¾—åˆ°çš„é»˜è®¤å€¼ã€‚
+		//orElseæ–¹æ³•å°†ä¼ å…¥çš„å­—ç¬¦ä¸²ä½œä¸ºé»˜è®¤å€¼ï¼ŒorElseGetæ–¹æ³•å¯ä»¥æ¥å—Supplieræ¥å£çš„å®ç°ç”¨æ¥ç”Ÿæˆé»˜è®¤å€¼ã€‚
 		System.out.println(empty.orElse("NO Value"));
 		System.out.println(empty.orElseGet(()->"No Value"));
 		
-		//orElseThrow Èç¹ûÓĞÖµÔò½«Æä·µ»Ø£¬·ñÔòÅ×³ösupplier½Ó¿Ú´´½¨µÄÒì³£¡£
+		//orElseThrow å¦‚æœæœ‰å€¼åˆ™å°†å…¶è¿”å›ï¼Œå¦åˆ™æŠ›å‡ºsupplieræ¥å£åˆ›å»ºçš„å¼‚å¸¸ã€‚
 		/*try {
 			empty.orElseThrow(Exception::new);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}*/
 		
-		//map ¡¢ flatMap ¡¢filter
-		//Èç¹ûÓĞÖµ£¬ÎªÆäÖ´ĞĞmappingº¯Êı·µ»ØOptionalÀàĞÍ·µ»ØÖµ£¬·ñÔò·µ»Ø¿ÕOptional¡£flatMapÓëmap£¨Funtion£©·½·¨ÀàËÆ£¬
-		//Çø±ğÔÚÓÚflatMapÖĞµÄmapper·µ»ØÖµ±ØĞëÊÇOptional¡£µ÷ÓÃ½áÊøÊ±£¬flatMap²»»á¶Ô½á¹ûÓÃOptional·â×°¡£
+		//map ã€ flatMap ã€filter
+		//å¦‚æœæœ‰å€¼ï¼Œä¸ºå…¶æ‰§è¡Œmappingå‡½æ•°è¿”å›Optionalç±»å‹è¿”å›å€¼ï¼Œå¦åˆ™è¿”å›ç©ºOptionalã€‚flatMapä¸mapï¼ˆFuntionï¼‰æ–¹æ³•ç±»ä¼¼ï¼Œ
+		//åŒºåˆ«åœ¨äºflatMapä¸­çš„mapperè¿”å›å€¼å¿…é¡»æ˜¯Optionalã€‚è°ƒç”¨ç»“æŸæ—¶ï¼ŒflatMapä¸ä¼šå¯¹ç»“æœç”¨Optionalå°è£…ã€‚
 		System.out.println(name.map(x->x.toUpperCase()));
 		System.out.println(name.flatMap(x->Optional.of(x.toUpperCase())));
 		System.out.println(name.filter(x->!x.equals("plf")));
 		
 		
 		Person person=new Person();
-		System.out.println("PersonName==¡·"+getNewName(person));
+		System.out.println("PersonName==ã€‹"+getNewName(person));
 	
 		person.setName("yoooo");
-		System.out.println("PersonName==¡·"+getNewName(person));
+		System.out.println("PersonName==ã€‹"+getNewName(person));
 	}
 	
 	

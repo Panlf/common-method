@@ -10,54 +10,54 @@ import java.nio.channels.SocketChannel;
 public class NIOChannelServer {
 	
 	private ByteBuffer  buff=ByteBuffer.allocate(1024);
-	//´´½¨Ò»¸öint»º³åÇøµÄÊÓÍ¼£¬´Ë»º³åÇøÄÚÈİµÄ¸ü¸ÄÔÚĞÂ»º³åÇøÖĞÊÇ¿É¼ûµÄ£¬·´Ö®ÒàÈ»
+	//åˆ›å»ºä¸€ä¸ªintç¼“å†²åŒºçš„è§†å›¾ï¼Œæ­¤ç¼“å†²åŒºå†…å®¹çš„æ›´æ”¹åœ¨æ–°ç¼“å†²åŒºä¸­æ˜¯å¯è§çš„ï¼Œåä¹‹äº¦ç„¶
 	private IntBuffer intBuff=buff.asIntBuffer();
 	private SocketChannel clientChannel=null;
 	private ServerSocketChannel serverChannel=null;
 	
 	public void openChannel() throws IOException{
-		//½¨Á¢Ò»¸öĞÂµÄÁ¬½ÓÍ¨µÀ
+		//å»ºç«‹ä¸€ä¸ªæ–°çš„è¿æ¥é€šé“
 		serverChannel=ServerSocketChannel.open();
-		//ÎªĞÂµÄÍ¨µÀÉèÖÃ·ÃÎÊµÄ½Ó¿Ú
+		//ä¸ºæ–°çš„é€šé“è®¾ç½®è®¿é—®çš„æ¥å£
 		serverChannel.socket().bind(new InetSocketAddress(8888));
-		System.out.println("·şÎñÍ¨µÀÒÑ¾­´ò¿ª...");
+		System.out.println("æœåŠ¡é€šé“å·²ç»æ‰“å¼€...");
 	}
 	
-	//µÈ´ı¿Í»§¶ËµÄÁ¬½Ó
+	//ç­‰å¾…å®¢æˆ·ç«¯çš„è¿æ¥
 	public void waitReqConn() throws IOException {
 		while(true){
 			clientChannel=serverChannel.accept();
 			if(null != clientChannel){
-				System.out.println("ĞÂµÄÁ¬½Ó¼ÓÈë£¡");
+				System.out.println("æ–°çš„è¿æ¥åŠ å…¥ï¼");
 			}
 			
-			processReq();//´¦ÀíÇëÇó
+			processReq();//å¤„ç†è¯·æ±‚
 			clientChannel.close();
 		}
 		
 	}
 	
-	//´¦ÀíÇëÇó¹ıÀ´µÄÊı¾İ
+	//å¤„ç†è¯·æ±‚è¿‡æ¥çš„æ•°æ®
 	public void processReq() throws IOException {
-		System.out.println("¿ªÊ¼¶ÁÈ¡ºÍ´¦Àí¿Í»§¶ËµÄÊı¾İ");
-		buff.clear();//°Ñµ±Ç°Î»ÖÃÉèÖÃÎª0£¬ÉÏÏŞÖµĞŞ¸ÄÎªÈİÁ¿µÄÖµ
+		System.out.println("å¼€å§‹è¯»å–å’Œå¤„ç†å®¢æˆ·ç«¯çš„æ•°æ®");
+		buff.clear();//æŠŠå½“å‰ä½ç½®è®¾ç½®ä¸º0ï¼Œä¸Šé™å€¼ä¿®æ”¹ä¸ºå®¹é‡çš„å€¼
 		clientChannel.read(buff);
 		int result=intBuff.get(0)+intBuff.get(1);
 		buff.flip();
 		buff.clear();
-		//ĞŞ¸ÄÊÓÍ¼£¬Ô­À´µÄ»º³åÇøÒ²»á±ä»¯
+		//ä¿®æ”¹è§†å›¾ï¼ŒåŸæ¥çš„ç¼“å†²åŒºä¹Ÿä¼šå˜åŒ–
 		intBuff.put(0,result);
 		clientChannel.write(buff);
-		System.out.println("¶ÁÈ¡ºÍ´¦Àí¿Í»§¶ËÊı¾İÍê³É");
+		System.out.println("è¯»å–å’Œå¤„ç†å®¢æˆ·ç«¯æ•°æ®å®Œæˆ");
 		
 	}
 
 	public void start(){
 		try{
-			//´ò¿ª·şÎñÍ¨µÀ
+			//æ‰“å¼€æœåŠ¡é€šé“
 			openChannel();
 			
-			//¼àÌıµÈ´ı¿Í»§¶ËÇëÇó
+			//ç›‘å¬ç­‰å¾…å®¢æˆ·ç«¯è¯·æ±‚
 			waitReqConn();
 			
 			clientChannel.close();

@@ -10,23 +10,23 @@ import org.junit.Test;
 
 /**
  * LocalDate()
- * @author plf 2017Äê6ÔÂ15ÈÕÏÂÎç3:17:01
+ * @author plf 2017å¹´6æœˆ15æ—¥ä¸‹åˆ3:17:01
  *
  */
 public class LocalDateExample {
 	/**
-	 * LocalDate.now()»ñÈ¡ÏµÍ³µ±Ç°ÈÕÆÚ
+	 * LocalDate.now()è·å–ç³»ç»Ÿå½“å‰æ—¥æœŸ
 	 * LocalDate.of(int year,int month,int dayOfMonth)
-	 * °´Ö¸¶¨ÈÕÆÚ´´½¨LocalDate¶ÔÏó
-	 * getYear() ·µ»ØÈÕÆÚÖĞµÄÄê·İ
-	 * getMonthValue() ·µ»ØÈÕÆÚÖĞµÄÔÂ·İ
-	 * getDayOfMonth() ·µ»ØÈÕÆÚÖĞµÄÈÕ
+	 * æŒ‰æŒ‡å®šæ—¥æœŸåˆ›å»ºLocalDateå¯¹è±¡
+	 * getYear() è¿”å›æ—¥æœŸä¸­çš„å¹´ä»½
+	 * getMonthValue() è¿”å›æ—¥æœŸä¸­çš„æœˆä»½
+	 * getDayOfMonth() è¿”å›æ—¥æœŸä¸­çš„æ—¥
 	 */
 	
 	/**
-	 * LocalTime --Ê±·ÖÃë
+	 * LocalTime --æ—¶åˆ†ç§’
 	 * 
-	 * LocalDateTime --ÄêÔÂÈÕÊ±·ÖÃë
+	 * LocalDateTime --å¹´æœˆæ—¥æ—¶åˆ†ç§’
 	 */
 	
 	/**
@@ -37,7 +37,7 @@ public class LocalDateExample {
 	 */
 	
 	/**
-	 * ZonedDateTime ´¦ÀíÈÕÆÚºÍÊ±¼äÓëÏàÓ¦µÄÊ±Çø
+	 * ZonedDateTime å¤„ç†æ—¥æœŸå’Œæ—¶é—´ä¸ç›¸åº”çš„æ—¶åŒº
 	 * ZonedDateTime.now()
 	 * 
 	 * String format(DateTimeFormatter formatter)
@@ -45,21 +45,21 @@ public class LocalDateExample {
 	@Test
 	public void TestLocalDate(){
 		LocalDate localDate=LocalDate.now();
-		System.out.println(localDate.getYear()+"Äê"+localDate.getMonthValue()+"ÔÂ"+localDate.getDayOfMonth()+"ÈÕ");
+		System.out.println(localDate.getYear()+"å¹´"+localDate.getMonthValue()+"æœˆ"+localDate.getDayOfMonth()+"æ—¥");
 		System.out.println(localDate.toString());
 	}
 	
 	@Test
 	public void TestLocalTime(){
 		LocalTime time=LocalTime.now();
-		System.out.println(time.getHour()+"Ê±"+time.getMinute()+"·Ö"+time.getSecond()+"Ãë");
+		System.out.println(time.getHour()+"æ—¶"+time.getMinute()+"åˆ†"+time.getSecond()+"ç§’");
 		System.out.println(time.toString());
 	}
 	
 	@Test
 	public void TestLocalDateTime(){
 		LocalDateTime time=LocalDateTime.now();
-		System.out.println(time.getYear()+"Äê"+time.getMonthValue()+"ÔÂ"+time.getDayOfMonth()+"ÈÕ"+time.getHour()+"Ê±"+time.getMinute()+"·Ö"+time.getSecond()+"Ãë");
+		System.out.println(time.getYear()+"å¹´"+time.getMonthValue()+"æœˆ"+time.getDayOfMonth()+"æ—¥"+time.getHour()+"æ—¶"+time.getMinute()+"åˆ†"+time.getSecond()+"ç§’");
 		System.out.println(time.toString());
 	}
 	
@@ -78,14 +78,14 @@ public class LocalDateExample {
 	}
 	
 	@Test
-	//Ôö¼ÓÊ±¼ä
+	//å¢åŠ æ—¶é—´
 	public void addTime(){
 		LocalDateTime time=LocalDateTime.now();
 		System.out.println(time.plusHours(-3));
 	
 		DateTimeFormatter formater=DateTimeFormatter.ofPattern("yyyy/MM/dd HH/mm/ss");
 		System.out.println(formater.format(time));
-		//Ôö¼Ó3s
+		//å¢åŠ 3s
 		System.out.println(formater.format(time.plusSeconds(3)));
 	}
 }

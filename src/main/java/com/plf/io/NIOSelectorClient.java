@@ -17,48 +17,48 @@ public class NIOSelectorClient {
 	private SocketChannel channel=null;
 	
 	public void initClient() throws IOException{
-		//»ñµÃÒ»¸ösocketÍ¨µÀ£¬²¢Ã»ÓĞ½øĞĞÁ¬½Ó
+		//è·å¾—ä¸€ä¸ªsocketé€šé“ï¼Œå¹¶æ²¡æœ‰è¿›è¡Œè¿æ¥
 		channel = SocketChannel.open();
-		//»ñµÃÒ»¸öÍ¨µÀ¹ÜÀíÆ÷
+		//è·å¾—ä¸€ä¸ªé€šé“ç®¡ç†å™¨
 		selector = Selector.open();
-		//ÉèÖÃÎª·Ç×èÈû
+		//è®¾ç½®ä¸ºéé˜»å¡
 		channel.configureBlocking(false);
 		
-		//Á¬½Ó·şÎñÆ÷
+		//è¿æ¥æœåŠ¡å™¨
 		channel.connect(new InetSocketAddress("127.0.0.1",8888));
-		//×¢²á¿Í»§¶ËÁ¬½Ó·şÎñÆ÷ÊÂ¼ş
+		//æ³¨å†Œå®¢æˆ·ç«¯è¿æ¥æœåŠ¡å™¨äº‹ä»¶
 		channel.register(this.selector, SelectionKey.OP_CONNECT);
 	}
-	//¼àÌıÔÚÍ¨µÀÉÏÃæ½øĞĞ×¢²áµÃÊÂ¼ş
+	//ç›‘å¬åœ¨é€šé“ä¸Šé¢è¿›è¡Œæ³¨å†Œå¾—äº‹ä»¶
 	@SuppressWarnings("static-access")
 	public void listen() throws IOException{
-		//½øĞĞÂÖÑ¯
+		//è¿›è¡Œè½®è¯¢
 		while(true){
 			keys=this.selector.select();
 			if(keys>0){
 				Iterator<SelectionKey> it=this.selector.selectedKeys().iterator(); 
 				while(it.hasNext()){
 					SelectionKey key=it.next();
-					//²âÊÔ´ËÍ¨µÀÊÇ·ñÍê³ÉÌ×½Ó×ÖµÄÁ¬½Ó
+					//æµ‹è¯•æ­¤é€šé“æ˜¯å¦å®Œæˆå¥—æ¥å­—çš„è¿æ¥
 					if(key.isConnectable()){
-						//»ñµÃÓë·şÎñÆ÷ÏàÁ¬µÄÍ¨µÀ
+						//è·å¾—ä¸æœåŠ¡å™¨ç›¸è¿çš„é€šé“
 						SocketChannel channel=(SocketChannel) key.channel();
 						if(channel.isConnectionPending()){
 							channel.finishConnect();
-							System.out.println("Íê³ÉÁ¬½Ó");
+							System.out.println("å®Œæˆè¿æ¥");
 						}
 						channel.register(this.selector, SelectionKey.OP_WRITE);
 					}
-					//ÔÚÍ¨µÀÉÏÃæ½øĞĞĞ´²Ù×÷
+					//åœ¨é€šé“ä¸Šé¢è¿›è¡Œå†™æ“ä½œ
 					else if(key.isWritable()){
 						SocketChannel channel=(SocketChannel) key.channel();
 						outBuff.clear();
-						System.out.println("¿Í»§¶ËÕıÔÚĞ´Êı¾İ...");
-						channel.write(outBuff.wrap("ÎÒÊÇClientA".getBytes()));
+						System.out.println("å®¢æˆ·ç«¯æ­£åœ¨å†™æ•°æ®...");
+						channel.write(outBuff.wrap("æˆ‘æ˜¯ClientA".getBytes()));
 						channel.register(this.selector, SelectionKey.OP_READ);
-						System.out.println("¿Í»§¶ËĞ´Êı¾İÍê³É");
+						System.out.println("å®¢æˆ·ç«¯å†™æ•°æ®å®Œæˆ");
 					}
-				//ÔÚÍ¨µÀÉÏ½øĞĞ¶ÁÈ¡
+				//åœ¨é€šé“ä¸Šè¿›è¡Œè¯»å–
 				else if(key.isReadable()){
 					SocketChannel channel=(SocketChannel) key.channel();
 					inBuff.clear();
@@ -70,7 +70,7 @@ public class NIOSelectorClient {
 				}
 			}
 			else{
-				System.out.println("Ã»ÓĞÕÒµ½¸ĞĞËÈ¤µÄÊÂ¼ş");
+				System.out.println("æ²¡æœ‰æ‰¾åˆ°æ„Ÿå…´è¶£çš„äº‹ä»¶");
 			}
 		}
 	}	

@@ -18,89 +18,89 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.junit.Test;
 
 /**
- * Java POI¼¼Êõ²Ù×÷Excel
- * @author plf 2017Äê6ÔÂ12ÈÕÏÂÎç9:31:21
+ * Java POIæŠ€æœ¯æ“ä½œExcel
+ * @author plf 2017å¹´6æœˆ12æ—¥ä¸‹åˆ9:31:21
  *
  */
 public class ExcelExample {
 	
 	@Test
 	public void ExportExcel(){
-		//ÉùÃ÷Ò»¸ö¹¤×÷²¿
+		//å£°æ˜ä¸€ä¸ªå·¥ä½œéƒ¨
 		@SuppressWarnings("resource")
 		HSSFWorkbook wb=new HSSFWorkbook();
-		//ÉùÃ÷Ò»¸ösheet²¢ÃüÃû
-		HSSFSheet hs=wb.createSheet("¼¼ÄÜĞÅÏ¢±í");
-		//ÉèÖÃ±í¸ñÄ¬ÈÏ¿í¶È
+		//å£°æ˜ä¸€ä¸ªsheetå¹¶å‘½å
+		HSSFSheet hs=wb.createSheet("æŠ€èƒ½ä¿¡æ¯è¡¨");
+		//è®¾ç½®è¡¨æ ¼é»˜è®¤å®½åº¦
 		hs.setDefaultColumnWidth(15);
 		hs.setDefaultRowHeightInPoints(20);
-		//Éú³É¸ñÊ½
+		//ç”Ÿæˆæ ¼å¼
 		HSSFCellStyle style=wb.createCellStyle();
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 		style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
-		//ÉèÖÃ±ß¿òµÄºñ¶È
-//		style.setBorderBottom(HSSFCellStyle.BORDER_THIN); //ÏÂ±ß¿ò
-//		style.setBorderLeft(HSSFCellStyle.BORDER_THIN);//×ó±ß¿ò
-//		style.setBorderTop(HSSFCellStyle.BORDER_THIN);//ÉÏ±ß¿ò
-//		style.setBorderRight(HSSFCellStyle.BORDER_THIN);//ÓÒ±ß¿ò
-		//Ìî³äµ¥Ôª¸ñÑÕÉ«
+		//è®¾ç½®è¾¹æ¡†çš„åšåº¦
+//		style.setBorderBottom(HSSFCellStyle.BORDER_THIN); //ä¸‹è¾¹æ¡†
+//		style.setBorderLeft(HSSFCellStyle.BORDER_THIN);//å·¦è¾¹æ¡†
+//		style.setBorderTop(HSSFCellStyle.BORDER_THIN);//ä¸Šè¾¹æ¡†
+//		style.setBorderRight(HSSFCellStyle.BORDER_THIN);//å³è¾¹æ¡†
+		//å¡«å……å•å…ƒæ ¼é¢œè‰²
 		style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
 		style.setFillForegroundColor(HSSFColor.BLUE.index);
-		//style.setFillBackgroundColor(HSSFColor.LIGHT_GREEN.index);//ÉèÖÃ±³¾°É«
-		//Éú³É×ÖÌå¸ñÊ½
+		//style.setFillBackgroundColor(HSSFColor.LIGHT_GREEN.index);//è®¾ç½®èƒŒæ™¯è‰²
+		//ç”Ÿæˆå­—ä½“æ ¼å¼
 		HSSFFont font = wb.createFont(); 
 		font.setBold(true);
 		//font.setFontHeight((short)7);
 		font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
-//		//Ó¦ÓÃ×ÖÌå
+//		//åº”ç”¨å­—ä½“
 		style.setFont(font);
 		
 		
-		//Éú³É¸ñÊ½
+		//ç”Ÿæˆæ ¼å¼
 		HSSFCellStyle anotherstyle=wb.createCellStyle();
 		anotherstyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 		anotherstyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
-//		anotherstyle.setBorderBottom(HSSFCellStyle.BORDER_THIN); //ÏÂ±ß¿ò
-//		anotherstyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);//×ó±ß¿ò
-//		anotherstyle.setBorderTop(HSSFCellStyle.BORDER_THIN);//ÉÏ±ß¿ò
-//		anotherstyle.setBorderRight(HSSFCellStyle.BORDER_THIN);//ÓÒ±ß¿ò
-		//Éú³É×ÖÌå¸ñÊ½
+//		anotherstyle.setBorderBottom(HSSFCellStyle.BORDER_THIN); //ä¸‹è¾¹æ¡†
+//		anotherstyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);//å·¦è¾¹æ¡†
+//		anotherstyle.setBorderTop(HSSFCellStyle.BORDER_THIN);//ä¸Šè¾¹æ¡†
+//		anotherstyle.setBorderRight(HSSFCellStyle.BORDER_THIN);//å³è¾¹æ¡†
+		//ç”Ÿæˆå­—ä½“æ ¼å¼
 		HSSFFont anotherfont = wb.createFont(); 
 		//anotherfont.setFontHeight((short)6);
-//		//Ó¦ÓÃ×ÖÌå
+//		//åº”ç”¨å­—ä½“
 		anotherstyle.setFont(anotherfont);
 		
 		
-		//ÉèÖÃµÚÒ»ĞĞ
-		//CellRangeAddress  ¶ÔÏóµÄ¹¹Ôì·½·¨ĞèÒª´«ÈëºÏ²¢µ¥Ôª¸ñµÄÊ×ĞĞ¡¢×îºóÒ»ĞĞ¡¢Ê×ÁĞ¡¢×îºóÒ»ÁĞ¡£
+		//è®¾ç½®ç¬¬ä¸€è¡Œ
+		//CellRangeAddress  å¯¹è±¡çš„æ„é€ æ–¹æ³•éœ€è¦ä¼ å…¥åˆå¹¶å•å…ƒæ ¼çš„é¦–è¡Œã€æœ€åä¸€è¡Œã€é¦–åˆ—ã€æœ€åä¸€åˆ—ã€‚
 		 CellRangeAddress cra=new CellRangeAddress(0, 0, 0, 2);        
          
-	    //ÔÚsheetÀïÔö¼ÓºÏ²¢µ¥Ôª¸ñ  
+	    //åœ¨sheeté‡Œå¢åŠ åˆå¹¶å•å…ƒæ ¼  
 	    hs.addMergedRegion(cra); 
 		HSSFRow row = hs.createRow(0);
-		//ÕâÀïµÄÄ¬ÈÏÖµÊÇ1/20*hs.setDefaultRowHeightInPoints(20);£¬ËùÒÔĞèÒª*20²ÅÊÇÕıÈ·µÄ
+		//è¿™é‡Œçš„é»˜è®¤å€¼æ˜¯1/20*hs.setDefaultRowHeightInPoints(20);ï¼Œæ‰€ä»¥éœ€è¦*20æ‰æ˜¯æ­£ç¡®çš„
 		row.setHeight((short)(20*20));
 		HSSFCell cell=row.createCell(0);
-		cell.setCellValue("¼¼ÄÜĞÅÏ¢±í");
+		cell.setCellValue("æŠ€èƒ½ä¿¡æ¯è¡¨");
 		cell.setCellStyle(style);
 		
-		//ÉèÖÃµÚ¶şĞĞ
+		//è®¾ç½®ç¬¬äºŒè¡Œ
 		row = hs.createRow(1);
 		row.setHeight((short)(20*20));
 		cell=row.createCell(0);
-		cell.setCellValue("¹«Ë¾Ãû");
+		cell.setCellValue("å…¬å¸å");
 		cell.setCellStyle(anotherstyle);
 		cell=row.createCell(1);
-		cell.setCellValue("ÄêÏŞ");
+		cell.setCellValue("å¹´é™");
 		cell.setCellStyle(anotherstyle);
 		cell=row.createCell(2);
-		cell.setCellValue("ĞÅÏ¢");
+		cell.setCellValue("ä¿¡æ¯");
 		cell.setCellStyle(anotherstyle);
 		
 		List<SkillInfo> data=new ArrayList<SkillInfo>();
-		data.add(new SkillInfo("xx1","1Äê","»ù´¡"));
-		data.add(new SkillInfo("xx2","3Äê","¿ò¼Ü"));
-		data.add(new SkillInfo("xx3","5Äê","¼Ü¹¹"));
+		data.add(new SkillInfo("xx1","1å¹´","åŸºç¡€"));
+		data.add(new SkillInfo("xx2","3å¹´","æ¡†æ¶"));
+		data.add(new SkillInfo("xx3","5å¹´","æ¶æ„"));
 		
 		for (int i=0;i<data.size();i++) {
 			row=hs.createRow(i+2);
@@ -117,7 +117,7 @@ public class ExcelExample {
 		}
 		
 		try {
-			FileOutputStream out = new FileOutputStream("E://¼¼ÄÜĞÅÏ¢±í.xls");
+			FileOutputStream out = new FileOutputStream("E://æŠ€èƒ½ä¿¡æ¯è¡¨.xls");
 			wb.write(out);
 	        out.close();
 		} catch (Exception e) {
@@ -127,17 +127,17 @@ public class ExcelExample {
 		 
 	}
 	
-	//µ¼Èëexcel
+	//å¯¼å…¥excel
 	@Test
 	public void ImportExcel(){
-		String path="E://¼¼ÄÜĞÅÏ¢±í.xls";
+		String path="E://æŠ€èƒ½ä¿¡æ¯è¡¨.xls";
 		try {
 			FileInputStream in=new FileInputStream(new File(path));
 			@SuppressWarnings("resource")
 			HSSFWorkbook wb=new HSSFWorkbook(in);
-			//»ñÈ¡µÚÒ»¸ösheet
+			//è·å–ç¬¬ä¸€ä¸ªsheet
 			HSSFSheet st=wb.getSheetAt(0);
-			//»ñÈ¡×ÜĞĞÊı
+			//è·å–æ€»è¡Œæ•°
 			int rowNum=st.getLastRowNum();
 			List<SkillInfo> list=new ArrayList<SkillInfo>();
 			for(int i=0;i<=rowNum;i++){

@@ -26,86 +26,86 @@ public class MailExample {
 	}
 	public void sendMail(String target,String context) throws UnsupportedEncodingException, MessagingException{
 		Properties props=new Properties();
-		props.setProperty("mail.transport.protocol", "smtp");   // Ê¹ÓÃµÄĞ­Òé£¨JavaMail¹æ·¶ÒªÇó£©
-        props.setProperty("mail.smtp.host", "smtp.163.com");   // ·¢¼şÈËµÄÓÊÏäµÄ SMTP ·şÎñÆ÷µØÖ·
-        props.setProperty("mail.smtp.auth", "true");            // ĞèÒªÇëÇóÈÏÖ¤
-        //²ÎÊıÅäÖÃ
+		props.setProperty("mail.transport.protocol", "smtp");   // ä½¿ç”¨çš„åè®®ï¼ˆJavaMailè§„èŒƒè¦æ±‚ï¼‰
+        props.setProperty("mail.smtp.host", "smtp.163.com");   // å‘ä»¶äººçš„é‚®ç®±çš„ SMTP æœåŠ¡å™¨åœ°å€
+        props.setProperty("mail.smtp.auth", "true");            // éœ€è¦è¯·æ±‚è®¤è¯
+        //å‚æ•°é…ç½®
         Session session = Session.getDefaultInstance(props);
-        //session.setDebug(true); //javax.mail-apiµÄjar°üÀï²»Ìá¹©µ÷ÊÔµÄ£¬ĞèÒªjavax.mailµÄ£¬²»¹ımaven repositoryÃ»ÕÒµ½
-        //´´½¨ÓÊ¼şµÄ¶ÔÏó
+        //session.setDebug(true); //javax.mail-apiçš„jaråŒ…é‡Œä¸æä¾›è°ƒè¯•çš„ï¼Œéœ€è¦javax.mailçš„ï¼Œä¸è¿‡maven repositoryæ²¡æ‰¾åˆ°
+        //åˆ›å»ºé‚®ä»¶çš„å¯¹è±¡
         Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(sendMail, "·ãÒ¶Àæ»¨", "UTF-8"));//·¢¼şÓÊÏä
-        message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(target, "Ä¿±êÓÃ»§", "UTF-8"));//ÊÕ¼şÓÊÏä
-        message.setSubject("²âÊÔÓÊ¼ş");//±êÌâ
-        message.setContent(context,"text/html;charset=UTF-8");//ÕıÎÄ
-        message.setSentDate(new Date());//·¢¼şÊ±¼ä
-        message.saveChanges();//±£´æ
-        //»ñÈ¡ÓÊ¼ş´«Êä¶ÔÏó
+        message.setFrom(new InternetAddress(sendMail, "æ«å¶æ¢¨èŠ±", "UTF-8"));//å‘ä»¶é‚®ç®±
+        message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(target, "ç›®æ ‡ç”¨æˆ·", "UTF-8"));//æ”¶ä»¶é‚®ç®±
+        message.setSubject("æµ‹è¯•é‚®ä»¶");//æ ‡é¢˜
+        message.setContent(context,"text/html;charset=UTF-8");//æ­£æ–‡
+        message.setSentDate(new Date());//å‘ä»¶æ—¶é—´
+        message.saveChanges();//ä¿å­˜
+        //è·å–é‚®ä»¶ä¼ è¾“å¯¹è±¡
         Transport transport = session.getTransport();
         transport.connect(sendMail, password);
-        transport.sendMessage(message, message.getAllRecipients());//»ñÈ¡ËùÓĞµÄÊÕ¼şÓÊÏä
-        transport.close();//¹Ø±ÕÁ¬½Ó
+        transport.sendMessage(message, message.getAllRecipients());//è·å–æ‰€æœ‰çš„æ”¶ä»¶é‚®ç®±
+        transport.close();//å…³é—­è¿æ¥
 	}
 	
 	public void sendPicAndWordMail(String target) throws UnsupportedEncodingException, MessagingException{
 		Properties props=new Properties();
-		props.setProperty("mail.transport.protocol", "smtp");   // Ê¹ÓÃµÄĞ­Òé£¨JavaMail¹æ·¶ÒªÇó£©
-        props.setProperty("mail.smtp.host", "smtp.163.com");   // ·¢¼şÈËµÄÓÊÏäµÄ SMTP ·şÎñÆ÷µØÖ·
-        props.setProperty("mail.smtp.auth", "true");            // ĞèÒªÇëÇóÈÏÖ¤
-        //²ÎÊıÅäÖÃ
+		props.setProperty("mail.transport.protocol", "smtp");   // ä½¿ç”¨çš„åè®®ï¼ˆJavaMailè§„èŒƒè¦æ±‚ï¼‰
+        props.setProperty("mail.smtp.host", "smtp.163.com");   // å‘ä»¶äººçš„é‚®ç®±çš„ SMTP æœåŠ¡å™¨åœ°å€
+        props.setProperty("mail.smtp.auth", "true");            // éœ€è¦è¯·æ±‚è®¤è¯
+        //å‚æ•°é…ç½®
         Session session = Session.getDefaultInstance(props);
-        //session.setDebug(true); //javax.mail-apiµÄjar°üÀï²»Ìá¹©µ÷ÊÔµÄ£¬ĞèÒªjavax.mailµÄ£¬²»¹ımaven repositoryÃ»ÕÒµ½
-        //´´½¨ÓÊ¼şµÄ¶ÔÏó
+        //session.setDebug(true); //javax.mail-apiçš„jaråŒ…é‡Œä¸æä¾›è°ƒè¯•çš„ï¼Œéœ€è¦javax.mailçš„ï¼Œä¸è¿‡maven repositoryæ²¡æ‰¾åˆ°
+        //åˆ›å»ºé‚®ä»¶çš„å¯¹è±¡
         Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(sendMail, "·ãÒ¶Àæ»¨", "UTF-8"));//·¢¼şÓÊÏä
-        message.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(target, "Ä¿±êÓÃ»§", "UTF-8"));//ÊÕ¼şÓÊÏä
-        message.setSubject("¼òÀúÓÊ¼ş");//±êÌâ
+        message.setFrom(new InternetAddress(sendMail, "æ«å¶æ¢¨èŠ±", "UTF-8"));//å‘ä»¶é‚®ç®±
+        message.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(target, "ç›®æ ‡ç”¨æˆ·", "UTF-8"));//æ”¶ä»¶é‚®ç®±
+        message.setSubject("ç®€å†é‚®ä»¶");//æ ‡é¢˜
         
         
-        //´´½¨Í¼Æ¬½Úµã
+        //åˆ›å»ºå›¾ç‰‡èŠ‚ç‚¹
         MimeBodyPart img=new MimeBodyPart();
-        DataHandler dh = new DataHandler(new FileDataSource("E:\\temp\\35.jpg")); // ¶ÁÈ¡±¾µØÎÄ¼ş
+        DataHandler dh = new DataHandler(new FileDataSource("E:\\temp\\35.jpg")); // è¯»å–æœ¬åœ°æ–‡ä»¶
         img.setDataHandler(dh);
         img.setContentID("img_id");
         
-        //´´½¨ÎÄ±¾½Úµã
+        //åˆ›å»ºæ–‡æœ¬èŠ‚ç‚¹
         MimeBodyPart text = new MimeBodyPart();
-        text.setContent("ÕâÊÇÒ»ÕÅÍ¼Æ¬<br/><img src='cid:img_id'/>", "text/html;charset=UTF-8");
+        text.setContent("è¿™æ˜¯ä¸€å¼ å›¾ç‰‡<br/><img src='cid:img_id'/>", "text/html;charset=UTF-8");
         
         
-        //½«ÎÄ±¾ºÍÍ¼Æ¬½Úµã»ìºÏ
+        //å°†æ–‡æœ¬å’Œå›¾ç‰‡èŠ‚ç‚¹æ··åˆ
         MimeMultipart mm_text_image = new MimeMultipart();
         mm_text_image.addBodyPart(text);
         mm_text_image.addBodyPart(img);
-        mm_text_image.setSubType("related");    // ¹ØÁª¹ØÏµ
+        mm_text_image.setSubType("related");    // å…³è”å…³ç³»
         
-        //½« ÎÄ±¾+Í¼Æ¬ µÄ»ìºÏ¡°½Úµã¡±·â×°³ÉÒ»¸öÆÕÍ¨¡°½Úµã¡±   
+        //å°† æ–‡æœ¬+å›¾ç‰‡ çš„æ··åˆâ€œèŠ‚ç‚¹â€å°è£…æˆä¸€ä¸ªæ™®é€šâ€œèŠ‚ç‚¹â€   
         MimeBodyPart text_image = new MimeBodyPart();
         text_image.setContent(mm_text_image);
 
-        //´´½¨ÎÄ±¾½Úµã
+        //åˆ›å»ºæ–‡æœ¬èŠ‚ç‚¹
         MimeBodyPart attachment = new MimeBodyPart();
-        DataHandler dh2 = new DataHandler(new FileDataSource("E:\\¼òÀú\\Java¿ª·¢.docx"));  // ¶ÁÈ¡±¾µØÎÄ¼ş
-        attachment.setDataHandler(dh2);                                     // ½«¸½¼şÊı¾İÌí¼Óµ½¡°½Úµã¡±
+        DataHandler dh2 = new DataHandler(new FileDataSource("E:\\ç®€å†\\Javaå¼€å‘.docx"));  // è¯»å–æœ¬åœ°æ–‡ä»¶
+        attachment.setDataHandler(dh2);                                     // å°†é™„ä»¶æ•°æ®æ·»åŠ åˆ°â€œèŠ‚ç‚¹â€
         attachment.setFileName(MimeUtility.encodeText(dh2.getName()));
         
         
-        // ÉèÖÃ£¨ÎÄ±¾+Í¼Æ¬£©ºÍ ¸½¼ş µÄ¹ØÏµ£¨ºÏ³ÉÒ»¸ö´óµÄ»ìºÏ¡°½Úµã¡± / Multipart £©
+        // è®¾ç½®ï¼ˆæ–‡æœ¬+å›¾ç‰‡ï¼‰å’Œ é™„ä»¶ çš„å…³ç³»ï¼ˆåˆæˆä¸€ä¸ªå¤§çš„æ··åˆâ€œèŠ‚ç‚¹â€ / Multipart ï¼‰
         MimeMultipart mm = new MimeMultipart();
         mm.addBodyPart(text_image);
-        mm.addBodyPart(attachment);     // Èç¹ûÓĞ¶à¸ö¸½¼ş£¬¿ÉÒÔ´´½¨¶à¸ö¶à´ÎÌí¼Ó
+        mm.addBodyPart(attachment);     // å¦‚æœæœ‰å¤šä¸ªé™„ä»¶ï¼Œå¯ä»¥åˆ›å»ºå¤šä¸ªå¤šæ¬¡æ·»åŠ 
         mm.setSubType("mixed"); 
        
-        //½«Õû¸öÄÚÈİÌí¼Ó½øÈ¥
+        //å°†æ•´ä¸ªå†…å®¹æ·»åŠ è¿›å»
         message.setContent(mm);
         
-        message.setSentDate(new Date());//·¢¼şÊ±¼ä
-        message.saveChanges();//±£´æ
-        //»ñÈ¡ÓÊ¼ş´«Êä¶ÔÏó
+        message.setSentDate(new Date());//å‘ä»¶æ—¶é—´
+        message.saveChanges();//ä¿å­˜
+        //è·å–é‚®ä»¶ä¼ è¾“å¯¹è±¡
         Transport transport = session.getTransport();
         transport.connect(sendMail, password);
-        transport.sendMessage(message, message.getAllRecipients());//»ñÈ¡ËùÓĞµÄÊÕ¼şÓÊÏä
-        transport.close();//¹Ø±ÕÁ¬½Ó
+        transport.sendMessage(message, message.getAllRecipients());//è·å–æ‰€æœ‰çš„æ”¶ä»¶é‚®ç®±
+        transport.close();//å…³é—­è¿æ¥
 	}
 	
 }

@@ -1,8 +1,8 @@
 package com.plf.excel;
 
 /**
- * ¼¼ÄÜĞÅÏ¢Ä£ĞÍ
- * @author plf 2017Äê6ÔÂ12ÈÕÏÂÎç9:45:24
+ * æŠ€èƒ½ä¿¡æ¯æ¨¡å‹
+ * @author plf 2017å¹´6æœˆ12æ—¥ä¸‹åˆ9:45:24
  *
  */
 public class SkillInfo {

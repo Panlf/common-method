@@ -6,71 +6,71 @@ import java.lang.reflect.Method;
 import org.junit.Test;
 
 /**
- * ·´ÉäµÄ»ù±¾¸ÅÄî
- * @author plf 2017Äê7ÔÂ8ÈÕÏÂÎç10:18:59
+ * åå°„çš„åŸºæœ¬æ¦‚å¿µ
+ * @author plf 2017å¹´7æœˆ8æ—¥ä¸‹åˆ10:18:59
  *
  */
 public class ReflectExample {
 
-	//·´Éä¼¼Êõ£ºÆäÊµ¾ÍÊÇ¶¯Ì¬¼ÓÔØÒ»¸öÖ¸¶¨µÄÀà£¬²¢»ñÈ¡¸ÃÀàÖĞµÄËùÓĞÄÚÈİ
-	//¼òµ¥Ëµ£º·´Éä¼¼Êõ¿ÉÒÔ¶ÔÒ»¸öÀà½øĞĞ½âÆÊ
+	//åå°„æŠ€æœ¯ï¼šå…¶å®å°±æ˜¯åŠ¨æ€åŠ è½½ä¸€ä¸ªæŒ‡å®šçš„ç±»ï¼Œå¹¶è·å–è¯¥ç±»ä¸­çš„æ‰€æœ‰å†…å®¹
+	//ç®€å•è¯´ï¼šåå°„æŠ€æœ¯å¯ä»¥å¯¹ä¸€ä¸ªç±»è¿›è¡Œè§£å‰–
 	/*
-	 * ·´ÉäµÄ»ù±¾²½Öè£º
-	 * 1¡¢»ñµÃClass¶ÔÏó£¬¾ÍÊÇ»ñÈ¡µ½Ö¸¶¨µÄÃû³ÆµÄ×Ö½ÚÂëÎÄ¼ş¶ÔÏó
-	 * 2¡¢ÊµÀı»¯¶ÔÏó£¬»ñµÃÀàµÄÊôĞÔ¡¢·½·¨»ò¹¹Ôìº¯Êı
-	 * 3¡¢·ÃÎÊÊôĞÔ¡¢µ÷ÓÃ·½·¨¡¢µ÷ÓÃ¹¹Ôìº¯Êı´´½¨¶ÔÏó
+	 * åå°„çš„åŸºæœ¬æ­¥éª¤ï¼š
+	 * 1ã€è·å¾—Classå¯¹è±¡ï¼Œå°±æ˜¯è·å–åˆ°æŒ‡å®šçš„åç§°çš„å­—èŠ‚ç æ–‡ä»¶å¯¹è±¡
+	 * 2ã€å®ä¾‹åŒ–å¯¹è±¡ï¼Œè·å¾—ç±»çš„å±æ€§ã€æ–¹æ³•æˆ–æ„é€ å‡½æ•°
+	 * 3ã€è®¿é—®å±æ€§ã€è°ƒç”¨æ–¹æ³•ã€è°ƒç”¨æ„é€ å‡½æ•°åˆ›å»ºå¯¹è±¡
 	 */
 	@Test
 	public void TestReflect(){
 		String className="com.plf.common.Person";
 		try {
-			//»ñÈ¡Class¶ÔÏó
-			//1¡¢¸ù¾İ¸ø¶¨µÄÀàÃû»ñµÃ   ÓÃÓÚÀà¼ÓÔØ
+			//è·å–Classå¯¹è±¡
+			//1ã€æ ¹æ®ç»™å®šçš„ç±»åè·å¾—   ç”¨äºç±»åŠ è½½
 			Class<?> clazz=Class.forName(className);
-			System.out.println(clazz);//´Ë¶ÔÏó´ú±íPerson.class
+			System.out.println(clazz);//æ­¤å¯¹è±¡ä»£è¡¨Person.class
 			
-			//2¡¢Èç¹ûÄÃµ½ÁË¶ÔÏó£¬²»ÖªµÀÊÇÊ²Ã´ÀàĞÍ  ÓÃÓÚ»ñµÃ¶ÔÏóµÄÀàĞÍ
+			//2ã€å¦‚æœæ‹¿åˆ°äº†å¯¹è±¡ï¼Œä¸çŸ¥é“æ˜¯ä»€ä¹ˆç±»å‹  ç”¨äºè·å¾—å¯¹è±¡çš„ç±»å‹
 			Object obj=new Person();
-			Class<?> clazz1=obj.getClass();//»ñµÃ¶ÔÏó¾ßÌåµÄÀàĞÍ
+			Class<?> clazz1=obj.getClass();//è·å¾—å¯¹è±¡å…·ä½“çš„ç±»å‹
 			System.out.println(clazz1);
 			
-			//3¡¢Èç¹ûÊÇÃ÷È·µØ»ñµÃÄ³¸öÀàµÄClass¶ÔÏó   Ö÷ÒªÓÃÓÚ´«²Î
+			//3ã€å¦‚æœæ˜¯æ˜ç¡®åœ°è·å¾—æŸä¸ªç±»çš„Classå¯¹è±¡   ä¸»è¦ç”¨äºä¼ å‚
 			Class<?> clazz2 = Person.class;
 			System.out.println(clazz2);
 			
-			//»ñÈ¡ÀàÖĞµÄËùÓĞ·½·¨
+			//è·å–ç±»ä¸­çš„æ‰€æœ‰æ–¹æ³•
 			Method[] methods=clazz.getMethods();
-			methods=clazz.getDeclaredMethods();//»ñÈ¡ÀàÖĞµÄ·½·¨°üÀ¨Ë½ÓĞ·½·¨
+			methods=clazz.getDeclaredMethods();//è·å–ç±»ä¸­çš„æ–¹æ³•åŒ…æ‹¬ç§æœ‰æ–¹æ³•
 			for (Method method : methods) {
 				System.out.println(method);
 			}
 			System.out.println("--------------------------");
 			
-			//ÓÃ´ø²ÎÊıµÄ¹¹Ôìº¯ÊıĞÂ½¨¶ÔÏó
+			//ç”¨å¸¦å‚æ•°çš„æ„é€ å‡½æ•°æ–°å»ºå¯¹è±¡
 			Constructor<?> constructor=clazz.getConstructor(String.class,int.class);
 			Object obj1=constructor.newInstance("pcq",23);
 			//Method m=clazz.getMethod("Say",String.class,int.class);
 			//m.invoke(obj1,"",0);
 			System.out.println(obj1);
 			
-			//»ñÈ¡¹¹Ôìº¯Êı
+			//è·å–æ„é€ å‡½æ•°
 			Constructor<?>[] constructors=clazz.getConstructors();
 			constructors=clazz.getDeclaredConstructors();
 			for (Constructor<?> constructor2 : constructors) {
 				System.out.println(constructor2);
 			}
-			//µ÷ÓÃ·½·¨
+			//è°ƒç”¨æ–¹æ³•
 			Method method=clazz.getMethod("Say",String.class,int.class);
-			//¸ÃÊµÀı»¯¶ÔÏóµÄ·½·¨µ÷ÓÃ¾ÍÊÇÖ¸¶¨ÀàÖĞµÄ¿Õ²ÎÊı¹¹Ôìº¯Êı£¬¸ø´´½¨¶ÔÏó½øĞĞ³õÊ¼»¯¡£
+			//è¯¥å®ä¾‹åŒ–å¯¹è±¡çš„æ–¹æ³•è°ƒç”¨å°±æ˜¯æŒ‡å®šç±»ä¸­çš„ç©ºå‚æ•°æ„é€ å‡½æ•°ï¼Œç»™åˆ›å»ºå¯¹è±¡è¿›è¡Œåˆå§‹åŒ–ã€‚
 			Object person=clazz.newInstance();
 			method.invoke(person,"plf",19);
 			
-			//ÔËĞĞË½ÓĞ·½·¨£¬µ«ÊÇ²»½¨ÒéÊ¹ÓÃ£¬ÒòÎªË½ÓĞ·½·¨±¾À´¾ÍÊÇ²»Ï£ÍûÍâ²¿Ê¹ÓÃ
+			//è¿è¡Œç§æœ‰æ–¹æ³•ï¼Œä½†æ˜¯ä¸å»ºè®®ä½¿ç”¨ï¼Œå› ä¸ºç§æœ‰æ–¹æ³•æœ¬æ¥å°±æ˜¯ä¸å¸Œæœ›å¤–éƒ¨ä½¿ç”¨
 //			Method method1=clazz.getDeclaredMethod("Eat",null);
 //			method1.setAccessible(true);
 //			System.out.println(method1.invoke(person, null));
 			
-			//¾²Ì¬·½·¨
+			//é™æ€æ–¹æ³•
 			//Method method2=clazz.getMethod("Run", null);
 			//method2.invoke(null, null);
 		} catch (Exception e) {

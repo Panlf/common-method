@@ -15,32 +15,32 @@ import com.itextpdf.layout.element.ListItem;
 import com.itextpdf.layout.element.Paragraph;
 
 /**
- * itextµÄÊ¹ÓÃ
- * ¹Ù·½°¸ÀıºÜ¶àÒ²Ğ´µÃºÜÏêÏ¸Çå³ş£¬Ö»Òª×Ô¼ºÔËĞĞÒ»±é¾ÍÄÜÑ§»á¡£
- * ¹Ù·½°¸Àı:http://developers.itextpdf.com/content/itext-7-jump-start-tutorial/examples
- * ¹Ù·½ÎÄµµËµÃ÷:http://developers.itextpdf.com/content/itext-7-jump-start-tutorial
- * @author plf 2017Äê8ÔÂ23ÈÕÏÂÎç9:10:39
+ * itextçš„ä½¿ç”¨
+ * å®˜æ–¹æ¡ˆä¾‹å¾ˆå¤šä¹Ÿå†™å¾—å¾ˆè¯¦ç»†æ¸…æ¥šï¼Œåªè¦è‡ªå·±è¿è¡Œä¸€éå°±èƒ½å­¦ä¼šã€‚
+ * å®˜æ–¹æ¡ˆä¾‹:http://developers.itextpdf.com/content/itext-7-jump-start-tutorial/examples
+ * å®˜æ–¹æ–‡æ¡£è¯´æ˜:http://developers.itextpdf.com/content/itext-7-jump-start-tutorial
+ * @author plf 2017å¹´8æœˆ23æ—¥ä¸‹åˆ9:10:39
  *
  */
 public class PdfExample {
 	
 	@Test
 	public void createPdf() throws IOException{
-	    //³õÊ¼»¯PDF Writer
+	    //åˆå§‹åŒ–PDF Writer
 		PdfWriter writer = new PdfWriter("E:\\hello_world.pdf");
 
-	    //³õÊ¼»¯PDF document
+	    //åˆå§‹åŒ–PDF document
 	    PdfDocument pdf = new PdfDocument(writer);
 
-	    //³õÊ¼»¯document
+	    //åˆå§‹åŒ–document
 	    Document document = new Document(pdf);
 	    
-	    //ÉèÖÃPdfFont
+	    //è®¾ç½®PdfFont
 	    PdfFont font=PdfFontFactory.createFont(FontConstants.TIMES_BOLD);
-	    //½«Ò»¸ö¶ÎÂäÌí¼Óµ½documentÖĞ
+	    //å°†ä¸€ä¸ªæ®µè½æ·»åŠ åˆ°documentä¸­
 	    document.add(new Paragraph("Hello World!").setFont(font));
 	    
-	    //ĞÂ½¨list
+	    //æ–°å»ºlist
 	    List list=new List()
 	    		.setSymbolIndent(12)
 	    		.setListSymbol("\u2202")
@@ -52,7 +52,7 @@ public class PdfExample {
 	    
 	    document.add(list);
 
-	    //¹Ø±Õdocument
+	    //å…³é—­document
 	    document.close();
 	}
 }

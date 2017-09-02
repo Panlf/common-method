@@ -5,8 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.TimerTask;
 
 /**
- * Timer ¶¨Ê±ÈÎÎñµ÷¶È
- * @author plf 2017Äê7ÔÂ30ÈÕÏÂÎç2:59:40
+ * Timer å®šæ—¶ä»»åŠ¡è°ƒåº¦
+ * @author plf 2017å¹´7æœˆ30æ—¥ä¸‹åˆ2:59:40
  *
  */
 public class MyTimerTask extends TimerTask{
@@ -36,12 +36,12 @@ public class MyTimerTask extends TimerTask{
 	public void run() {
 		if(count>3){
 			cancel();
-			System.out.println("ÈÎÎñÒÑ¾­È¡Ïû");
+			System.out.println("ä»»åŠ¡å·²ç»å–æ¶ˆ");
 		}
 		LocalDateTime local=LocalDateTime.now();
 		DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 		String now=formatter.format(local);
-		System.out.println("ÊäÈëµÄÊÇ£º"+inputname+"---  Ö´ĞĞÈÎÎñÊ±¼ä"+now);
+		System.out.println("è¾“å…¥çš„æ˜¯ï¼š"+inputname+"---  æ‰§è¡Œä»»åŠ¡æ—¶é—´"+now);
 		count++;
 	}
 

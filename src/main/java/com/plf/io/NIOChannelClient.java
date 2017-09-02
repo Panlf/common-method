@@ -11,7 +11,7 @@ public class NIOChannelClient {
 	private ByteBuffer  buff=ByteBuffer.allocate(1024);
 	private IntBuffer intBuff=buff.asIntBuffer();
 	
-	//Óë·şÎñÉÌÖ¸¶¨µÄµØÖ·ºÍ¶Ë¿Ú½¨Á¢Á¬½ÓÍ¨µÀ
+	//ä¸æœåŠ¡å•†æŒ‡å®šçš„åœ°å€å’Œç«¯å£å»ºç«‹è¿æ¥é€šé“
 	public SocketChannel connect() throws IOException{
 		return SocketChannel.open(new InetSocketAddress("127.0.0.1",8888));
 	}
@@ -20,10 +20,10 @@ public class NIOChannelClient {
 		intBuff.put(0,a);
 		intBuff.put(1,b);
 		channel.write(buff);
-		System.out.println("·¢ËÍ¼Ó·¨ÇëÇó("+a+"+"+b+")");
+		System.out.println("å‘é€åŠ æ³•è¯·æ±‚("+a+"+"+b+")");
 	}
 	
-	//½ÓÊÜ·şÎñÉÌµÄÔËËã½á¹û
+	//æ¥å—æœåŠ¡å•†çš„è¿ç®—ç»“æœ
 	public int receiveResult() throws IOException{
 		buff.clear();
 		channel.read(buff);
@@ -45,6 +45,6 @@ public class NIOChannelClient {
 	
 	public static void main(String[] args){
 		int result=new NIOChannelClient().getSum(35, 34);
-		System.out.println("¼Ó·¨µÄ½á¹ûÊÇ£º"+result);
+		System.out.println("åŠ æ³•çš„ç»“æœæ˜¯ï¼š"+result);
 	}
 }

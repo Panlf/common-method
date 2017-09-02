@@ -6,23 +6,23 @@ import java.util.Timer;
 
 public class MyTimer {
 	
-	//¹ÜÀí²¢·¢ÈÎÎñµÄÈ±Ïİ
-	//TimerÓĞÇÒÖ»ÓĞÒ»¸öÏß³ÌÈ¥Ö´ĞĞ¶¨Ê±ÈÎÎñ£¬Èç¹û´æÔÚ¶à¸öÈÎÎñ£¬ÇÒÈÎÎñÊ±¼ä¹ı³¤£¬»áµ¼ÖÂÖ´ĞĞĞ§¹ûÓëÔ¤ÆÚ²»·û
-	//Èç¹ûTimerTaskÅ×³öRuntimeException¡£Timer»áÍ£Ö¹ËùÓĞÈÎÎñµÄÔËĞĞ
-	//¶ÔÊ±Ğ§ĞÔÒªÇó½Ï¸ßµÄ¶àÈÎÎñ²¢·¢×÷Òµ
-	//¶Ô¸´ÔÓµÄÈÎÎñµ÷¶È
+	//ç®¡ç†å¹¶å‘ä»»åŠ¡çš„ç¼ºé™·
+	//Timeræœ‰ä¸”åªæœ‰ä¸€ä¸ªçº¿ç¨‹å»æ‰§è¡Œå®šæ—¶ä»»åŠ¡ï¼Œå¦‚æœå­˜åœ¨å¤šä¸ªä»»åŠ¡ï¼Œä¸”ä»»åŠ¡æ—¶é—´è¿‡é•¿ï¼Œä¼šå¯¼è‡´æ‰§è¡Œæ•ˆæœä¸é¢„æœŸä¸ç¬¦
+	//å¦‚æœTimerTaskæŠ›å‡ºRuntimeExceptionã€‚Timerä¼šåœæ­¢æ‰€æœ‰ä»»åŠ¡çš„è¿è¡Œ
+	//å¯¹æ—¶æ•ˆæ€§è¦æ±‚è¾ƒé«˜çš„å¤šä»»åŠ¡å¹¶å‘ä½œä¸š
+	//å¯¹å¤æ‚çš„ä»»åŠ¡è°ƒåº¦
 	
-	/*1¡¢Ê×´Î¼Æ»®Ö´ĞĞÊ±¼äÔçÓÚµ±Ç°Ê±¼ä
-	schedule £º Èç¹ûµÚÒ»´ÎÊ±¼ä±»delayÁË£¬ËæºóµÄÖ´ĞĞÊ±¼ä°´ÕÕ
-				ÉÏÒ»´ÎÊµ¼ÊÖ´ĞĞÍê³ÉµÄÊ±¼äµã½øĞĞ¼ÆËã
-	scheduleAtFixedRate£º Èç¹ûµÚÒ»´ÎÊ±¼ä±»delayÁË£¬ËæºóµÄÖ´ĞĞÊ±¼ä°´ÕÕ
-				ÉÏÒ»´Î¿ªÊ¼µÄÊ±¼äµã½øĞĞ¼ÆËã£¬²¢ÇÒÎªÁË¸ÏÉÏ½ø¶È»á¶à´ÎÖ´ĞĞÈÎÎñ£¬
-				Òò´ËTimerTaskÖĞµÄÖ´ĞĞÌåĞèÒª¿¼ÂÇÍ¬²½
+	/*1ã€é¦–æ¬¡è®¡åˆ’æ‰§è¡Œæ—¶é—´æ—©äºå½“å‰æ—¶é—´
+	schedule ï¼š å¦‚æœç¬¬ä¸€æ¬¡æ—¶é—´è¢«delayäº†ï¼Œéšåçš„æ‰§è¡Œæ—¶é—´æŒ‰ç…§
+				ä¸Šä¸€æ¬¡å®é™…æ‰§è¡Œå®Œæˆçš„æ—¶é—´ç‚¹è¿›è¡Œè®¡ç®—
+	scheduleAtFixedRateï¼š å¦‚æœç¬¬ä¸€æ¬¡æ—¶é—´è¢«delayäº†ï¼Œéšåçš„æ‰§è¡Œæ—¶é—´æŒ‰ç…§
+				ä¸Šä¸€æ¬¡å¼€å§‹çš„æ—¶é—´ç‚¹è¿›è¡Œè®¡ç®—ï¼Œå¹¶ä¸”ä¸ºäº†èµ¶ä¸Šè¿›åº¦ä¼šå¤šæ¬¡æ‰§è¡Œä»»åŠ¡ï¼Œ
+				å› æ­¤TimerTaskä¸­çš„æ‰§è¡Œä½“éœ€è¦è€ƒè™‘åŒæ­¥
 				
-	2¡¢ÈÎÎñÖ´ĞĞÊ±¼ä³¬³öÖ´ĞĞÖÜÆÚ¼ä¸ô
-	schedule £ºÏÂÒ»´ÎÖ´ĞĞÊ±¼äÏà¶ÔÓÚÉÏÒ»´ÎÊµ¼ÊÖ´ĞĞÍê³ÉµÄÊ±¼äµã£¬Òò´ËÖ´ĞĞÊ±¼ä»á²»¶ÏÑÓºó
-	scheduleAtFixedRate£ºÏÂÒ»´ÎÖ´ĞĞÊ±¼äÏà¶ÔÓÚÉÏÒ»´Î¿ªÊ¼µÄÊ±¼äµã£¬Òò´ËÖ´ĞĞÊ±¼äÒ»°ã²»»áÑÓºó£¬
-			Òò´Ë´æÔÚ²¢·¢ĞÔ
+	2ã€ä»»åŠ¡æ‰§è¡Œæ—¶é—´è¶…å‡ºæ‰§è¡Œå‘¨æœŸé—´éš”
+	schedule ï¼šä¸‹ä¸€æ¬¡æ‰§è¡Œæ—¶é—´ç›¸å¯¹äºä¸Šä¸€æ¬¡å®é™…æ‰§è¡Œå®Œæˆçš„æ—¶é—´ç‚¹ï¼Œå› æ­¤æ‰§è¡Œæ—¶é—´ä¼šä¸æ–­å»¶å
+	scheduleAtFixedRateï¼šä¸‹ä¸€æ¬¡æ‰§è¡Œæ—¶é—´ç›¸å¯¹äºä¸Šä¸€æ¬¡å¼€å§‹çš„æ—¶é—´ç‚¹ï¼Œå› æ­¤æ‰§è¡Œæ—¶é—´ä¸€èˆ¬ä¸ä¼šå»¶åï¼Œ
+			å› æ­¤å­˜åœ¨å¹¶å‘æ€§
 	
 	*/
 	public static void main(String[] args){
@@ -31,12 +31,12 @@ public class MyTimer {
 		//testScheduleAtFixedRate();
 	}
 	public static void test() {
-		//1¡¢ĞÂ½¨Ò»¸ötimerÊµÀı
+		//1ã€æ–°å»ºä¸€ä¸ªtimerå®ä¾‹
 		Timer timer=new Timer();
-		//2¡¢´´½¨Ò»¸öMyTimerTaskÊµÀı
+		//2ã€åˆ›å»ºä¸€ä¸ªMyTimerTaskå®ä¾‹
 		MyTimerTask myTimerTask = new MyTimerTask("plf");
-		//3¡¢ÉèÖÃtimer¶¨Ê±¶¨ÆµÂÊµ÷ÓÃmyTimerTaskµÄÒµÎñÂß¼­
-		timer.schedule(myTimerTask, 2000L,1000L);//ÔÚ³ÌĞòÆô¶¯ºó2sºóµ÷ÓÃ£¬Ö®ºóÃ¿¸ô1sµ÷ÓÃ
+		//3ã€è®¾ç½®timerå®šæ—¶å®šé¢‘ç‡è°ƒç”¨myTimerTaskçš„ä¸šåŠ¡é€»è¾‘
+		timer.schedule(myTimerTask, 2000L,1000L);//åœ¨ç¨‹åºå¯åŠ¨å2såè°ƒç”¨ï¼Œä¹‹åæ¯éš”1sè°ƒç”¨
 	
 		try {
 			Thread.sleep(5000);
@@ -44,52 +44,52 @@ public class MyTimer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//È¡ÏûmyTimerTaskµÄÈÎÎñ
+		//å–æ¶ˆmyTimerTaskçš„ä»»åŠ¡
 		myTimerTask.cancel();
-		//·µ»ØÈ¡ÏûµÄÈÎÎñÊı£¬²¢´Ó¶ÓÁĞÖĞÒÆ³ı
+		//è¿”å›å–æ¶ˆçš„ä»»åŠ¡æ•°ï¼Œå¹¶ä»é˜Ÿåˆ—ä¸­ç§»é™¤
 		System.out.println(timer.purge());
 		
-		//È¡ÏûËùÓĞÈÎÎñ
+		//å–æ¶ˆæ‰€æœ‰ä»»åŠ¡
 		//timer.cancel();
 	}
 	
 	//schedule(task,time)
 	public static void TestScheduling(){
-		//1¡¢ĞÂ½¨Ò»¸ötimerÊµÀı
+		//1ã€æ–°å»ºä¸€ä¸ªtimerå®ä¾‹
 		Timer timer=new Timer();
-		//2¡¢´´½¨Ò»¸öMyTimerTaskÊµÀı
+		//2ã€åˆ›å»ºä¸€ä¸ªMyTimerTaskå®ä¾‹
 		MyTimerTask myTimerTask = new MyTimerTask();
 				
 		Calendar calendar=Calendar.getInstance();
 		SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String now=formatter.format(calendar.getTime());
-		System.out.println("µ±Ç°Ê±¼ä£º"+now);
+		System.out.println("å½“å‰æ—¶é—´ï¼š"+now);
 		calendar.add(Calendar.SECOND, 3);
 		myTimerTask.setInputname("TestScheduling");
-		//ÔÚÊ±¼äµÈÓÚ»òÕß³¬¹ıtimeµÄÊ±ºòÖ´ĞĞÇÒÖ»Ö´ĞĞÒ»´Îtask
+		//åœ¨æ—¶é—´ç­‰äºæˆ–è€…è¶…è¿‡timeçš„æ—¶å€™æ‰§è¡Œä¸”åªæ‰§è¡Œä¸€æ¬¡task
 		timer.schedule(myTimerTask,calendar.getTime());
 		
-		//·µ»Ø´ËÈÎÎñ×î½üÊµ¼ÊÖ´ĞĞµÄÒÑ°²ÅÅÖ´ĞĞµÄÊ±¼ä
+		//è¿”å›æ­¤ä»»åŠ¡æœ€è¿‘å®é™…æ‰§è¡Œçš„å·²å®‰æ’æ‰§è¡Œçš„æ—¶é—´
 		System.out.println(formatter.format(myTimerTask.scheduledExecutionTime()));
 		//schedule(task,time,period)
-		//ÔÚÊ±¼äµÈÓÚ»òÕß³¬¹ıtimeµÄÊ±ºòÖ´ĞĞÇÒÖ»Ö´ĞĞÒ»´Îtask Ö®ºóÃ»periodÖ´ĞĞÒ»´ÎÈÎÎñ
+		//åœ¨æ—¶é—´ç­‰äºæˆ–è€…è¶…è¿‡timeçš„æ—¶å€™æ‰§è¡Œä¸”åªæ‰§è¡Œä¸€æ¬¡task ä¹‹åæ²¡periodæ‰§è¡Œä¸€æ¬¡ä»»åŠ¡
 		
 		//schedule(task,delay)
-		//ÔÚµÈ´ıdelayºÁÃëÖ®ºó£¬Ö´ĞĞÇÒÖ»Ö´ĞĞÒ»´Î
+		//åœ¨ç­‰å¾…delayæ¯«ç§’ä¹‹åï¼Œæ‰§è¡Œä¸”åªæ‰§è¡Œä¸€æ¬¡
 		
 		//schedule(task,delay,period)
-		//ÑÓ³ÙdelayºÁÃëÖ®ºóÖ´ĞĞ£¬Ö®ºóÃ¿periodÖ´ĞĞÒ»´Î
+		//å»¶è¿Ÿdelayæ¯«ç§’ä¹‹åæ‰§è¡Œï¼Œä¹‹åæ¯periodæ‰§è¡Œä¸€æ¬¡
 	}
 	
 	public static void testScheduleAtFixedRate(){
-		//1¡¢ĞÂ½¨Ò»¸ötimerÊµÀı
+		//1ã€æ–°å»ºä¸€ä¸ªtimerå®ä¾‹
 		Timer timer=new Timer();
-		//2¡¢´´½¨Ò»¸öMyTimerTaskÊµÀı
+		//2ã€åˆ›å»ºä¸€ä¸ªMyTimerTaskå®ä¾‹
 		MyTimerTask myTimerTask = new MyTimerTask("testScheduleAtFixedRate");
 		Calendar calendar=Calendar.getInstance();
 		SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String now=formatter.format(calendar.getTime());
-		System.out.println("µ±Ç°Ê±¼ä£º"+now);
+		System.out.println("å½“å‰æ—¶é—´ï¼š"+now);
 		calendar.add(Calendar.SECOND, 3);
 		
 		//scheduleAtFixedRate(task,firsttime,period)

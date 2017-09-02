@@ -2,57 +2,57 @@ package com.plf.common;
 
 import org.junit.Test;
 /**
- * StringBuffer ºÍ  StringBuilder
- * @author plf 2017Äê7ÔÂ6ÈÕÏÂÎç10:17:46
- * StringBuffer£ºÏß³Ì°²È«
- * StringBuilder£º Ïß³Ì²»°²È«
- * µ¥Ïß³Ì²Ù×÷£ºÊ¹ÓÃStringBuilderĞ§ÂÊ¸ß
- * ¶àÏß³Ì²Ù×÷£ºÊ¹ÓÃStringBuffer°²È«
+ * StringBuffer å’Œ  StringBuilder
+ * @author plf 2017å¹´7æœˆ6æ—¥ä¸‹åˆ10:17:46
+ * StringBufferï¼šçº¿ç¨‹å®‰å…¨
+ * StringBuilderï¼š çº¿ç¨‹ä¸å®‰å…¨
+ * å•çº¿ç¨‹æ“ä½œï¼šä½¿ç”¨StringBuilderæ•ˆç‡é«˜
+ * å¤šçº¿ç¨‹æ“ä½œï¼šä½¿ç”¨StringBufferå®‰å…¨
  */
 public class BufferExamplf {
 	@Test
 	public void TestStringBuffer(){
 		/**
-		 * ×Ö·û»º³åÇø
-		 * ÌØµã
-		 * 1¡¢¿ÉÒÔ¶Ô×Ö·û´®ÄÚÈİ½øĞĞĞŞ¸Ä
-		 * 2¡¢ÊÇÒ»¸öÈİÆ÷
-		 * 3¡¢ÊÇ¿É±ä³¤¶È
-		 * 4¡¢»º³åÇøÖĞ¿ÉÒÔ´æ´¢ÈÎÒâÀàĞÍµÄÊı¾İ
-		 * 5¡¢×îÖÕĞèÒª±ä³É×Ö·û´®
+		 * å­—ç¬¦ç¼“å†²åŒº
+		 * ç‰¹ç‚¹
+		 * 1ã€å¯ä»¥å¯¹å­—ç¬¦ä¸²å†…å®¹è¿›è¡Œä¿®æ”¹
+		 * 2ã€æ˜¯ä¸€ä¸ªå®¹å™¨
+		 * 3ã€æ˜¯å¯å˜é•¿åº¦
+		 * 4ã€ç¼“å†²åŒºä¸­å¯ä»¥å­˜å‚¨ä»»æ„ç±»å‹çš„æ•°æ®
+		 * 5ã€æœ€ç»ˆéœ€è¦å˜æˆå­—ç¬¦ä¸²
 		 */
 		String str="plf";
 		StringBuffer sb=new StringBuffer(str);
 		
-		//Ìí¼Ó
-		sb.append("pcq").append(1314);//ÔÚºóÃæÔö¼Ó
+		//æ·»åŠ 
+		sb.append("pcq").append(1314);//åœ¨åé¢å¢åŠ 
 		System.out.println(sb.getClass().getTypeName()+":"+sb);
-		System.out.println(sb.insert(1,"an"));//Ö¸¶¨Î»ÖÃÌí¼Ó
+		System.out.println(sb.insert(1,"an"));//æŒ‡å®šä½ç½®æ·»åŠ 
 		
-		//É¾³ı
-		sb.delete(1, 2);//°üº¬×ó±ß£¬²»°üº¬ÓÒ±ß
-		System.out.println(sb);//É¾³ıÖ¸¶¨Î»ÖÃ
+		//åˆ é™¤
+		sb.delete(1, 2);//åŒ…å«å·¦è¾¹ï¼Œä¸åŒ…å«å³è¾¹
+		System.out.println(sb);//åˆ é™¤æŒ‡å®šä½ç½®
 		System.out.println(sb.deleteCharAt(1));
 	
-		//ĞŞ¸Ä
+		//ä¿®æ”¹
 		sb.replace(3, 4, "pan");
 		System.out.println(sb);
 		sb.setCharAt(0, 'P');
 		System.out.println(sb);
-		//sb.setLength(3);//½ØÈ¡
+		//sb.setLength(3);//æˆªå–
 		System.out.println(sb);
 		
-		//²éÕÒ
+		//æŸ¥æ‰¾
 		System.out.println(sb.indexOf("pan"));
 		System.out.println(sb.indexOf("pan",2));
 		System.out.println(sb.lastIndexOf("pan"));
 		System.out.println(sb.lastIndexOf("pan",2));
 		
-		//»ñÈ¡×Ó´®
+		//è·å–å­ä¸²
 		System.out.println(sb.substring(4));
 		System.out.println(sb.substring(1, 4));
 		
-		//·´×ª
+		//åè½¬
 		System.out.println(sb.reverse());
 	}
 	
@@ -61,35 +61,35 @@ public class BufferExamplf {
 		String str="plf";
 		StringBuilder sb=new StringBuilder(str);
 		
-		//Ìí¼Ó
-		sb.append("pcq").append(1314);//ÔÚºóÃæÔö¼Ó
+		//æ·»åŠ 
+		sb.append("pcq").append(1314);//åœ¨åé¢å¢åŠ 
 		System.out.println(sb.getClass().getTypeName()+":"+sb);
-		System.out.println(sb.insert(1,"an"));//Ö¸¶¨Î»ÖÃÌí¼Ó
+		System.out.println(sb.insert(1,"an"));//æŒ‡å®šä½ç½®æ·»åŠ 
 		
-		//É¾³ı
-		sb.delete(1, 2);//°üº¬×ó±ß£¬²»°üº¬ÓÒ±ß
-		System.out.println(sb);//É¾³ıÖ¸¶¨Î»ÖÃ
+		//åˆ é™¤
+		sb.delete(1, 2);//åŒ…å«å·¦è¾¹ï¼Œä¸åŒ…å«å³è¾¹
+		System.out.println(sb);//åˆ é™¤æŒ‡å®šä½ç½®
 		System.out.println(sb.deleteCharAt(1));
 	
-		//ĞŞ¸Ä
+		//ä¿®æ”¹
 		sb.replace(3, 4, "pan");
 		System.out.println(sb);
 		sb.setCharAt(0, 'P');
 		System.out.println(sb);
-		//sb.setLength(3);//½ØÈ¡
+		//sb.setLength(3);//æˆªå–
 		System.out.println(sb);
 		
-		//²éÕÒ
+		//æŸ¥æ‰¾
 		System.out.println(sb.indexOf("pan"));
 		System.out.println(sb.indexOf("pan",2));
 		System.out.println(sb.lastIndexOf("pan"));
 		System.out.println(sb.lastIndexOf("pan",2));
 		
-		//»ñÈ¡×Ó´®
+		//è·å–å­ä¸²
 		System.out.println(sb.substring(4));
 		System.out.println(sb.substring(1, 4));
 		
-		//·´×ª
+		//åè½¬
 		System.out.println(sb.reverse());
 	}
 }

@@ -7,49 +7,49 @@ import java.util.List;
 import org.junit.Test;
 
 /**
- * LambdaµÄÊµÀı
- * @author plf 2017Äê6ÔÂ15ÈÕÉÏÎç11:17:57
+ * Lambdaçš„å®ä¾‹
+ * @author plf 2017å¹´6æœˆ15æ—¥ä¸Šåˆ11:17:57
  *
  */
 public class LambdaExample {
 /**
- * lambdaµÄÓï·¨
- * 1¡¢²ÎÊıÁĞ±í
- * 2¡¢¼ıÍ··ûºÅ"->"
- * 3¡¢´úÂë¿é
+ * lambdaçš„è¯­æ³•
+ * 1ã€å‚æ•°åˆ—è¡¨
+ * 2ã€ç®­å¤´ç¬¦å·"->"
+ * 3ã€ä»£ç å—
  */
 	
-	//ÓÃlambda¼ò»¯Runnable½Ó¿ÚµÄÊµÏÖ
+	//ç”¨lambdaç®€åŒ–Runnableæ¥å£çš„å®ç°
 	@Test
 	public void SimplifyRunnable(){
 		new Runnable() {
 			public void run() {
-				System.out.println("ÄäÃûÄÚ²¿ÀàÊµÏÖRunnable½Ó¿Ú");
+				System.out.println("åŒ¿åå†…éƒ¨ç±»å®ç°Runnableæ¥å£");
 			}
 		}.run();
 		int i=1;
 		Runnable r=()->{
-			System.out.println("ÓÃlambdaÊµÏÖRunnable½Ó¿Ú");
-			//i++;ÕâÊÇ´íÎóµÄ£¬²»ÔÊĞíĞŞ¸ÄÍâ²¿±äÁ¿µÄÖµ
+			System.out.println("ç”¨lambdaå®ç°Runnableæ¥å£");
+			//i++;è¿™æ˜¯é”™è¯¯çš„ï¼Œä¸å…è®¸ä¿®æ”¹å¤–éƒ¨å˜é‡çš„å€¼
 			System.out.println("i="+i);
 		};
 		r.run();
 	}
 	
 	
-	//lambdaÊµÏÖ×Ô¶¨Òå½Ó¿Ú£¬Ä£ÄâµÇÂ½²Ù×÷
+	//lambdaå®ç°è‡ªå®šä¹‰æ¥å£ï¼Œæ¨¡æ‹Ÿç™»é™†æ“ä½œ
 	@Test
 	public void interfacelambda(){
 		new Action(){
 			public void execute(String content){
 				System.out.println(content);
 			}
-		}.execute("jdk1.8Ö®Ç°µÄÄäÃûÄÚ²¿ÀàÊµÏÖ·½Ê½£¬Ö´ĞĞµÇÂ½²Ù×÷");
+		}.execute("jdk1.8ä¹‹å‰çš„åŒ¿åå†…éƒ¨ç±»å®ç°æ–¹å¼ï¼Œæ‰§è¡Œç™»é™†æ“ä½œ");
 		
 		Action login=(String content)->{
 			System.out.println(content);
 		};
-		login.execute("jdk1.8µÄlambdaÓï·¨ÊµÏÖµÇÂ½");
+		login.execute("jdk1.8çš„lambdaè¯­æ³•å®ç°ç™»é™†");
 	}
 	static interface Action{
 		void execute(String content);

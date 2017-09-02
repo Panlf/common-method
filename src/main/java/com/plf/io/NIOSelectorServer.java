@@ -15,38 +15,38 @@ public class NIOSelectorServer {
 	private int keys=0;
 	private ServerSocketChannel serverChannel=null;
 	
-	//³õÊ¼»¯·şÎñ¶ËÁ¬½ÓÍ¨µÀºÍ¹ÜÀíÆ÷£¬ÒÑ¾­×¢²áÊÂ¼ş
+	//åˆå§‹åŒ–æœåŠ¡ç«¯è¿æ¥é€šé“å’Œç®¡ç†å™¨ï¼Œå·²ç»æ³¨å†Œäº‹ä»¶
 	public void initServer() throws IOException{
 		this.selector = Selector.open();
 		serverChannel = ServerSocketChannel.open();
 		serverChannel.socket().bind(new InetSocketAddress("127.0.0.1",8888));
 		serverChannel.configureBlocking(false);
 		
-		//°ÑserverChannelÕâ¸öÍ¨µÀ×¢²áµ½Í¨µÀ·şÎñÆ÷¶ÔÏóacceptSelectorÈ¥£¬µ±ÓĞ¿Í»§¶ËÁ¬½ÓÊ±´¥·¢
+		//æŠŠserverChannelè¿™ä¸ªé€šé“æ³¨å†Œåˆ°é€šé“æœåŠ¡å™¨å¯¹è±¡acceptSelectorå»ï¼Œå½“æœ‰å®¢æˆ·ç«¯è¿æ¥æ—¶è§¦å‘
 		serverChannel.register(this.selector, SelectionKey.OP_ACCEPT);
 	}
-	//¶Ô¿Í»§¶ËµÄÇëÇó£¨Í¨µÀÉÏÃæ¸ĞĞËÈ¤µÄÊÂ¼ş£©½øĞĞ¼àÌı
+	//å¯¹å®¢æˆ·ç«¯çš„è¯·æ±‚ï¼ˆé€šé“ä¸Šé¢æ„Ÿå…´è¶£çš„äº‹ä»¶ï¼‰è¿›è¡Œç›‘å¬
 	public void listen() throws IOException{
-		System.out.println("·şÎñÆ÷ÒÑ¾­Æô¶¯ÁË");
+		System.out.println("æœåŠ¡å™¨å·²ç»å¯åŠ¨äº†");
 		while(true){
-			//ÈÃÍ¨µÀ¹ÜÀíÆ÷ÖÁÉÙÑ¡ÔñÒ»¸öÍ¨µÀ
+			//è®©é€šé“ç®¡ç†å™¨è‡³å°‘é€‰æ‹©ä¸€ä¸ªé€šé“
 			keys=this.selector.select();
 			Iterator<SelectionKey> it=this.selector.selectedKeys().iterator();
 			if(keys>0){
-				//½øĞĞÂÖÑ¯
+				//è¿›è¡Œè½®è¯¢
 				while(it.hasNext()){
 					SelectionKey key=it.next();
 					it.remove();
-					//¿Í»§¶ËÁ¬½ÓÊÂ¼ş
+					//å®¢æˆ·ç«¯è¿æ¥äº‹ä»¶
 					if(key.isAcceptable()){
 						serverChannel=(ServerSocketChannel) key.channel();
-						//»ñµÃºÍ¿Í»§¶ËÁ¬½ÓµÄÍ¨µÀ
+						//è·å¾—å’Œå®¢æˆ·ç«¯è¿æ¥çš„é€šé“
 						SocketChannel channel=serverChannel.accept();
-						channel.configureBlocking(false);//ÉèÖÃ·Ç×èÈû·½Ê½
+						channel.configureBlocking(false);//è®¾ç½®éé˜»å¡æ–¹å¼
 						
-						//¸ø¿Í»§¶Ë·¢ÏûÏ¢
+						//ç»™å®¢æˆ·ç«¯å‘æ¶ˆæ¯
 						channel.write(ByteBuffer.wrap(new String("hello").getBytes()));
-						//»¹ĞèÒª¶ÁÈ¡¿Í»§¶Ë¹ıÀ´µÄÊı¾İ£¬ËùÒÔ×¢²áÒ»¸öÈ¥¶ÁÊı¾İµÄÊÂ¼ş
+						//è¿˜éœ€è¦è¯»å–å®¢æˆ·ç«¯è¿‡æ¥çš„æ•°æ®ï¼Œæ‰€ä»¥æ³¨å†Œä¸€ä¸ªå»è¯»æ•°æ®çš„äº‹ä»¶
 						channel.register(this.selector, SelectionKey.OP_READ);
 					}else if(key.isReadable()){
 						read(key);
@@ -60,13 +60,13 @@ public class NIOSelectorServer {
 		
 	}
 	
-	//¸ù¾İSelectionKey¶ÔÏóÀ´¶ÁÈ¡¿Í»§¶Ë·¢ËÍµ½Í¨µÀÀïµÄÊı¾İ
+	//æ ¹æ®SelectionKeyå¯¹è±¡æ¥è¯»å–å®¢æˆ·ç«¯å‘é€åˆ°é€šé“é‡Œçš„æ•°æ®
 	public void read(SelectionKey key) throws IOException {
 		SocketChannel channel=(SocketChannel) key.channel();
-		//»º³åÇø 
+		//ç¼“å†²åŒº 
 		ByteBuffer buff=ByteBuffer.allocate(1024);
 		int len=channel.read(buff);
-		String msg="·şÎñ¶ËÊÕµ½µÄÏûÏ¢ÊÇ£º"+new String(buff.array(),0,len);
+		String msg="æœåŠ¡ç«¯æ”¶åˆ°çš„æ¶ˆæ¯æ˜¯ï¼š"+new String(buff.array(),0,len);
 		System.out.println(msg);
 	}
 	

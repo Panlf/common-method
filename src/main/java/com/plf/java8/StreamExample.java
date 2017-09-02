@@ -8,41 +8,41 @@ import org.junit.Test;
 
 /**
  * Stream
- * @author plf 2017Äê6ÔÂ15ÈÕÏÂÎç12:42:51
+ * @author plf 2017å¹´6æœˆ15æ—¥ä¸‹åˆ12:42:51
  *
  */
 public class StreamExample {
 	/**
-	 * Ò»¡¢
-	 * 1¡¢Stream ÔÚJava8ÖĞ±»¶¨ÒåÎª·ºĞÍ½Ó¿Ú
-	 * 2¡¢Stream½Ó¿Ú´ú±íÊı¾İÁ÷
-	 * 3¡¢Stream²»ÊÇÊı¾İ½á¹¹£¬²»Ö±½Ó´æ´¢Êı¾İ
-	 * 4¡¢StreamÍ¨¹ı¹ÜµÀ²Ù×÷Êı¾İ
-	 * 5¡¢´´½¨Stream½Ó¿ÚÊµÏÖÀà¶ÔÏó
-	 * 		stream():´´½¨Ò»¸öStream½Ó¿ÚÊµÏÖÀàµÄ¶ÔÏó
-	 * ¶ş¡¢
-	 * ¹ÜµÀ:´ú±íÒ»¸ö²Ù×÷ĞòÁĞ
-	 * ¹ÜµÀ°üº¬Ò»ÏÂ×é¼ş
-	 * 	1¡¢Êı¾İ¼¯:¿ÉÄÜÊÇ¼¯ºÏ¡¢Êı×éµÈ
-	 * 	2¡¢Áã¸ö»ò¶à¸öÖĞ¼äÒµÎñ¡£Èç¹ıÂËÆ÷
-	 * 	3¡¢Ò»¸öÖÕ¶Ë²Ù×÷£¬ÈçforEach
+	 * ä¸€ã€
+	 * 1ã€Stream åœ¨Java8ä¸­è¢«å®šä¹‰ä¸ºæ³›å‹æ¥å£
+	 * 2ã€Streamæ¥å£ä»£è¡¨æ•°æ®æµ
+	 * 3ã€Streamä¸æ˜¯æ•°æ®ç»“æ„ï¼Œä¸ç›´æ¥å­˜å‚¨æ•°æ®
+	 * 4ã€Streamé€šè¿‡ç®¡é“æ“ä½œæ•°æ®
+	 * 5ã€åˆ›å»ºStreamæ¥å£å®ç°ç±»å¯¹è±¡
+	 * 		stream():åˆ›å»ºä¸€ä¸ªStreamæ¥å£å®ç°ç±»çš„å¯¹è±¡
+	 * äºŒã€
+	 * ç®¡é“:ä»£è¡¨ä¸€ä¸ªæ“ä½œåºåˆ—
+	 * ç®¡é“åŒ…å«ä¸€ä¸‹ç»„ä»¶
+	 * 	1ã€æ•°æ®é›†:å¯èƒ½æ˜¯é›†åˆã€æ•°ç»„ç­‰
+	 * 	2ã€é›¶ä¸ªæˆ–å¤šä¸ªä¸­é—´ä¸šåŠ¡ã€‚å¦‚è¿‡æ»¤å™¨
+	 * 	3ã€ä¸€ä¸ªç»ˆç«¯æ“ä½œï¼Œå¦‚forEach
 	 * 
-	 * Èı¡¢
-	 * ¹ıÂËÆ÷:ÓÃ¸ø¶¨µÄÌõ¼şÔÚÔ´Êı¾İ»ù´¡ÉÏ¹ıÂË³öĞÂµÄÊı¾İ£¬²¢·µ»ØÒ»¸öStream¶ÔÏó
-	 * 2¡¢¹ıÂËÆ÷°üº¬Æ¥ÅäµÄÎ½´Ê
-	 * 		ÀıÈç£ºÅĞ¶Ïp¶ÔÏóÊÇ·ñÎªÄĞĞÔµÄlambda±í´ïÊ½
+	 * ä¸‰ã€
+	 * è¿‡æ»¤å™¨:ç”¨ç»™å®šçš„æ¡ä»¶åœ¨æºæ•°æ®åŸºç¡€ä¸Šè¿‡æ»¤å‡ºæ–°çš„æ•°æ®ï¼Œå¹¶è¿”å›ä¸€ä¸ªStreamå¯¹è±¡
+	 * 2ã€è¿‡æ»¤å™¨åŒ…å«åŒ¹é…çš„è°“è¯
+	 * 		ä¾‹å¦‚ï¼šåˆ¤æ–­på¯¹è±¡æ˜¯å¦ä¸ºç”·æ€§çš„lambdaè¡¨è¾¾å¼
 	 * Stream<Person> stream=people.stream();
-	 * stream=stream.filter(p->p.getGender()=='ÄĞ');
+	 * stream=stream.filter(p->p.getGender()=='ç”·');
 	 * 
-	 * ËÄ¡¢
-	 * DoubleStream ½Ó¿Ú±íÊ¾ÔªËØÀàĞÍÊÇdoubleµÄÊı¾İÔ´
-	 * DoubleStream ½Ó¿ÚµÄ³£ÓÃ·½·¨
-	 * max().getAsDouble() »ñÈ¡Á÷ÖĞÊı¾İ¼¯µÄ×î´óÖµ
-	 * stream().min().getAsDouble »ñÈ¡Á÷ÖĞÊı¾İ¼¯µÄ×îĞ¡Öµ
-	 * stream.average() »ñÈ¡Á÷ÖĞÊı¾İ¼¯µÄÆ½¾ùÖµ 
+	 * å››ã€
+	 * DoubleStream æ¥å£è¡¨ç¤ºå…ƒç´ ç±»å‹æ˜¯doubleçš„æ•°æ®æº
+	 * DoubleStream æ¥å£çš„å¸¸ç”¨æ–¹æ³•
+	 * max().getAsDouble() è·å–æµä¸­æ•°æ®é›†çš„æœ€å¤§å€¼
+	 * stream().min().getAsDouble è·å–æµä¸­æ•°æ®é›†çš„æœ€å°å€¼
+	 * stream.average() è·å–æµä¸­æ•°æ®é›†çš„å¹³å‡å€¼ 
 	 */
 	
-	//´´½¨Ò»¸öÔªËØÎªPersonÀàµÄ¼¯ºÏ£ºpeopleÊ¹ÓÃstreamºÍforEachÏÔÊ¾¸Ã¼¯ºÏËùÓĞÔªËØ
+	//åˆ›å»ºä¸€ä¸ªå…ƒç´ ä¸ºPersonç±»çš„é›†åˆï¼špeopleä½¿ç”¨streamå’ŒforEachæ˜¾ç¤ºè¯¥é›†åˆæ‰€æœ‰å…ƒç´ 
 	@Test
 	public void CollectionStream(){
 		List<Person> people=createPeople();
@@ -50,11 +50,11 @@ public class StreamExample {
 		
 		//stream.forEach(p->System.out.println(p.toString()));
 		
-		//¹ıÂËÆ÷--¹ıÂËFEMALE
+		//è¿‡æ»¤å™¨--è¿‡æ»¤FEMALE
 		//stream.filter(p->p.getGender()==Person.Sex.MALE).
 		//forEach(p->System.out.println(p.toString()));
 		
-		double a=stream.filter(p->p.getName().indexOf("Íõ")>=0)
+		double a=stream.filter(p->p.getName().indexOf("ç‹")>=0)
 		.mapToDouble(p->p.getHeight())
 		.average()
 		.getAsDouble();
@@ -62,11 +62,11 @@ public class StreamExample {
 	}
 	static List<Person> createPeople(){
 		List<Person> people=new ArrayList<Person>();
-		Person person=new Person("ÕÅÈı",Person.Sex.MALE,30,2.0);
+		Person person=new Person("å¼ ä¸‰",Person.Sex.MALE,30,2.0);
 		people.add(person);
-		person=new Person("ÀîËÄ",Person.Sex.MALE,31,1.8);
+		person=new Person("æå››",Person.Sex.MALE,31,1.8);
 		people.add(person);
-		person=new Person("ÍõÎå",Person.Sex.FEMALE,32,1.6);
+		person=new Person("ç‹äº”",Person.Sex.FEMALE,32,1.6);
 		people.add(person);
 		return people;
 	}

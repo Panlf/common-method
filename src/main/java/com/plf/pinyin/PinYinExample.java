@@ -10,16 +10,16 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
 /**
- * Æ´ÒôJarµÄ»ù±¾ÓÃ·¨
- * @author plf 2017Äê6ÔÂ7ÈÕÏÂÎç10:23:01
+ * æ‹¼éŸ³Jarçš„åŸºæœ¬ç”¨æ³•
+ * @author plf 2017å¹´6æœˆ7æ—¥ä¸‹åˆ10:23:01
  *
  */
 public class PinYinExample {
 	
 	@Test
 	public void TestPinyin(){
-		//»ñÈ¡Ò»¸öºº×ÖµÄÆ´Òô,·µ»Ø¶àÒô×Ö£¬²»´øÒô±ê
-		String[] array=PinyinHelper.toGwoyeuRomatzyhStringArray('¶¼');//×ªÎª¹úÓïÂŞÂí×Ö¡£
+		//è·å–ä¸€ä¸ªæ±‰å­—çš„æ‹¼éŸ³,è¿”å›å¤šéŸ³å­—ï¼Œä¸å¸¦éŸ³æ ‡
+		String[] array=PinyinHelper.toGwoyeuRomatzyhStringArray('éƒ½');//è½¬ä¸ºå›½è¯­ç½—é©¬å­—ã€‚
 		for (String string : array) {
 			System.out.println(string);
 		}
@@ -28,15 +28,15 @@ public class PinYinExample {
 	@Test
 	public void TestToString(){
 		HanyuPinyinOutputFormat outFormat = new HanyuPinyinOutputFormat();  
-        outFormat.setCaseType(HanyuPinyinCaseType.UPPERCASE);//¿ØÖÆÆ´ÒôµÄ´óĞ¡Ğ´
-        //ÊÇ·ñ´øÉùµ÷WITH_TONE_NUMBER£º´øÉùµ÷ PAN1 LIANG2 FENG1
-        //WITH_TONE_MARK ÓÃÉùµ÷·ûºÅ±íÊ¾
+        outFormat.setCaseType(HanyuPinyinCaseType.UPPERCASE);//æ§åˆ¶æ‹¼éŸ³çš„å¤§å°å†™
+        //æ˜¯å¦å¸¦å£°è°ƒWITH_TONE_NUMBERï¼šå¸¦å£°è°ƒ PAN1 LIANG2 FENG1
+        //WITH_TONE_MARK ç”¨å£°è°ƒç¬¦å·è¡¨ç¤º
         outFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-        //ÌØÊâÆ´ÒôuµÄÏÔÊ¾¸ñÊ½
+        //ç‰¹æ®Šæ‹¼éŸ³uçš„æ˜¾ç¤ºæ ¼å¼
         outFormat.setVCharType(HanyuPinyinVCharType.WITH_V);
 		try {
-			//¶à¸öºº×Ö
-			System.out.println(PinyinHelper.toHanYuPinyinString("ÅËÁ¼·é", outFormat, "*",true));
+			//å¤šä¸ªæ±‰å­—
+			System.out.println(PinyinHelper.toHanYuPinyinString("æ½˜è‰¯çƒ½", outFormat, "*",true));
 		} catch (BadHanyuPinyinOutputFormatCombination e) {
 			// TODO Auto-generated catch block 
 			e.printStackTrace();
@@ -45,23 +45,23 @@ public class PinYinExample {
 	
 	@Test
 	public void TestHanyuString(){
-		//´øÉùµ÷
-		//×ªÎªºº×ÖÆ´Òô¡£ÖĞ¹ú´óÂ½Ê¹ÓÃ
-		String[] data=PinyinHelper.toHanyuPinyinStringArray('¶¼');
+		//å¸¦å£°è°ƒ
+		//è½¬ä¸ºæ±‰å­—æ‹¼éŸ³ã€‚ä¸­å›½å¤§é™†ä½¿ç”¨
+		String[] data=PinyinHelper.toHanyuPinyinStringArray('éƒ½');
 		for (String string : data) {
 			System.out.println(string);
 		}
 		
 		HanyuPinyinOutputFormat outFormat = new HanyuPinyinOutputFormat();  
-        outFormat.setCaseType(HanyuPinyinCaseType.UPPERCASE);//¿ØÖÆÆ´ÒôµÄ´óĞ¡Ğ´
-        //ÊÇ·ñ´øÉùµ÷WITH_TONE_NUMBER£º´øÉùµ÷ PAN1 LIANG2 FENG1
-        //WITH_TONE_MARK ÓÃÉùµ÷·ûºÅ±íÊ¾
+        outFormat.setCaseType(HanyuPinyinCaseType.UPPERCASE);//æ§åˆ¶æ‹¼éŸ³çš„å¤§å°å†™
+        //æ˜¯å¦å¸¦å£°è°ƒWITH_TONE_NUMBERï¼šå¸¦å£°è°ƒ PAN1 LIANG2 FENG1
+        //WITH_TONE_MARK ç”¨å£°è°ƒç¬¦å·è¡¨ç¤º
         outFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-        //ÌØÊâÆ´ÒôuµÄÏÔÊ¾¸ñÊ½
+        //ç‰¹æ®Šæ‹¼éŸ³uçš„æ˜¾ç¤ºæ ¼å¼
         outFormat.setVCharType(HanyuPinyinVCharType.WITH_V);
 		try {
-			//¸Ğ¾õ±È½ÏÆæ¹ÖµÄÓï·¨
-			System.out.println(PinyinHelper.toHanyuPinyinStringArray('ÅË', outFormat)[0]);
+			//æ„Ÿè§‰æ¯”è¾ƒå¥‡æ€ªçš„è¯­æ³•
+			System.out.println(PinyinHelper.toHanyuPinyinStringArray('æ½˜', outFormat)[0]);
 		} catch (BadHanyuPinyinOutputFormatCombination e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,11 +71,11 @@ public class PinYinExample {
 	@Test
 	@SuppressWarnings("unused")
 	public void TestPinyinType(){
-		//·µ»Ø¶àÒô×Ö£¬´øÒô±ê
-		String[] data=PinyinHelper.toMPS2PinyinStringArray('µØ');//×ªÎª×¢Òô·ûºÅÆ´Òô¡£
-		String[] data1=PinyinHelper.toTongyongPinyinStringArray('¶¼');// ×ªÎªÍ¨ÓÃÆ´Òô¡£ÖĞ¹úÌ¨ÍåÊ¹ÓÃ
-		String[] data2=PinyinHelper.toWadeGilesPinyinStringArray('¶¼');//×ªÎªÍşÍ×ÂêÆ´Òô¡£
-		String[] data3=PinyinHelper.toYalePinyinStringArray('¶¼');//×ªÎªÒ®ô”Æ´Òô¡£
+		//è¿”å›å¤šéŸ³å­—ï¼Œå¸¦éŸ³æ ‡
+		String[] data=PinyinHelper.toMPS2PinyinStringArray('åœ°');//è½¬ä¸ºæ³¨éŸ³ç¬¦å·æ‹¼éŸ³ã€‚
+		String[] data1=PinyinHelper.toTongyongPinyinStringArray('éƒ½');// è½¬ä¸ºé€šç”¨æ‹¼éŸ³ã€‚ä¸­å›½å°æ¹¾ä½¿ç”¨
+		String[] data2=PinyinHelper.toWadeGilesPinyinStringArray('éƒ½');//è½¬ä¸ºå¨å¦¥ç›æ‹¼éŸ³ã€‚
+		String[] data3=PinyinHelper.toYalePinyinStringArray('éƒ½');//è½¬ä¸ºè€¶é­¯æ‹¼éŸ³ã€‚
 		for (String string : data3) {
 			System.out.println(string);
 		}

@@ -10,8 +10,8 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 /**
- * ÊµÏÖ½«ExcelÖĞµÄ×Ö¶ÎÓ³ÉäÎªsqlÓï¾ä(²Ù×÷.xls)
- * @author plf 2017Äê8ÔÂ29ÈÕÏÂÎç10:02:18
+ * å®ç°å°†Excelä¸­çš„å­—æ®µæ˜ å°„ä¸ºsqlè¯­å¥(æ“ä½œ.xls)
+ * @author plf 2017å¹´8æœˆ29æ—¥ä¸‹åˆ10:02:18
  *
  */
 public class ImportHSSFExcel {
@@ -25,9 +25,9 @@ public class ImportHSSFExcel {
 			FileInputStream in=new FileInputStream(new File(path));
 			@SuppressWarnings("resource")
 			HSSFWorkbook wb=new HSSFWorkbook(in);
-			//»ñÈ¡µÚÒ»¸ösheet
+			//è·å–ç¬¬ä¸€ä¸ªsheet
 			HSSFSheet st=wb.getSheetAt(0);
-			//»ñÈ¡×ÜĞĞÊı
+			//è·å–æ€»è¡Œæ•°
 			int rowNum=st.getLastRowNum();
 			List<String[]> dataList=new ArrayList<String[]>();
 			String[] str=new String[num];
