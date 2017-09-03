@@ -55,7 +55,7 @@ public class ImportXSSFExcel {
 		if(dataList.size()>0 && dataList!=null){
 			for (String[] data : dataList) {
 				StringBuilder insert=new StringBuilder();
-				insert.append("insert table(").append(str[0]);
+				insert.append("insert").append(table).append("(").append(str[0]);
 				for(int m=1;m<num;m++){
 					insert.append(",").append(str[m]);
 				}
