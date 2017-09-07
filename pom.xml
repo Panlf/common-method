@@ -71,7 +71,7 @@
 	</dependency>
 	
 	
-	
+	<!-- JSON操作的jar包 -->
 	<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
 	<dependency>
 	    <groupId>com.alibaba</groupId>
@@ -79,12 +79,14 @@
 	    <version>1.2.38</version>
 	</dependency>
 	
+	<!-- Word分词器的jar包 -->
 	<dependency>
 		<groupId>org.apdplat</groupId>
 		<artifactId>word</artifactId>
 		<version>1.3</version>
 	</dependency>
 
+	<!-- Java mail的操作的jar 上面一个缺少调试功能 -->
 	<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
 	<!--  <dependency>
 	    <groupId>javax.mail</groupId>
@@ -99,6 +101,7 @@
 	    <version>1.4</version>
 	</dependency>
 	
+	<!-- pdf操作的jar包 -->
 	<dependency>
         <groupId>com.itextpdf</groupId>
         <artifactId>kernel</artifactId>
@@ -109,6 +112,18 @@
         <artifactId>layout</artifactId>
         <version>7.0.2</version>
     </dependency>
+    
+    <!-- Quartz定时任务的jar包 -->
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+      <version>2.2.1</version>
+  </dependency>
+  <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz-jobs</artifactId>
+      <version>2.2.1</version>
+  </dependency>  
 	
   </dependencies>
   <build>
