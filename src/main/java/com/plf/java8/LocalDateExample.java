@@ -3,8 +3,11 @@ package com.plf.java8;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.junit.Test;
 
@@ -87,5 +90,36 @@ public class LocalDateExample {
 		System.out.println(formater.format(time));
 		//增加3s
 		System.out.println(formater.format(time.plusSeconds(3)));
+	}
+	
+	//获取当前时间
+	@Test
+	public void getLongTime(){
+		//Java8的写法 
+		System.out.println(LocalDateTime
+		            .now()
+		            .atZone(ZoneOffset.UTC)
+		            .toInstant()
+		            .toEpochMilli()
+		        );
+		 
+		System.out.println(LocalDateTime
+		            .now()
+		            .atZone(ZoneOffset.of("+3"))
+		            .toInstant()
+		            .toEpochMilli()
+		        );
+		 
+		System.out.println("==================");
+		 
+		//原始的方法
+		System.out.println(System.currentTimeMillis());
+		
+		
+		System.out.println(new Date().getTime());
+		
+		
+		System.out.println(Calendar.getInstance().getTimeInMillis());
+		
 	}
 }
