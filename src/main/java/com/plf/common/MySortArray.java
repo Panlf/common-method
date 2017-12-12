@@ -18,7 +18,6 @@ public class MySortArray {
 		//Arrays.sort(arr,new MySort());//降序
 		Arrays.sort(arr,new Comparator<Integer>(){
 			//使用匿名函数
-			@Override
 			public int compare(Integer o1, Integer o2) {
 				// TODO Auto-generated method stub
 				return o2.compareTo(o1);
@@ -42,7 +41,6 @@ public class MySortArray {
 
 //自定义一个比较类
 class MySort implements Comparator<Integer>{ 
-	@Override
 	public int compare(Integer o1, Integer o2) { 
 	if(o1 < o2){ 
 		return 1; 
