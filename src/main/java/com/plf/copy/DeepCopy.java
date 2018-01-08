@@ -9,7 +9,7 @@ public class DeepCopy implements Cloneable{
     * 原型模式中会使用到拷贝。
     */
 	private String name;
-    private ArrayList<String> list = new ArrayList<>();
+    private ArrayList<String> list = new ArrayList<String>();
     public void printlnName() {
         System.out.println(this.name);
     }

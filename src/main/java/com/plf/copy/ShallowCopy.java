@@ -10,7 +10,7 @@ public class ShallowCopy implements Cloneable {
 	 * 像这种只拷贝了对象本身，而对象中引用数据类型没有被拷贝的拷贝方式，叫做浅拷贝。
 	 */
 	private String name;
-    private ArrayList<String> list = new ArrayList<>();
+    private ArrayList<String> list = new ArrayList<String>();
     public void printlnName() {
         System.out.println(this.name);
     }
