@@ -83,7 +83,13 @@
 	    <version>4.1</version>
 	</dependency>
 	
-	
+	<!-- 解析BSON -->
+	<dependency>
+	    <groupId>de.undercouch</groupId>
+	    <artifactId>bson4jackson</artifactId>
+	    <version>2.7.0</version>
+	  </dependency>
+  
 	<!-- JSON操作的jar包 -->
 	<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
 	<dependency>
