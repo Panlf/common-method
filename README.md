@@ -20,3 +20,10 @@
 #### 8、Java邮件发送
 - a、Java Mail
 #### 9、Java操作MongoDB
+#### 10、解析BSON
+#### 11、设计模式
+- a、代理模式
+#### 12、读写properties
+#### 13、Java使用ActiveMQ
+#### 14、Java的加密
+#### 15、多线程
