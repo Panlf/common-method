@@ -1,4 +1,4 @@
-package com.plf.io;
+package com.plf.nio;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
