@@ -79,6 +79,9 @@ public class URLUtils {
 			buff=new BufferedReader(insread);
 			String line;
 			while((line=buff.readLine())!=null){
+				if(result!=null){
+					result += "\n";
+				}
 				result += line;
 			}
 			return result;
