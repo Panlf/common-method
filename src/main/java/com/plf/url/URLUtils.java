@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-
 /**
  * URL的工具类
  * @author plf 2017年9月5日下午8:11:02
@@ -15,7 +14,7 @@ import java.net.URLConnection;
  */
 public class URLUtils {
 	
-	public String sendGet(String path){
+	public static String sendGet(String path){
 		String result="";
 		BufferedReader buff=null;
 		try {
@@ -34,21 +33,21 @@ public class URLUtils {
 			buff=new BufferedReader(insread);
 			String line;
 			while((line=buff.readLine())!=null){
+				if(result!=null){
+					result += "\n";
+				}
 				result += line;
 			}
 			return result;
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			if(buff!=null){
 				try {
 					buff.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -56,7 +55,7 @@ public class URLUtils {
 		return result;
 	}
 	
-	public String sendPost(String path){
+	public static String sendPost(String path){
 		String result="";
 		BufferedReader buff=null;
 		try {
@@ -86,17 +85,14 @@ public class URLUtils {
 			}
 			return result;
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			if(buff!=null){
 				try {
 					buff.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

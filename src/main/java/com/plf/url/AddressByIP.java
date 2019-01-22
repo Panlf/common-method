@@ -14,7 +14,7 @@ import com.alibaba.fastjson.JSONObject;
 public class AddressByIP {
 
 	public static void main(String[] args) {
-		System.out.println(new AddressByIP().getAddressByIP("61.4.184.180"));
+		System.out.println(new AddressByIP().getAddressByIP("116.192.175.93"));
 	}
 
 	private JSONObject getAddressByIP(String ip){
