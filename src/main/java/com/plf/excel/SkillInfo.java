@@ -17,14 +17,9 @@ public class SkillInfo {
 		this.info = info;
 	}
 	
-	
-	
 	public SkillInfo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-
 
 	public String getCompany() {
 		return company;

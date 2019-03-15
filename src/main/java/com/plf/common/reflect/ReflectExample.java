@@ -1,7 +1,11 @@
-package com.plf.common;
+package com.plf.common.reflect;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -78,45 +82,19 @@ public class ReflectExample {
 		}
 	}
 	
+	
+	@Test
+	public void TestExtendsReflect(){
+		//获取父类和子类的所有属性
+		Class<?> cls = Student.class;
+		List<Field> list = new ArrayList<>();
+		while(cls!=null){
+			list.addAll(Arrays.asList(cls.getDeclaredFields()));
+			cls = cls.getSuperclass();
+		}
+		
+		System.out.println(list);
+	}
+	
 }
 
-class Person{
-	private String name;
-	private int age;
-	
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public Person(){}
-
-	public Person(String name, int age) {
-		super();
-		this.name = name;
-		this.age = age;
-	}
-	
-	public void Say(String name,int age){
-		System.out.println("I am "+age+".My name is "+name+"!"+Eat());
-	}
-	
-	private String Eat(){
-		return "I eat rice!";
-	}
-	public static void Run(){
-		System.out.println("I can run");
-	}
-}

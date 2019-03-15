@@ -9,7 +9,6 @@ public class LockTest {
 	}
 	
 	private void init() {
-		// TODO Auto-generated method stub
 		final Output output = new Output();
 		new Thread(new Runnable() {
 			public void run() {
@@ -17,7 +16,6 @@ public class LockTest {
 					try {
 						Thread.sleep(10);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					output.output("xiaoming");
@@ -30,7 +28,6 @@ public class LockTest {
 					try {
 						Thread.sleep(10);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					output.output("ergou");

@@ -14,7 +14,6 @@ public class TraditionalThreadCommunication {
 			new Runnable() {
 				@Override
 				public void run() {
-					// TODO Auto-generated method stub
 					for(int i=1;i<=50;i++){
 						business.sub(i);
 					}
@@ -35,7 +34,6 @@ class Business{
 			try {
 				this.wait();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -51,7 +49,6 @@ class Business{
 			try {
 				this.wait();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

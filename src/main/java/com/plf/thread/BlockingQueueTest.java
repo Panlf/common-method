@@ -9,7 +9,6 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class BlockingQueueTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<String>(3);
 		for(int i=0;i<2;i++){
 			new Thread(){
@@ -21,7 +20,6 @@ public class BlockingQueueTest {
 							queue.put("kky");
 							System.out.println(Thread.currentThread().getName()+"已经放了数据，"+"队列目前有"+queue.size()+"个数据");
 						} catch (Exception e) {
-							// TODO: handle exception
 							e.printStackTrace();
 						}
 					}
@@ -38,7 +36,6 @@ public class BlockingQueueTest {
 						queue.take();
 						System.out.println(Thread.currentThread().getName()+"已经取走数据，"+"队列目前有"+queue.size()+"个数据");
 					} catch (Exception e) {
-						// TODO: handle exception
 						e.printStackTrace();
 					}
 				}

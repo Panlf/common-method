@@ -10,7 +10,6 @@ import java.util.concurrent.Executors;
 public class CyclicBarrierTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		ExecutorService service = Executors.newCachedThreadPool();
 		final CyclicBarrier cb = new CyclicBarrier(3);
 		for(int i=0;i<3;i++){
@@ -35,7 +34,6 @@ public class CyclicBarrierTest {
 										(cb.getNumberWaiting()==2?"都到齐了，继续走啊":"正在等候"));
 						cb.await();
 					} catch (Exception e) {
-						// TODO: handle exception
 						e.printStackTrace();
 					}
 	

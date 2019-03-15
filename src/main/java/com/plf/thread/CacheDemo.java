@@ -9,7 +9,6 @@ public class CacheDemo {
 
 	private Map<String,Object> cache = new HashMap<String,Object> ();
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 	}
 	
@@ -27,13 +26,11 @@ public class CacheDemo {
 						value = "AAAA"; //实际是访问数据库
 					}
 				} finally {
-					// TODO: handle finally clause
 					rwl.writeLock().unlock();
 				}	
 				rwl.readLock().lock();
 			}	
 		} finally {
-			// TODO: handle finally clause
 			rwl.readLock().unlock();
 		}
 		

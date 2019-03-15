@@ -7,108 +7,97 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ThreeConditionCommunication {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-final Business business= new Business();
-		
-		new Thread(
-			new Runnable() {
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					for(int i=1;i<=50;i++){
-						business.sub2(i);
-					}
+		final Business business = new Business();
+
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				for (int i = 1; i <= 50; i++) {
+					business.sub2(i);
 				}
+			}
 		}).start();
-		
-		new Thread(
-				new Runnable() {
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-						for(int i=1;i<=50;i++){
-							business.sub3(i);
-						}
-					}
-			}).start();
-	
-		for(int i=1;i<=50;i++){
+
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				for (int i = 1; i <= 50; i++) {
+					business.sub3(i);
+				}
+			}
+		}).start();
+
+		for (int i = 1; i <= 50; i++) {
 			business.main(i);
 		}
 	}
 
-	static class Business{
+	static class Business {
 		Lock lock = new ReentrantLock();
 		Condition condition1 = lock.newCondition();
 		Condition condition2 = lock.newCondition();
 		Condition condition3 = lock.newCondition();
 		private int shouldSub = 1;
-		public void sub2(int i){
+
+		public void sub2(int i) {
 			lock.lock();
-			try{
-				while(shouldSub != 2){
-					try{
+			try {
+				while (shouldSub != 2) {
+					try {
 						condition2.await();
-					}catch (Exception e) {
-						// TODO: handle exception
+					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
-				for(int j = 1;j<=10;j++){
-					System.out.println("sub2 thread sequece of "+j+",loop of "+i);
+				for (int j = 1; j <= 10; j++) {
+					System.out.println("sub2 thread sequece of " + j + ",loop of " + i);
 				}
 				shouldSub = 3;
 				condition3.signal();
-			}finally {
-				// TODO: handle finally clause
+			} finally {
 				lock.unlock();
 			}
 		}
-		
-		public void sub3(int i){
+
+		public void sub3(int i) {
 			lock.lock();
-			try{
-				while(shouldSub != 3){
-					try{
+			try {
+				while (shouldSub != 3) {
+					try {
 						condition3.await();
-					}catch (Exception e) {
-						// TODO: handle exception
+					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
-				for(int j = 1;j<=20;j++){
-					System.out.println("sub3 thread sequece of "+j+",loop of "+i);
+				for (int j = 1; j <= 20; j++) {
+					System.out.println("sub3 thread sequece of " + j + ",loop of " + i);
 				}
 				shouldSub = 1;
 				condition1.signal();
-			}finally {
-				// TODO: handle finally clause
+			} finally {
 				lock.unlock();
 			}
 		}
-		
-		public void main(int i){
+
+		public void main(int i) {
 			lock.lock();
-			try{
-				while(shouldSub != 1){
-					try{
-						 condition1.await();
-					}catch (Exception e) {
-						// TODO: handle exception
+			try {
+				while (shouldSub != 1) {
+					try {
+						condition1.await();
+					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
-				for(int j = 1;j<=100;j++){
-					System.out.println("main thread sequece of "+j+",loop of "+i);
+				for (int j = 1; j <= 100; j++) {
+					System.out.println("main thread sequece of " + j + ",loop of " + i);
 				}
 				shouldSub = 2;
 				condition2.signal();
-			}finally {
-				// TODO: handle finally clause
+			} finally {
 				lock.unlock();
 			}
 		}
-		
+
 	}
 }
-

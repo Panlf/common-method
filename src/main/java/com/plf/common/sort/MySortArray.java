@@ -1,4 +1,4 @@
-package com.plf.common;
+package com.plf.common.sort;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -19,7 +19,6 @@ public class MySortArray {
 		Arrays.sort(arr,new Comparator<Integer>(){
 			//使用匿名函数
 			public int compare(Integer o1, Integer o2) {
-				// TODO Auto-generated method stub
 				return o2.compareTo(o1);
 			}
 			

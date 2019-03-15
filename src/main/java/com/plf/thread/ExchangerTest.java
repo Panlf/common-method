@@ -12,14 +12,12 @@ import java.util.concurrent.Executors;
 public class ExchangerTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		ExecutorService service = Executors.newCachedThreadPool();
 		final Exchanger<String> exchanger = new Exchanger<String>();
 		service .execute(new Runnable() {
 			
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				try {
 					String data1="xxs";
 					System.out.println("线程"+Thread.currentThread().getName()+"正在把数据"+data1+"换出去");
@@ -27,7 +25,6 @@ public class ExchangerTest {
 					String data2 = exchanger.exchange(data1);
 					System.out.println("线程"+Thread.currentThread().getName()+"换回来的数据为"+data2);
 				} catch (Exception e) {
-					// TODO: handle exception
 				}
 			}
 		});
@@ -37,7 +34,6 @@ public class ExchangerTest {
 			
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				try {
 					String data1="kky";
 					System.out.println("线程"+Thread.currentThread().getName()+"正在把数据"+data1+"换出去");
@@ -45,7 +41,6 @@ public class ExchangerTest {
 					String data2 = exchanger.exchange(data1);
 					System.out.println("线程"+Thread.currentThread().getName()+"换回来的数据为"+data2);
 				} catch (Exception e) {
-					// TODO: handle exception
 				}
 			}
 		});

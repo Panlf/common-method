@@ -12,7 +12,6 @@ import java.util.concurrent.Future;
 public class CallableAndFuture {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		ExecutorService threadPool = Executors.newSingleThreadExecutor();
 		Future<String> future =  threadPool.submit(
 			new Callable<String>() {
@@ -26,7 +25,6 @@ public class CallableAndFuture {
 			System.out.println("等待结果");
 			System.out.println("拿到结果："+future.get());
 		} catch (InterruptedException | ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -40,7 +38,6 @@ public class CallableAndFuture {
 	
 				@Override
 				public Integer call() throws Exception {
-					// TODO Auto-generated method stub
 					Thread.sleep(new Random().nextInt(5000));
 					return seq;
 				}
@@ -53,10 +50,8 @@ public class CallableAndFuture {
 			try {
 				System.out.println(completionService.take().get());
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

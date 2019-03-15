@@ -8,7 +8,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class CollectionModifyExceptionTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Collection<User> users = new CopyOnWriteArrayList<User>();
 				//new ArrayList<User>();
 		users.add(new User("张三",28));

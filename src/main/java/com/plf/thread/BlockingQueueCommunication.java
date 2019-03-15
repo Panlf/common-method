@@ -10,14 +10,12 @@ import java.util.concurrent.BlockingQueue;
 public class BlockingQueueCommunication {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		final Business business = new Business();
 		
 		new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				for(int i=0;i<=50;i++){
 					business.sub(i);
 				}
@@ -36,7 +34,6 @@ public class BlockingQueueCommunication {
 			try {
 				queue2.put(1);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -45,7 +42,6 @@ public class BlockingQueueCommunication {
 			try {
 				queue1.put(1);
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 			for(int j=1;j<=10;j++){
@@ -55,7 +51,6 @@ public class BlockingQueueCommunication {
 			try {
 				queue2.take();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -64,7 +59,6 @@ public class BlockingQueueCommunication {
 			try {
 				queue2.put(1);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			for(int j=1;j<=100;j++){
@@ -74,7 +68,6 @@ public class BlockingQueueCommunication {
 			try {
 				queue1.take();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

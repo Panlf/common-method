@@ -1,15 +1,15 @@
-package com.plf.common;
+package com.plf.common.buffer;
 
 import org.junit.Test;
 /**
  * StringBuffer 和  StringBuilder
  * @author plf 2017年7月6日下午10:17:46
- * StringBuffer：线程安全
- * StringBuilder： 线程不安全
+ * StringBuffer：线程安全	 	效率低
+ * StringBuilder： 线程不安全    	效率高
  * 单线程操作：使用StringBuilder效率高
  * 多线程操作：使用StringBuffer安全
  */
-public class BufferExamplf {
+public class BufferExample {
 	@Test
 	public void TestStringBuffer(){
 		/**

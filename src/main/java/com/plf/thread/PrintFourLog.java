@@ -12,19 +12,16 @@ public class PrintFourLog {
 	public static void main(String[] args) {
 		final BlockingQueue<String> queue = new ArrayBlockingQueue<String>(16);//1
 		
-		// TODO Auto-generated method stub
 		for(int i=0;i<4;i++){
 			new Thread(new Runnable() {
 				
 				@Override
 				public void run() {
-					// TODO Auto-generated method stub
 					while(true){
 						try {
 							String log = queue.take();
 							parseLog(log);
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
@@ -40,7 +37,6 @@ public class PrintFourLog {
 				try {
 					queue.put(log);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -54,7 +50,6 @@ public class PrintFourLog {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

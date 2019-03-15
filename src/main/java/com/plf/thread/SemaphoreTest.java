@@ -15,7 +15,6 @@ import java.util.concurrent.Semaphore;
 public class SemaphoreTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		ExecutorService service = Executors.newCachedThreadPool();
 		final Semaphore sp = new Semaphore(3);
 		for(int i=0;i<10;i++){
@@ -24,7 +23,6 @@ public class SemaphoreTest {
 					try {
 						sp.acquire();
 					} catch (Exception e) {
-						// TODO: handle exception
 						e.printStackTrace();
 					}
 					
@@ -32,7 +30,6 @@ public class SemaphoreTest {
 					try {
 						Thread.sleep((long)(Math.random()*10000));
 					} catch (Exception e) {
-						// TODO: handle exception
 						e.printStackTrace();
 					}
 					

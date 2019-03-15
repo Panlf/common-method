@@ -75,7 +75,6 @@ public class SecurityDH {
 			result=cipher.doFinal(result);
 			System.out.println("jdk dh decrypt:"+new String(result));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

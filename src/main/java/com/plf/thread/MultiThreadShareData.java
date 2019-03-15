@@ -8,7 +8,6 @@ public class MultiThreadShareData {
 
 	private static ShareData1 data1 = new ShareData1();
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		final ShareData1 data2=new ShareData1();
 		new Thread(new MyRunnable1(data2)).start();
 		new Thread(new MyRunnable2(data2)).start();
@@ -17,7 +16,6 @@ public class MultiThreadShareData {
 			
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				data1.decrement();
 			}
 		}).start();
@@ -25,7 +23,6 @@ public class MultiThreadShareData {
 			
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				data1.increment();
 			}
 		}).start();
@@ -41,7 +38,6 @@ class MyRunnable1 implements Runnable{
 	}
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		data1.decrement();
 	}
 	
@@ -55,7 +51,6 @@ class MyRunnable2 implements Runnable{
 	}
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		data1.increment();
 	}
 	

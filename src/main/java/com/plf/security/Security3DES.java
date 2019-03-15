@@ -47,7 +47,7 @@ public class Security3DES {
 	
 	@SuppressWarnings("unused")
 	private static void bc3DES(){
-		//TODO
+
 	}
 
 }

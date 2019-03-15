@@ -7,7 +7,6 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class ReadWriteLockTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		final Queue3 q3 = new Queue3();
 		for(int i=0;i<3;i++){
 			new Thread(){
@@ -40,7 +39,6 @@ class Queue3{
 			Thread.sleep((long)(Math.random()*1000));
 			System.out.println(Thread.currentThread().getName()+" have read data :"+data);
 		}catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}finally {
 			rwl.readLock().unlock();		
@@ -55,7 +53,6 @@ class Queue3{
 			this.data=data;
 			System.out.println(Thread.currentThread().getName()+" have write data:"+data);
 		}catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}finally {
 			rwl.writeLock().unlock();
