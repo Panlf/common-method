@@ -9,6 +9,11 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+/**
+ * IO的读写文本
+ * @author plf 2019年4月4日下午4:06:26
+ *
+ */
 public class IOReandWr {
 
 	@Test
