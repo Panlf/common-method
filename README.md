@@ -27,3 +27,4 @@
 #### 13、[Java安全](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/security)
 #### 14、[分词器Word](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/word)
 #### 15、[Netty](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/netty)
+#### 16、[Java工具类库生成UUID](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/uuid)
