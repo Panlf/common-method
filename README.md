@@ -29,3 +29,5 @@
 #### 15、[Netty](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/netty)
 #### 16、[Java工具类库生成UUID](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/uuid)
 #### 17、[Java操作Zookeeper](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/zookeeper)
+#### 18、[Java操作Redis](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/redis)
+#### 19、[Java操作词云](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/wordcloud)
