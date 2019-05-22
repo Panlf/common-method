@@ -11,7 +11,7 @@
 - d、[IO](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/common/io)
 - e、[NIO](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/common/nio)
 - f、[反射](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/common/reflect)
-- g、[Socket](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/common/Socket)
+- g、[Socket](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/common/socket)
 - h、[排序](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/common/sort)
 - i、[多线程](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/common/thread)
 - j、[URL](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/common/url)
