@@ -31,3 +31,4 @@
 #### 17、[Java操作Zookeeper](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/zookeeper)
 #### 18、[Java操作Redis](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/redis)
 #### 19、[Java操作词云](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/wordcloud)
+#### 20、[Java操作Solr](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/solr)
