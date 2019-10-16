@@ -276,6 +276,28 @@
 			<artifactId>kumo-tokenizers</artifactId>
 			<version>1.17</version>
 		</dependency>
+		
+		<!-- Elasticsearch -->
+		<dependency>
+		    <groupId>org.elasticsearch</groupId>
+		    <artifactId>elasticsearch</artifactId>
+		    <version>7.0.1</version>
+		</dependency>
+		
+		<!-- Solr -->
+		<dependency>
+		    <groupId>org.apache.solr</groupId>
+		    <artifactId>solr-solrj</artifactId>
+		    <version>8.2.0</version>
+		</dependency>
+		
+		<!-- fastjson -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.62</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<finalName>CommonMethod</finalName>
