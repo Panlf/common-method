@@ -1,9 +1,11 @@
 package com.plf.kafka;
 
+import java.util.Arrays;
 import java.util.Properties;
 
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 
@@ -45,6 +47,10 @@ public class CustomerProducer {
         //序列化器
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        
+        
+        props.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, Arrays.asList("com.plf.kafka.TimeIntercetor","com.plf.kafka.CountResultIntercetor"));
+        
         //自定义分区
         //props.put("partitioner.class","com.plf.kafka.CustomerPartitioner");
         

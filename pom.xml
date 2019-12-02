@@ -297,6 +297,13 @@
 			<artifactId>kafka_2.12</artifactId>
 			<version>2.2.0</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.kafka</groupId>
+		    <artifactId>kafka-streams</artifactId>
+		    <version>2.2.0</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<finalName>CommonMethod</finalName>
