@@ -33,8 +33,7 @@ public class CountResultIntercetor implements ProducerInterceptor<String,String>
 
 	@Override
 	public ProducerRecord<String, String> onSend(ProducerRecord<String, String> record) {
-
-		return null;
+		return record;
 	}
 
 }

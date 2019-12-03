@@ -14,10 +14,10 @@ public class CustomerConsumer {
 		Properties props = new Properties();
 		
 		//设置kafka集群的地址
-		props.put("bootstrap.servers", "localhost:9092");
+		props.put("bootstrap.servers", "localhost:9020,localhost:9021,localhost:9022");
         
         //消费者组ID
-		props.put("group.id", "kafka-test-group");
+		props.put("group.id", "test-consumer-group");
         
         //设置自动提交offset
 		props.put("enable.auto.commit", "true");
@@ -47,7 +47,7 @@ public class CustomerConsumer {
         
         //指定Topic
         //consumer.subscribe(Arrays.asList("first","second","third"));
-        consumer.subscribe(Collections.singletonList("kafka-topic"));
+        consumer.subscribe(Collections.singletonList("kafka-topic-test"));
         
         while (true) {
 	        //获取数据

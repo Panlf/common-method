@@ -5,7 +5,6 @@ import java.util.Properties;
 
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 
@@ -16,8 +15,8 @@ public class CustomerProducer {
 		//配置信息
 		Properties props = new Properties();
 		
-		//设置kafka集群的地址 -- localhost:9091,localhost:9092,localhost:9093
-        props.put("bootstrap.servers", "localhost:9092");
+		//设置kafka集群的地址 -- localhost:9020,localhost:9021,localhost:9022
+        props.put("bootstrap.servers", "localhost:9020,localhost:9021,localhost:9022");
         
         //ack模式，all是最慢但最安全的
         // 0  不等待成功返回  
@@ -48,8 +47,7 @@ public class CustomerProducer {
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         
-        
-        props.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, Arrays.asList("com.plf.kafka.TimeIntercetor","com.plf.kafka.CountResultIntercetor"));
+        props.put("interceptor.classes", Arrays.asList("com.plf.kafka.TimeIntercetor","com.plf.kafka.CountResultIntercetor"));
         
         //自定义分区
         //props.put("partitioner.class","com.plf.kafka.CustomerPartitioner");
@@ -59,8 +57,8 @@ public class CustomerProducer {
         KafkaProducer<String,String> producer = new KafkaProducer<>(props);
         
         //循环发送消息
-        for(int i=0;i<10;i++){
-        	producer.send(new ProducerRecord<String, String>("kafka-topic", Integer.toString(i)),new Callback() {
+        for(int i=10;i<20;i++){
+        	producer.send(new ProducerRecord<String, String>("kafka-topic-test", Integer.toString(i)),new Callback() {
 				
 				@Override
 				public void onCompletion(RecordMetadata metadata, Exception exception) {
@@ -71,8 +69,8 @@ public class CustomerProducer {
 					}
 				}
 			});
+
         }
-        
         //关闭资源
         producer.close();
 	}
