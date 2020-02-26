@@ -10,7 +10,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 		
@@ -25,12 +25,6 @@
 			<groupId>cglib</groupId>
 			<artifactId>cglib-full</artifactId>
 			<version>2.0.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.belerweb</groupId>
-			<artifactId>pinyin4j</artifactId>
-			<version>2.5.1</version>
 		</dependency>
 
 		<dependency>
@@ -64,25 +58,11 @@
 			<version>4.1</version>
 		</dependency>
 
-		<!-- 解析BSON -->
-		<dependency>
-			<groupId>de.undercouch</groupId>
-			<artifactId>bson4jackson</artifactId>
-			<version>2.7.0</version>
-		</dependency>
-
 		<!-- JSON操作的jar包 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.38</version>
-		</dependency>
-
-		<!-- Word分词器的jar包 -->
-		<dependency>
-			<groupId>org.apdplat</groupId>
-			<artifactId>word</artifactId>
-			<version>1.3</version>
 		</dependency>
 
 		<!-- Java mail的操作的jar 上面一个缺少调试功能 -->
@@ -94,18 +74,6 @@
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
-		</dependency>
-
-		<!-- pdf操作的jar包 -->
-		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>kernel</artifactId>
-			<version>7.0.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>layout</artifactId>
-			<version>7.0.2</version>
 		</dependency>
 
 		<!-- Quartz定时任务的jar包 -->
@@ -177,21 +145,13 @@
 			<artifactId>jboss-marshalling-river</artifactId>
 			<version>1.4.11.Final</version>
 		</dependency>
+		
 		<!-- 序列化处理工具 -->
 		<dependency>
 			<groupId>org.jboss.marshalling</groupId>
 			<artifactId>jboss-marshalling-serial</artifactId>
 			<version>1.4.11.Final</version>
 		</dependency>
-
-
-		<!-- Java生成UUID -->
-		<dependency>
-			<groupId>com.fasterxml.uuid</groupId>
-			<artifactId>java-uuid-generator</artifactId>
-			<version>3.2.0</version>
-		</dependency>
-
 
 		<!-- Zookeeper的Jar包 -->
 		<dependency>
@@ -232,18 +192,6 @@
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
 			<version>2.8.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.kennycason</groupId>
-			<artifactId>kumo-core</artifactId>
-			<version>1.17</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.kennycason</groupId>
-			<artifactId>kumo-tokenizers</artifactId>
-			<version>1.17</version>
 		</dependency>
 		
 		<!-- Elasticsearch -->
