@@ -2,6 +2,7 @@ package com.plf.java8;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.Test;
@@ -60,6 +61,20 @@ public class StreamExample {
 		.getAsDouble();
 		System.out.println(a);
 	}
+	
+	/**
+	 * 取出对象列表中某一个值并用某一字符连接
+	 */
+	@Test
+	public void CollectionStreamJoin(){
+		List<Person> people=createPeople();
+		Stream<Person> stream=people.stream();
+		
+		String names = stream.map(v->v.getName()).collect(Collectors.joining(","));
+		
+		System.out.println(names);
+	}
+	
 	static List<Person> createPeople(){
 		List<Person> people=new ArrayList<Person>();
 		Person person=new Person("张三",Person.Sex.MALE,30,2.0);
