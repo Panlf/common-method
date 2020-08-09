@@ -44,7 +44,7 @@ public class JMSProducer {
 			//AUTO_ACKNOWLEDGE 当客户成功的从receive方法返回时，或者从MessageListener.onMessage方法成功返回时，会自动确认客户收到的消息
 			//CLIENT_ACKNOWLEDGE 客户通过消息的acknowledge方法确认消息
 			//DUPS_ACKNOWLEDGE 该选择只是会话迟钝等确认消息的提交
-			session = connection.createSession(true,Session.AUTO_ACKNOWLEDGE);
+			session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
 		
 			//创建消息队列
 			destination = session.createTopic("FirstTopic1");

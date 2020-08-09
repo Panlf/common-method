@@ -42,19 +42,22 @@ public class JMSConsumer {
 			//启动连接
 			connection.start();
 			//创建session
-			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			//session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			session = connection.createSession(false, Session.CLIENT_ACKNOWLEDGE);
+			
 			//创建连接的消息队列
 			destination = session.createQueue("FirstQueue1");
 			
 			messageConsumer = session.createConsumer(destination);
 		
 			while(true){
+				//获取队列中的消息，receive方法是一个主动获取消息的方法，执行一次，拉取一个消息，开发少用
 				TextMessage textMessage = (TextMessage) messageConsumer.receive(100000);
-				if(textMessage!=null){
-					System.out.println("收到的消息："+textMessage.getText());
-				}else{
-					break;
-				}
+				
+				System.out.println("收到的消息："+textMessage.getText());
+				
+				//确认消息，发送处理消息确认消息。通知MQ删除对应的消息
+				textMessage.acknowledge();
 			}
 		} catch (JMSException e) {
 			e.printStackTrace();
