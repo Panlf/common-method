@@ -15,6 +15,7 @@
 - i、[多线程](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/common/thread)
 - j、[URL](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/common/url)
 - k、[菜单树](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/common/treenode)
+- l、[操作windows剪贴板](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/common/clipboard)
 #### 3、[Java操作Excel](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/excel)
 #### 4、[手写Jdbc连接池](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/jdbcpool)
 #### 5、[Lomok](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/lombok)

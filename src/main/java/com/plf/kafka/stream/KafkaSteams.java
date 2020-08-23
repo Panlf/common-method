@@ -27,8 +27,7 @@ public class KafkaSteams {
 		dealSource.to("streams-deal-data");
 		
 		 //创建和启动KStream
-        @SuppressWarnings("resource")
-		KafkaStreams kafkaStreams = new KafkaStreams(builder.build(), props);
+        KafkaStreams kafkaStreams = new KafkaStreams(builder.build(), props);
         kafkaStreams.start();
 	}
 }
