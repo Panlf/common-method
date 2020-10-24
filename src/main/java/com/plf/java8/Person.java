@@ -4,7 +4,6 @@ public class Person {
 	
 	public Person() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Person(String name, Sex gender, int age, double height) {
 		super();

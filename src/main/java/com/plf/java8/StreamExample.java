@@ -1,11 +1,19 @@
 package com.plf.java8;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.Test;
+
+import com.alibaba.fastjson.JSON;
 
 /**
  * Stream
@@ -77,11 +85,13 @@ public class StreamExample {
 	
 	static List<Person> createPeople(){
 		List<Person> people=new ArrayList<Person>();
-		Person person=new Person("张三",Person.Sex.MALE,30,2.0);
+		Person person=new Person("张三",Person.Sex.MALE,30,2.8);
 		people.add(person);
-		person=new Person("李四",Person.Sex.MALE,31,1.8);
+		person=new Person("李四",Person.Sex.MALE,32,1.6);
 		people.add(person);
-		person=new Person("王五",Person.Sex.FEMALE,32,1.6);
+		person=new Person("王五",Person.Sex.FEMALE,32,2.0);
+		people.add(person);
+		person=new Person("王五",Person.Sex.FEMALE,33,1.6);
 		people.add(person);
 		return people;
 	}
@@ -91,4 +101,60 @@ public class StreamExample {
 		Stream<String> fruit=Stream.of("apple","orange","banner","pear");
 		fruit.sorted().map(String::toUpperCase).forEach(System.out::println);
 	}
+	
+	/**
+	 * List分组并根据另外一个字段大小选取
+	 */
+	@Test
+	public void getOnlyOneByField() {
+		List<Person> people=createPeople();
+		Map<String,Person> map =new HashMap<>();
+		map = people.parallelStream()
+					.collect(Collectors.groupingBy(Person::getName,
+							Collectors.collectingAndThen(
+									Collectors.reducing((c1, c2) -> c1.getAge()>c2.getAge()?c1:c2),
+									Optional::get)));
+		System.out.println(JSON.toJSONString(map));
+	}
+	
+	@Test
+	public void sortField() {
+		List<Person> people=createPeople();
+		people.sort(Comparator.comparing(Person::getAge).reversed().thenComparing(Person::getHeight));
+		System.out.println(JSON.toJSONString(people));
+	}
+	
+	/**
+	 * 根据某个字段取唯一值
+	 */
+	@Test
+	public void distinctList() {
+		List<Person> people=createPeople();
+		List<Person> distinctlist = people.stream()
+				.collect(Collectors.collectingAndThen(
+						Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Person::getName))),
+						ArrayList::new));
+		System.out.println(JSON.toJSONString(distinctlist));
+	}
+	
+	/**
+	 * Long 数组选取不为Null和大于0的值
+	 * @param t
+	 * @return
+	 */
+	public static Long[] removeNullAndZero(Long[] t) {
+		List<Long> list = Arrays.asList(t);
+		return list.stream().filter(v->v!=null && v>0).toArray(Long[] :: new);	
+	}
+	
+	/**
+	 * 选取String数组 不为Null的值
+	 * @param t
+	 * @return
+	 */
+	public static String[] removeNullAndZero(String[] t) {
+		List<String> list = Arrays.asList(t);
+		return list.stream().filter(v->v!=null).toArray(String[] :: new);	
+	}
+
 }
