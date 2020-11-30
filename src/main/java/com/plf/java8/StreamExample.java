@@ -3,10 +3,12 @@ package com.plf.java8;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Random;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -71,35 +73,92 @@ public class StreamExample {
 	}
 	
 	/**
+	 * forEach迭代流中的每一个元素
+	 */
+	@Test
+	public void testForeach() {
+		Random random = new Random();
+		List<Integer> list= new ArrayList<>();
+		random.ints(-100,100).limit(10).forEach(t->list.add(t));
+		System.out.println(list);
+	}
+	
+	@Test
+	public void testFilter() {
+		List<Integer> intList = Arrays.asList(8,2,4,1,8,3,10,6,6,15);
+		List<Integer> newIntList=intList.stream().filter(i->i>5).sorted().distinct().collect(Collectors.toList());
+		System.out.println(newIntList);
+	}
+	
+	/**
+	 * map对流中每个元素进行操作，返回一个新的流
+	 */
+	@Test
+	public void testMap(){
+		// 只是对流操作并不会改变原List中的数据
+		//Stream<String> fruit=Stream.of("apple","orange","banner","pear");
+		List<String> fruit = Arrays.asList("apple","orange","banner","pear");
+		fruit.stream().sorted().map(String::toUpperCase).forEach(System.out::println);
+		System.out.println(fruit);
+
+		// 返回新的流
+		List<String> newfruit = fruit.stream().map(v->v.toUpperCase()).collect(Collectors.toList());
+		System.out.println(newfruit);
+	}
+	
+	/**
+	 * 测试并行流
+	 */
+	@Test
+	public void testParallel() {
+		Random random = new Random();
+		List<Integer> list= new ArrayList<>();
+		random.ints(-10000,10000).limit(10000).forEach(t->list.add(t));
+		
+		
+		long start = System.currentTimeMillis();
+		list.stream().filter(e -> e > 1000 && e< 2000).collect(Collectors.toList());
+	    System.out.println("stream : " + (System.currentTimeMillis() - start) + "ms");
+		
+	    start = System.currentTimeMillis();
+	    list.parallelStream().filter(e -> e > 1000 && e < 2000).collect(Collectors.toList());
+	    System.out.println("parallelStream : " + (System.currentTimeMillis() - start) + "ms");
+	}
+	
+	@Test
+	public void testCount() {
+		List<Integer> numList = Arrays.asList(3, 2, 2, 3, 7, 3, 5, 9);
+		 
+		DoubleSummaryStatistics stats = numList.stream().mapToDouble((x) -> x).summaryStatistics();
+		System.out.println("总个数 : " + stats.getCount());
+		System.out.println("列表中最大的数 : " + stats.getMax());
+		System.out.println("列表中最小的数 : " + stats.getMin());
+		System.out.println("所有数之和 : " + stats.getSum());
+		System.out.println("平均数 : " + stats.getAverage());
+	}
+	
+	/**
 	 * 取出对象列表中某一个值并用某一字符连接
 	 */
 	@Test
 	public void CollectionStreamJoin(){
 		List<Person> people=createPeople();
 		Stream<Person> stream=people.stream();
-		
 		String names = stream.map(v->v.getName()).collect(Collectors.joining(","));
-		
 		System.out.println(names);
 	}
 	
 	static List<Person> createPeople(){
 		List<Person> people=new ArrayList<Person>();
-		Person person=new Person("张三",Person.Sex.MALE,30,2.8);
+		Person person=new Person("张三",0,30,2.8);
 		people.add(person);
-		person=new Person("李四",Person.Sex.MALE,32,1.6);
+		person=new Person("李四",0,32,1.6);
 		people.add(person);
-		person=new Person("王五",Person.Sex.FEMALE,32,2.0);
+		person=new Person("王五",1,32,2.0);
 		people.add(person);
-		person=new Person("王五",Person.Sex.FEMALE,33,1.6);
+		person=new Person("王五",1,33,1.6);
 		people.add(person);
 		return people;
-	}
-	
-	@Test
-	public void NewStream(){
-		Stream<String> fruit=Stream.of("apple","orange","banner","pear");
-		fruit.sorted().map(String::toUpperCase).forEach(System.out::println);
 	}
 	
 	/**
