@@ -43,7 +43,7 @@ public class StreamExample {
 	 * 2、过滤器包含匹配的谓词
 	 * 		例如：判断p对象是否为男性的lambda表达式
 	 * Stream<Person> stream=people.stream();
-	 * stream=stream.filter(p->p.getGender()=='男');
+	 * stream=stream.filter(p->p.getGender()==1);
 	 * 
 	 * 四、
 	 * DoubleStream 接口表示元素类型是double的数据源
@@ -62,7 +62,7 @@ public class StreamExample {
 		//stream.forEach(p->System.out.println(p.toString()));
 		
 		//过滤器--过滤FEMALE
-		//stream.filter(p->p.getGender()==Person.Sex.MALE).
+		//stream.filter(p->p.getGender()==1).
 		//forEach(p->System.out.println(p.toString()));
 		
 		double a=stream.filter(p->p.getName().indexOf("王")>=0)
