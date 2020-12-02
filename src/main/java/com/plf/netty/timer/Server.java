@@ -30,6 +30,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 
 public class Server {
@@ -58,8 +60,8 @@ public class Server {
 		.option(ChannelOption.SO_BACKLOG, 1024)
 		//SO_SNDBUF 发送缓冲区 SO_RCVBUF 接受缓冲区  SO_KEEPALIVE 开启心跳监测(保证连接有效)
 		.option(ChannelOption.SO_SNDBUF, 16*1024)
-				.option(ChannelOption.SO_RCVBUF, 16*1024)
-				.option(ChannelOption.SO_KEEPALIVE, true);
+				.option(ChannelOption.SO_RCVBUF, 16*1024);
+				//.option(ChannelOption.SO_KEEPALIVE, true);
 				
 	}
 
@@ -83,7 +85,8 @@ public class Server {
 		 *		避免反复的创建处理器对象。节约资源开销。
 		 *
 		 */
-		bootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
+		bootstrap.handler(new LoggingHandler(LogLevel.INFO))
+			.childHandler(new ChannelInitializer<SocketChannel>() {
 			@Override
 			protected void initChannel(SocketChannel ch) throws Exception {	
 				//定义一个定时断线处理器，当多长时间内，没有任何的可读取数据，自动断开连接
@@ -91,6 +94,7 @@ public class Server {
 				//构造参数，就是间隔时长，默认单位是秒
 				//自定义间隔时长单位。new ReadTimeoutHandler(long times,TimeUnit unit)
 				ch.pipeline().addLast(new ReadTimeoutHandler(3));
+				
 				ch.pipeline().addLast(new ServerTimerHandler());
 			}
 		});
