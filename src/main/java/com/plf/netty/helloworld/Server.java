@@ -31,6 +31,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.util.concurrent.DefaultEventExecutorGroup;
+import io.netty.util.concurrent.EventExecutorGroup;
 
 public class Server {
 	//监听线程组，监听客户端请求
@@ -39,6 +41,10 @@ public class Server {
 	private EventLoopGroup clientGroup = null;
 	//服务启动相关配置信息
 	private ServerBootstrap bootstrap = null;
+	
+	//group 创建业务线程池
+	
+    static final EventExecutorGroup group = new DefaultEventExecutorGroup(2);
 	
 	public Server(){
 		init();
@@ -86,7 +92,15 @@ public class Server {
 		bootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
 			@Override
 			protected void initChannel(SocketChannel ch) throws Exception {		
-				ch.pipeline().addLast(acceptHandlers);
+				//ch.pipeline().addLast(acceptHandlers);
+				
+				//如果我们在addLast添加Handler，前面有指定EventExecutorGroup
+				//那么该handler会优先加入到该线程池中、
+				//第二种加入异步线程池
+				/**
+				 * Netty标准方式(即加入到队列)，但是这样做会将整个Handler都交给业务线程池，不论耗不耗时，都加入到队列中，不够灵活
+				 */
+				ch.pipeline().addLast(group,acceptHandlers);
 			}
 		});
 		//bind 方法 - 绑定监听端口。ServerBootstrap 可以绑定多个监听端口。多次调用bind方法即可
