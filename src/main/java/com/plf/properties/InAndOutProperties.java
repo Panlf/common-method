@@ -11,15 +11,17 @@ import java.util.Properties;
 public class InAndOutProperties {
 	public static void main(String[] args) {
 		try {
-			writeProperties();
-			readProperties();
+			readProperties("test.properties");
+			
+			/*writeProperties();
+			readProperties();*/
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	//读取properties
-	public static void readProperties() throws IOException{
+	public static void readProperties() throws IOException {
 		Properties prop = new Properties(); 
 		InputStream in = new BufferedInputStream (new FileInputStream("src/main/resources/test.properties"));
 		prop.load(in); 
@@ -31,11 +33,20 @@ public class InAndOutProperties {
 		in.close();
 	}
 	
+  	public static void readProperties(String path) throws IOException {
+  		Properties prop = new Properties();
+  		//InputStream in= ClassLoader.getSystemClassLoader().getResourceAsStream(path);
+  		InputStream in=InAndOutProperties.class.getClassLoader().getResourceAsStream(path);
+  		BufferedInputStream localBufferedInputStream = new BufferedInputStream(in);
+  	    prop.load(localBufferedInputStream);
+  	    System.out.println(prop);
+  	}
+  
 	public static void writeProperties() throws IOException{
 		Properties prop = new Properties(); 
 		FileOutputStream out = new FileOutputStream("src/main/resources/test.properties", true);//true表示追加打开
 		prop.setProperty("key3", "value3");
-		prop.store(out, "\n add properties");
+		prop.store(out, "add properties");
 		out.close();
 	}
 }
