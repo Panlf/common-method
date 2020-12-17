@@ -72,7 +72,6 @@ public class CodeImage {
 
 	//设置边框
 	private static void setBord(Graphics2D g) {
-		// TODO Auto-generated method stub
 		g.setColor(Color.LIGHT_GRAY);
 		g.setFont(new Font("Arial", Font.BOLD, HEIGHT - 2));
 		g.drawRect(0, 0, WIDTH-1, HEIGHT-1);
@@ -80,7 +79,6 @@ public class CodeImage {
 
 	//背景设置为白色
 	private static void setBackgroud(Graphics2D g) {
-		// TODO Auto-generated method stub
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 	}
