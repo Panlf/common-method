@@ -3,11 +3,12 @@ package com.plf.lombok;
 public class PersonExample {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Person person=new Person("KKy",18,"female");
-		System.out.println("My name is "+person.getName()
-		+",my age is "+person.getAge()
-		+",my sex is "+person.getSex()+"!");
+		Person person=new Person("KKY",18,"Male");
+		System.out.println(person.toString());
+		
+		
+		Person personBuilder=Person.builder().age(16).name("JYY").sex("Female").build();
+		System.out.println(personBuilder);
 	}
 
 }
