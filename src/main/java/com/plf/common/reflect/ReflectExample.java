@@ -1,5 +1,6 @@
 package com.plf.common.reflect;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -27,7 +28,7 @@ public class ReflectExample {
 	// 获取Class对象
 	@Test
 	public void getClazz() {
-		String className = "com.plf.common.Person";
+		String className = "com.plf.common.reflect.Person";
 
 		try {
 			// 1、根据给定的类名获得 用于类加载
@@ -119,6 +120,24 @@ public class ReflectExample {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void TestAnnotation() throws Exception{
+		Class<?> clazz = Class.forName("com.plf.common.reflect.Person");
+		MeanDoc meanDoc = clazz.getAnnotation(MeanDoc.class);
+		System.out.println(meanDoc.value());
+		// 通过反射，获取到全部注解
+        Annotation [] annotations = clazz.getAnnotations();
+
+        for (Annotation annotation : annotations) {
+            System.out.println(annotation);
+        }
+        
+        // 获得指定字段的注解
+        Field f = clazz.getDeclaredField("name");
+        meanDoc = f.getAnnotation(MeanDoc.class);
+        System.out.println(meanDoc.value()); 
 	}
 
 }

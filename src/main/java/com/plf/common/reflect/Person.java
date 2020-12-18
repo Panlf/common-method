@@ -1,7 +1,12 @@
 package com.plf.common.reflect;
 
+@MeanDoc("用户类")
 public class Person {
+	
+	@MeanDoc("姓名")
 	private String name;
+	
+	@MeanDoc("年龄")
 	private int age;
 
 	public String getName() {
