@@ -1,10 +1,16 @@
 package com.plf.java8;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiPredicate;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
+import java.util.function.IntConsumer;
+import java.util.function.LongFunction;
+import java.util.function.LongSupplier;
 import java.util.function.Predicate;
 import java.util.function.ToIntBiFunction;
 
@@ -41,7 +47,7 @@ public class FunctionInterface {
 	}
 	
 	@Test
-	public void testPredicate() {
+	public void testPredicateList() {
 		//匿名函数方法
 		/*Predicate<Integer> function = new Predicate<Integer>() {
 			@Override
@@ -99,6 +105,47 @@ public class FunctionInterface {
 	public interface UpperCaseString<T,U> {
 		public String upperString(String t,String u);
 	}	
+	
+	@Test
+	public void testLongFunction() {
+		LongFunction<String> function = t -> String.valueOf(t);
+		String result = function.apply(12l);
+		System.out.println(result);
+	}
+	
+	@Test
+	public void testSupplier() {
+		LongSupplier supplier = () -> 2l;
+		System.out.println(supplier.getAsLong());
+	}
+	
+	@Test
+	public void testPredicate() {
+		BiPredicate<String, String> predicate = (t,u) -> t.toLowerCase().equals(u.toLowerCase());
+		System.out.println(predicate.test("AAb", "aaB"));
+	}
+	
+	@Test
+	public void testConsumer() {
+		IntConsumer consumer = t -> System.out.println(t+1);
+		consumer.accept(2);
+	}
+	
+	@Test
+	public void testOperator() {
+		BinaryOperator<Integer> binaryOperator = (t,u) -> t+u;
+		System.out.println(binaryOperator.apply(2, 3));
+		
+		System.out.println(BinaryOperator.maxBy(Double::compareTo).apply(2.5, 4.5));
+		
+		BinaryOperator<String> stringOperator = BinaryOperator.minBy(Comparator.naturalOrder());
+		System.out.println(stringOperator.apply("A","B"));
+		
+		
+		BinaryOperator<String> stringOperator2 = BinaryOperator.minBy(String::compareTo);
+		System.out.println(stringOperator2.apply("2020-01-14","2020-01-13"));
+		
+	}
 }
 
 
