@@ -30,7 +30,7 @@
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
-			<version>3.12</version>
+			<version>3.17</version>
 		</dependency>
 
 		<!-- 需要导入如下包来支持XSSF的开发 -->
