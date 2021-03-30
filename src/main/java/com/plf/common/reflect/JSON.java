@@ -21,7 +21,7 @@ public class JSON {
 	 * @return
 	 */
 	
-	final static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	
 	public static String toJSONString(Object object) {
@@ -36,19 +36,38 @@ public class JSON {
 			int length = fields.length;
 			
 			for(Field field:fields) {
+				index++;
+				
+				//判断属性上是否有忽略的注解
+				if(field.isAnnotationPresent(JsonIgnore.class)) {
+					continue;
+				}
+				
 				field.setAccessible(true);
 				String name = field.getName();
+				if(field.isAnnotationPresent(JsonProperty.class)) {
+					//取出注解上的值
+					JsonProperty jsonProperty = field.getDeclaredAnnotation(JsonProperty.class);
+					name = jsonProperty.value();
+				}
+				
 				Object value = field.get(object);
 			
 				json.append("\""+name+"\"");
 				if(value instanceof String) {
 					json.append(":\""+value.toString()+"\"");
 				}else if(value instanceof Date){
-					json.append(":"+dateFormat.format((Date)value));
+					if(field.isAnnotationPresent(JsonFormat.class)) {
+						JsonFormat jsonFormat = field.getDeclaredAnnotation(JsonFormat.class);
+						dateFormat = new SimpleDateFormat(jsonFormat.pattern());
+						json.append(":"+dateFormat.format((Date)value));
+					}else {
+						json.append(":"+dateFormat.format((Date)value));
+					}
 				}else {
 					json.append(":"+value.toString());
 				}
-				index++;
+				
 				if(index!=length) {
 					json.append(",");
 				}
@@ -81,8 +100,20 @@ public class JSON {
 				String value = newS.replaceFirst(key+":", "");
 				//String value = keyValue[1];
 				
+				String name = key;
+				Field field = null;
+				try {
+					field = clazz.getDeclaredField(key);
+				}catch(Exception e){
+					name = getProperty(clazz,key);
+				}
 				
-				Field field = clazz.getDeclaredField(key);
+				if(name.length()>0) {
+					field = clazz.getDeclaredField(name);
+				}else {
+					continue;
+				}
+				
 				field.setAccessible(true);
 				String paramType = field.getType().getSimpleName();
 				if(paramType.equals("Date")) {
@@ -95,10 +126,7 @@ public class JSON {
 				}else {
 					field.set(t, value);
 				}
-				
 			}
-			
-			
 			return t;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -106,10 +134,28 @@ public class JSON {
 		return null;
 	}
 	
+	public static String getProperty(Class<?> clazz,String propertyName) {
+		
+		String name = "";
+		Field[] fields = clazz.getDeclaredFields();
+		
+		for(Field field:fields) {
+			if(field.isAnnotationPresent(JsonProperty.class)) {
+				JsonProperty jsonProperty = field.getDeclaredAnnotation(JsonProperty.class);
+				if(propertyName.equals(jsonProperty.value())) {
+					return field.getName();
+				}
+			}	
+		}
+		System.out.println(name);
+		return name;
+	}
+	
 	public static void main(String[] args) {
-		Employee employee = new Employee(1,"Panlf",5000d,new Date());
+		/*Employee employee = new Employee(1,"Panlf",5000d,new Date());
 		String result=toJSONString(employee);
-		System.out.println(result);
+		System.out.println(result);*/
+		String result="{\"username\":\"Panlf\",\"salary\":5000.0,\"workDate\":2021-03-25 11:12:00}";
 		Employee newEmployee = parseObject(result,Employee.class);
 		System.out.println(newEmployee);
 	}

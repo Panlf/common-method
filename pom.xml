@@ -1,9 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.common</groupId>
 	<artifactId>CommonMethod</artifactId>
-	<packaging>jar</packaging>	
+	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<dependencies>
@@ -13,7 +14,7 @@
 			<version>4.13.1</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-all</artifactId>
@@ -28,40 +29,15 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>3.17</version>
-		</dependency>
-
-		<!-- 需要导入如下包来支持XSSF的开发 -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>3.12</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml-schemas</artifactId>
-			<version>3.12</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.xmlbeans</groupId>
-			<artifactId>xmlbeans</artifactId>
-			<version>2.6.0</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-collections4</artifactId>
 			<version>4.1</version>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>commons-lang</groupId>
-		    <artifactId>commons-lang</artifactId>
-		    <version>2.6</version>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
 		</dependency>
 
 		<!-- JSON操作的jar包 -->
@@ -151,7 +127,7 @@
 			<artifactId>jboss-marshalling-river</artifactId>
 			<version>1.4.11.Final</version>
 		</dependency>
-		
+
 		<!-- 序列化处理工具 -->
 		<dependency>
 			<groupId>org.jboss.marshalling</groupId>
@@ -165,28 +141,28 @@
 			<artifactId>jedis</artifactId>
 			<version>2.8.1</version>
 		</dependency>
-		
+
 		<!-- Elasticsearch -->
 		<dependency>
-		    <groupId>org.elasticsearch</groupId>
-		    <artifactId>elasticsearch</artifactId>
-		    <version>7.11.0</version>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>7.12.0</version>
 		</dependency>
-		
+
 		<!-- Solr -->
 		<dependency>
-		    <groupId>org.apache.solr</groupId>
-		    <artifactId>solr-solrj</artifactId>
-		    <version>8.2.0</version>
+			<groupId>org.apache.solr</groupId>
+			<artifactId>solr-solrj</artifactId>
+			<version>8.2.0</version>
 		</dependency>
-		
+
 		<!-- fastjson -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.62</version>
 		</dependency>
-		
+
 		<!-- kafka -->
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
@@ -194,17 +170,17 @@
 			<version>2.2.0</version>
 		</dependency>
 
-		
+
 		<dependency>
-		    <groupId>org.apache.kafka</groupId>
-		    <artifactId>kafka-streams</artifactId>
-		    <version>2.2.0</version>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-streams</artifactId>
+			<version>2.2.0</version>
 		</dependency>
 
 		<dependency>
-		    <groupId>org.javassist</groupId>
-		    <artifactId>javassist</artifactId>
-		    <version>3.27.0-GA</version>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.27.0-GA</version>
 		</dependency>
 
 	</dependencies>

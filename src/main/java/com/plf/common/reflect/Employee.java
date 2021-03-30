@@ -4,9 +4,16 @@ import java.util.Date;
 
 public class Employee {
 
+	@JsonIgnore
 	private Integer id;
+	
+	@JsonProperty("username")
 	private String name;
+	
+
 	private Double salary;
+	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date workDate;
 	
 	public Employee() {

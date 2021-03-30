@@ -5,6 +5,7 @@ import java.util.Properties;
 
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 
@@ -37,7 +38,7 @@ public class CustomerProducer {
         //消息在缓冲区保留的时间，超过设置的值就会被提交到服务端
         //数据在缓冲区中保留的时长,0表示立即发送
         //为了减少网络耗时，需要设置这个值，太大可能容易导致缓冲区满，阻塞消费者，太小容易频繁请求服务端
-        props.put("linger.ms", 1);
+        props.put("linger.ms", 1000);
         
         //整个Producer用到总内存的大小，如果缓冲区满了会提交数据到服务端
         //buffer.memory要大于batch.size，否则会报申请内存不足的错误
@@ -52,6 +53,8 @@ public class CustomerProducer {
         //自定义分区
         //props.put("partitioner.class","com.plf.kafka.CustomerPartitioner");
         
+        //kafka的幂等性
+        props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG,"false");
         
         //创建生产者对象
         KafkaProducer<String,String> producer = new KafkaProducer<>(props);
