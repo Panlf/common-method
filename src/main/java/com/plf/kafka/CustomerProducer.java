@@ -61,7 +61,7 @@ public class CustomerProducer {
         
         //循环发送消息
         for(int i=10;i<20;i++){
-        	producer.send(new ProducerRecord<String, String>("kafka-topic-test", Integer.toString(i)),new Callback() {
+        	producer.send(new ProducerRecord<String, String>("kafka-topic-test", "key_"+i,"value_"+i),new Callback() {
 				
 				@Override
 				public void onCompletion(RecordMetadata metadata, Exception exception) {
