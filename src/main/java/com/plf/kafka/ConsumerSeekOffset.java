@@ -27,10 +27,14 @@ public class ConsumerSeekOffset {
 		KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<String, String>(props);
 		
 		kafkaConsumer.subscribe(Arrays.asList("tpc_1"));
+		
+		//先拉区一批消息
 		kafkaConsumer.poll(Duration.ofMillis(100000));
 		
+		//看自己被分配到哪些topic的哪些分区
 		Set<TopicPartition> assignment = kafkaConsumer.assignment();
 		
+		//对自己被分配的分区，全部统一定位到offset=1000的位置作为消费起始偏移量
 		for(TopicPartition topicPartition:assignment) {
 			kafkaConsumer.seek(topicPartition, 1000L);
 		}
@@ -41,6 +45,7 @@ public class ConsumerSeekOffset {
 				//业务处理
 				System.out.println(record);
 			}
+			
 		}
 	
 	}
