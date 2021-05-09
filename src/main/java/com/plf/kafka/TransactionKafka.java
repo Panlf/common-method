@@ -24,7 +24,6 @@ public class TransactionKafka {
 	private static final String BROKERS = "localhost:9090";
 	private static final String GROUPID = "g0001";
 	
-	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		// 构造一个消费者，去拉取数据
 		Properties props_c = new Properties();
@@ -96,5 +95,8 @@ public class TransactionKafka {
 			//如果有异常，则放弃事务
 			producer.abortTransaction();
 		}
+		
+		producer.close();
+		consumer.close();
 	}
 }
