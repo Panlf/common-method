@@ -1,7 +1,8 @@
 package com.plf.security;
 
+import org.apache.commons.codec.binary.Hex;
+
 import java.security.Key;
-import java.security.Security;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -9,13 +10,9 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.util.encoders.Hex;
-
 public class SecurityDES {
 	private static String src="security des";
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		jdkDES();
 	}
 	public static void jdkDES(){
@@ -35,7 +32,7 @@ public class SecurityDES {
 			Cipher cipher=Cipher.getInstance("DES/ECB/PKCS5Padding");
 			cipher.init(Cipher.ENCRYPT_MODE, convertSecretKey);
 			byte[] result=cipher.doFinal(src.getBytes());
-			System.out.println("jdk des encrypt:"+Hex.encode(result));
+			System.out.println("jdk des encrypt:"+ Hex.encodeHex(result));
 			
 			//解密
 			cipher.init(Cipher.DECRYPT_MODE, convertSecretKey);
@@ -48,7 +45,6 @@ public class SecurityDES {
 
 	public static void bcDES(){
 		try{
-			Security.addProvider(new BouncyCastleProvider());
 			//生成KEY
 			KeyGenerator keyGenerator=KeyGenerator.getInstance("DES","BC");
 			keyGenerator.getProvider();
@@ -65,7 +61,7 @@ public class SecurityDES {
 			Cipher cipher=Cipher.getInstance("DES/ECB/PKCS5Padding");
 			cipher.init(Cipher.ENCRYPT_MODE, convertSecretKey);
 			byte[] result=cipher.doFinal(src.getBytes());
-			System.out.println("jdk des encrypt:"+Hex.encode(result));
+			System.out.println("jdk des encrypt:"+Hex.encodeHex(result));
 			
 			//解密
 			cipher.init(Cipher.DECRYPT_MODE, convertSecretKey);

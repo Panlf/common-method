@@ -1,5 +1,7 @@
 package com.plf.security;
 
+import org.apache.commons.codec.binary.Hex;
+
 import java.security.Key;
 import java.security.SecureRandom;
 
@@ -8,8 +10,6 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESedeKeySpec;
-
-import org.bouncycastle.util.encoders.Hex;
 
 public class Security3DES {
 	private static String src="security 3des";
@@ -34,7 +34,7 @@ public class Security3DES {
 			Cipher cipher=Cipher.getInstance("DESede/ECB/PKCS5Padding");
 			cipher.init(Cipher.ENCRYPT_MODE, convertSecretKey);
 			byte[] result=cipher.doFinal(src.getBytes());
-			System.out.println("jdk 3des encrypt:"+Hex.encode(result));
+			System.out.println("jdk 3des encrypt:"+ Hex.encodeHex(result));
 			
 			//解密
 			cipher.init(Cipher.DECRYPT_MODE, convertSecretKey);
