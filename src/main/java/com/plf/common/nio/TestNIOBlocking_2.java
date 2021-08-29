@@ -9,7 +9,7 @@ import java.nio.channels.SocketChannel;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TestNIOBlocking_2 {
 	//客户端

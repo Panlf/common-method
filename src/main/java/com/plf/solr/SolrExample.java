@@ -9,10 +9,10 @@ import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
-import org.junit.Before;
-import org.junit.Test;
 
 import com.plf.fastjson.FastJsonUtils;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class SolrExample {
 
@@ -20,7 +20,7 @@ public class SolrExample {
 	
 	HttpSolrClient solr = null;
 	 
-	@Before
+	@BeforeEach
 	public void createSolrServer() {
 	    solr = new HttpSolrClient.Builder(SOLR_URL)
 	    		.withConnectionTimeout(10000)
@@ -85,9 +85,9 @@ public class SolrExample {
 	    //获取实体对象形式
 	    List<Worker> worker = response.getBeans(Worker.class);
 
-	    worker.stream().forEach(System.out::println);
-	    
-	    //获取返回结果
+		worker.stream().forEach(System.out::println);
+
+		//获取返回结果
 	    SolrDocumentList resultList = response.getResults();
 	    
 	    System.out.println(FastJsonUtils.toJSONString(resultList));

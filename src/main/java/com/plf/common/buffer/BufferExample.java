@@ -1,6 +1,7 @@
 package com.plf.common.buffer;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 /**
  * StringBuffer 和  StringBuilder
  * @author plf 2017年7月6日下午10:17:46
@@ -25,7 +26,7 @@ public class BufferExample {
 		StringBuffer sb=new StringBuffer(str);
 		
 		//添加
-		sb.append("pcq").append(1314);//在后面增加
+		sb.append("ppp").append(1314);//在后面增加
 		System.out.println(sb.getClass().getTypeName()+":"+sb);
 		System.out.println(sb.insert(1,"an"));//指定位置添加
 		

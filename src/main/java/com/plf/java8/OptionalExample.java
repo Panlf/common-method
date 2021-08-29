@@ -1,8 +1,9 @@
 package com.plf.java8;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.Optional;
 
-import org.junit.Test;
 
 public class OptionalExample {
 	@Test

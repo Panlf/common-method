@@ -1,8 +1,7 @@
 package com.plf.redis;
 
-import org.junit.After;
-import org.junit.Test;
-
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import redis.clients.jedis.Jedis;
 
 /**
@@ -35,7 +34,7 @@ public class RedisExample {
 		System.out.println(index);*/
 	}
 	
-	@After
+	@AfterEach
 	public void close(){
 		if(null != jedis){
 			jedis.close();	

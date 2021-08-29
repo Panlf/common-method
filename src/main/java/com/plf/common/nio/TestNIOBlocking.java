@@ -1,5 +1,7 @@
 package com.plf.common.nio;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -8,8 +10,6 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-
-import org.junit.Test;
 
 /*
  * 一、使用 NIO 完成网络通信的三个核心：

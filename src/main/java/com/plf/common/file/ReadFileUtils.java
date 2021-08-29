@@ -1,10 +1,11 @@
 package com.plf.common.file;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
 
 /**
  * 读取src/main/resource下的文件
@@ -13,7 +14,7 @@ import org.junit.Test;
  */
 public class ReadFileUtils {
 	public static List<String> readTxtToList(String fileName) {
-		List<String> list = new ArrayList<>();
+		List<String> list = new ArrayList<String>();
 		BufferedReader bufferedReader = null;
 		try {
 			bufferedReader = new BufferedReader(

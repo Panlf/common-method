@@ -1,5 +1,7 @@
 package com.plf.common.socket;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,8 +11,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
-import org.junit.Test;
-
 public class MultiSocket {
 	
 	@Test
@@ -19,7 +19,7 @@ public class MultiSocket {
 		@SuppressWarnings("resource")
 		ServerSocket server = new ServerSocket(port);
 		while(true){
-			Socket socket = server.accept();
+			final Socket socket = server.accept();
 			new Thread(new Runnable() {
 				public void run() {
 					try {

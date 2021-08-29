@@ -1,21 +1,11 @@
 package com.plf.java8;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.DoubleSummaryStatistics;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.junit.Test;
-
 import com.alibaba.fastjson.JSON;
+import org.junit.jupiter.api.Test;
 
 /**
  * Stream
@@ -58,7 +48,7 @@ public class StreamExample {
 	public void CollectionStream(){
 		List<Person> people=createPeople();
 		Stream<Person> stream=people.stream();
-		
+
 		//stream.forEach(p->System.out.println(p.toString()));
 		
 		//过滤器--过滤FEMALE

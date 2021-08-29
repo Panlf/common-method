@@ -1,8 +1,7 @@
 package com.plf.mongo;
 
-import org.junit.Test;
-
 import com.mongodb.client.MongoIterable;
+import org.junit.jupiter.api.Test;
 
 
 public class MongoUtilsTest {

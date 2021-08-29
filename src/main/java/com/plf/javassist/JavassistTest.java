@@ -3,12 +3,11 @@ package com.plf.javassist;
 import java.io.File;
 import java.nio.file.Files;
 
-import org.junit.Test;
-
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtField;
 import javassist.CtMethod;
+import org.junit.jupiter.api.Test;
 
 /**
  * 
@@ -59,11 +58,10 @@ public class JavassistTest {
 		
 		CtField f = new CtField(pool.get(String.class.getName()),"abc",ctl);
 		ctl.addField(f);
-		
-		
+
 		File file = new File(System.getProperty("user.dir")+"/target/classes/com/plf/javassist/UserService.class");
 		file.createNewFile();
-		Files.write(file.toPath(),ctl.toBytecode());
+		Files.write(file.toPath(), ctl.toBytecode());
 	}
 	
 	@Test

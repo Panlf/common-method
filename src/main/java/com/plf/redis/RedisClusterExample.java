@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 
@@ -13,7 +12,7 @@ public class RedisClusterExample {
 
 	@Test
 	public void test01(){
-		Set<HostAndPort> set = new HashSet<>();
+		Set<HostAndPort> set = new HashSet<HostAndPort>();
 		set.add(new HostAndPort("127.0.0.1",7001));
 		set.add(new HostAndPort("127.0.0.1",7002));
 		set.add(new HostAndPort("127.0.0.1",7003));

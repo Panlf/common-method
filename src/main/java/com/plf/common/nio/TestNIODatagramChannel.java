@@ -1,5 +1,7 @@
 package com.plf.common.nio;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -9,8 +11,6 @@ import java.nio.channels.Selector;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Scanner;
-
-import org.junit.Test;
 
 public class TestNIODatagramChannel {
 

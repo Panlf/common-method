@@ -1,10 +1,10 @@
 package com.plf.java8;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import org.junit.Test;
 
 /**
  * Lambda的实例

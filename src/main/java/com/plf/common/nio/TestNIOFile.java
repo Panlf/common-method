@@ -1,5 +1,7 @@
 package com.plf.common.nio;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
@@ -14,7 +16,6 @@ import java.nio.file.StandardOpenOption;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.DosFileAttributeView;
 
-import org.junit.Test;
 
 public class TestNIOFile {
 	//自动资源管理：自动关闭实现 AutoCloseable 接口的资源

@@ -1,15 +1,15 @@
 package com.plf.jdbcpool;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import org.junit.Before;
-import org.junit.Test;
 
 public class JdbcPoolTest {
 	JdbcPool pool = DBManage.getInstance();
 	
-	@Before
+	@BeforeEach
 	public void before(){
 		pool.init();
 	}

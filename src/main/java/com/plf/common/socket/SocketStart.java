@@ -1,5 +1,7 @@
 package com.plf.common.socket;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -8,7 +10,6 @@ import java.io.Writer;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import org.junit.Test;
 
 /**
  * 客户端写服务端读

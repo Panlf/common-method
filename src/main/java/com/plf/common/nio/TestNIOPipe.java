@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.Pipe;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TestNIOPipe {
 	@Test

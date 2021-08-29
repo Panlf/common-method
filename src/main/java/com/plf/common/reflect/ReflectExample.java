@@ -1,5 +1,7 @@
 package com.plf.common.reflect;
 
+import org.junit.jupiter.api.Test;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -7,8 +9,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import org.junit.Test;
 
 /**
  * 反射的基本概念
@@ -74,7 +74,7 @@ public class ReflectExample {
 	@Test
 	public void getAllFields() {
 		Class<?> cls = Student.class;
-		List<Field> list = new ArrayList<>();
+		List<Field> list = new ArrayList<Field>();
 		while (cls != null) {
 			list.addAll(Arrays.asList(cls.getDeclaredFields()));
 			cls = cls.getSuperclass();
