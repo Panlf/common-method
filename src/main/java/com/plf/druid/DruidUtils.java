@@ -1,6 +1,12 @@
 package com.plf.druid;
 
+import com.alibaba.druid.DbType;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
+import com.alibaba.druid.sql.SQLUtils;
+import com.alibaba.druid.sql.ast.SQLStatement;
+import com.alibaba.druid.sql.visitor.SchemaStatVisitor;
+import com.alibaba.druid.util.JdbcConstants;
+import org.springframework.util.CollectionUtils;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -9,7 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Properties;
+import java.util.*;
 
 
 /**
@@ -41,6 +47,26 @@ public class DruidUtils {
         }
 
 
+    }
+
+    public static List<Map<String, Object>> parseSql(String sql, DbType dbType){
+        List<SQLStatement> list = SQLUtils.parseStatements(sql,dbType);
+        List<Map<String, Object>> result = new ArrayList<>();
+        if(!CollectionUtils.isEmpty(list)){
+            for(SQLStatement sqlStatement:list){
+                Map<String, Object> map = new HashMap<>();
+                SchemaStatVisitor schemaStatVisitor = new SchemaStatVisitor();
+                sqlStatement.accept(schemaStatVisitor);
+                map.put("dbType",schemaStatVisitor.getDbType());
+                map.put("columns",schemaStatVisitor.getColumns());
+                map.put("tables",schemaStatVisitor.getTables());
+                map.put("conditions",schemaStatVisitor.getConditions());
+                map.put("group",schemaStatVisitor.getGroupByColumns());
+                map.put("order",schemaStatVisitor.getOrderByColumns());
+                result.add(map);
+            }
+        }
+        return result;
     }
 
 
