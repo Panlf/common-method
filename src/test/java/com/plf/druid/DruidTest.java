@@ -1,7 +1,6 @@
 package com.plf.druid;
 
 import com.alibaba.druid.DbType;
-import com.alibaba.druid.util.JdbcConstants;
 import org.junit.jupiter.api.Test;
 
 /**
