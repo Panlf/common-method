@@ -3,6 +3,8 @@ package com.plf.common.treenode;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -51,8 +53,7 @@ public class NodeTree {
 		List<Node<SysMenu>> listNode = getChildTree(0l,list);
 		System.out.println(mapper.writeValueAsString(listNode));
 	}
-	
-	
+
 	public static <T> List<Node<T>> getChildTree(Long parentId, List<T> list) {
 		if (list == null || list.size()<=0) {
 			return null;
@@ -61,7 +62,7 @@ public class NodeTree {
 			Iterator<T> data = list.iterator();
 			while (data.hasNext()) {
 				T menu = data.next();
-				
+
 				BaseMenu basemenu = (BaseMenu)menu;
 				
 				if (basemenu.getParentId() == parentId) {
