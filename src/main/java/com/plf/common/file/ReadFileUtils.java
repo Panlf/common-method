@@ -6,11 +6,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * 读取src/main/resource下的文件
  * @author Panlf
- *
+ * @date 2021/12/26
  */
 public class ReadFileUtils {
 	public static List<String> readTxtToList(String fileName) {
