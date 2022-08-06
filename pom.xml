@@ -43,7 +43,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.73</version>
+			<version>1.2.83</version>
 		</dependency>
 
 		<!-- Java mail的操作的jar 上面一个缺少调试功能 -->
