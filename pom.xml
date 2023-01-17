@@ -43,7 +43,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.2.73</version>
+			<version>1.2.83</version>
 		</dependency>
 
 		<!-- Java mail的操作的jar 上面一个缺少调试功能 -->
@@ -92,7 +92,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.16</version>
+			<version>8.0.28</version>
 		</dependency>
 
 		<!-- Netty -->
@@ -198,7 +198,7 @@
 		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
-			<version>1.14.2</version>
+			<version>1.15.3</version>
 		</dependency>
 
 		<dependency>
