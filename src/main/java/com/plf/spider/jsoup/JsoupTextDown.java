@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,21 +21,19 @@ public class JsoupTextDown {
 	public static void main(String[] args) throws Exception {
 		//Document doc = Jsoup.connect("http://www.biqudu.com/47_47983/").get();
 		Document doc = Jsoup.connect("https://www.biqudu.com/3_3607/").get();
-		if(doc!=null){
-			Elements links=doc.getElementById("list").select("dd>a[href]");
-			for (Element link : links) {
-				Thread.sleep(2000);
-				//String path="http://www.biqudu.com"+link.attr("href");
-				String path="https://www.biqudu.com"+link.attr("href");
-				String title=link.text();
-				System.out.println(path+"---"+title);
+		Elements links= Objects.requireNonNull(doc.getElementById("list")).select("dd>a[href]");
+		for (Element link : links) {
+			Thread.sleep(2000);
+			//String path="http://www.biqudu.com"+link.attr("href");
+			String path="https://www.biqudu.com"+link.attr("href");
+			String title=link.text();
+			System.out.println(path+"---"+title);
 //				if(NovelService.selectNovelURl(path)){
 //					continue;
 //				}
-				Map<String,String> content=downText(path);
-				//NovelService.insertNovel(content.get("title"),path,content.get("text"));
-				System.out.println(content.get("title"));
-			}
+			Map<String,String> content=downText(path);
+			//NovelService.insertNovel(content.get("title"),path,content.get("text"));
+			System.out.println(content.get("title"));
 		}
 	}
 	
