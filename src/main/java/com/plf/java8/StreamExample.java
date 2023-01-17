@@ -55,7 +55,7 @@ public class StreamExample {
 		//stream.filter(p->p.getGender()==1).
 		//forEach(p->System.out.println(p.toString()));
 		
-		double a=stream.filter(p->p.getName().indexOf("王")>=0)
+		double a=stream.filter(p-> p.getName().contains("王"))
 		.mapToDouble(p->p.getHeight())
 		.average()
 		.getAsDouble();

@@ -18,9 +18,11 @@ public class OptionalExample {
 		
 		//isPresent 如果值存在返回true，否则返回false
 		//get 如果Optional有值则将其返回，否则抛出NoSuchElementException。
-		if(name.isPresent()){
-			System.out.println(name.get());
-		}
+		name.ifPresent(System.out::println);
+
+		name.ifPresent(System.out::println);
+
+
 		
 		//如果Optional实例有值则为其调用consumer，否则不做处理
 		empty.ifPresent((value)->{
@@ -43,7 +45,7 @@ public class OptionalExample {
 		//map 、 flatMap 、filter
 		//如果有值，为其执行mapping函数返回Optional类型返回值，否则返回空Optional。flatMap与map（Funtion）方法类似，
 		//区别在于flatMap中的mapper返回值必须是Optional。调用结束时，flatMap不会对结果用Optional封装。
-		System.out.println(name.map(x->x.toUpperCase()));
+		System.out.println(name.map(String::toUpperCase));
 		System.out.println(name.flatMap(x->Optional.of(x.toUpperCase())));
 		System.out.println(name.filter(x->!x.equals("plf")));
 		

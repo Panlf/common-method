@@ -2,21 +2,16 @@ package com.plf.spider.jsoup;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import com.plf.mybatis.pojo.Novel;
-import com.plf.mybatis.service.NovelService;
 import org.junit.jupiter.api.Test;
 
 //下载http://www.biqudu.com/
@@ -37,12 +32,10 @@ public class JsoupTextDown {
 //					continue;
 //				}
 				Map<String,String> content=downText(path);
-				NovelService.insertNovel(content.get("title"),path,content.get("text"));
-				System.out.println(content.get("title"));	
+				//NovelService.insertNovel(content.get("title"),path,content.get("text"));
+				System.out.println(content.get("title"));
 			}
 		}
-		updateTheNull();
-		writeTheText("一世之尊 .txt");
 	}
 	
 	//获取题目和正文
@@ -59,9 +52,9 @@ public class JsoupTextDown {
 			String text="",title="";
 			if(doc!=null){
 				title=doc.select("h1").text().toString();
-				title=replace(StringEscapeUtils.escapeHtml4(title));
+				title=replace(StringEscapeUtils.escapeHtml(title));
 				text=doc.getElementById("content").text().toString();
-				text=replace(StringEscapeUtils.escapeHtml4(text));
+				text=replace(StringEscapeUtils.escapeHtml(text));
 				//System.out.println(text.substring(1));
 			}
 			map.put("title", title);
@@ -76,26 +69,26 @@ public class JsoupTextDown {
 	//<script>[\s\S]+?</script> 
 	//\\s+去除空格   \\s{2} 去除2个空格
 	//写入txt文件
-	public static void writeText(List<Novel> novelList,String textName){
-		try {
-			FileWriter fw=new FileWriter("E:\\"+textName,true);
-			BufferedWriter bufw=new BufferedWriter(fw);
-			for (Novel novel : novelList) {
-				bufw.write(replace(novel.getTitle()));
-				bufw.newLine();
-				String text = replace(novel.getText());
-				//Pattern r = Pattern.compile("<script>[\\s\\S]+?</script>");
-				Pattern r = Pattern.compile("\\s+");
-		        Matcher m = r.matcher(text);
-				bufw.write(m.replaceAll("\r\n"));
-				bufw.newLine();
-				bufw.flush();
-			}
-			bufw.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void writeText(List<Novel> novelList,String textName){
+//		try {
+//			FileWriter fw=new FileWriter("E:\\"+textName,true);
+//			BufferedWriter bufw=new BufferedWriter(fw);
+//			for (Novel novel : novelList) {
+//				bufw.write(replace(novel.getTitle()));
+//				bufw.newLine();
+//				String text = replace(novel.getText());
+//				//Pattern r = Pattern.compile("<script>[\\s\\S]+?</script>");
+//				Pattern r = Pattern.compile("\\s+");
+//		        Matcher m = r.matcher(text);
+//				bufw.write(m.replaceAll("\r\n"));
+//				bufw.newLine();
+//				bufw.flush();
+//			}
+//			bufw.close();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	public static String replace(String str){
 		str = str.replace("&ldquo;", "“");
@@ -117,23 +110,7 @@ public class JsoupTextDown {
         str = str.replace("<br />", "\r\n");
 		return str;
 	}
-	
-	public static void updateTheNull(){
-		List<Novel> list=NovelService.selectNovelNUll();
-		if(list.size()!=0){
-			for (Novel novel : list) {
-				Map<String,String> map=JsoupTextDown.downText(novel.getUrl());
-				System.out.println(novel.getId()+"+++"+map.get("title"));
-				NovelService.updateNovel(novel.getId(), map.get("title"), map.get("text"));
-			}
-		}
-	}
-	
-	public static void writeTheText(String textname){
-		List<Novel> novelList=NovelService.selectNovel();
-		JsoupTextDown.writeText(novelList,textname);
-	}
-	
+
 	@Test
 	public void downText(){
 		String path="http://www.silukeke.com/0/9/9601/4939784.html";
