@@ -31,6 +31,7 @@ public class OptionalExample {
 		
 		//orElse如果有值则将其返回，否则返回指定的其它值。
 		//orElseGet    orElseGet与orElse方法类似，区别在于得到的默认值。
+		//
 		//orElse方法将传入的字符串作为默认值，orElseGet方法可以接受Supplier接口的实现用来生成默认值。
 		System.out.println(empty.orElse("NO Value"));
 		System.out.println(empty.orElseGet(()->"No Value"));
@@ -47,6 +48,8 @@ public class OptionalExample {
 		//区别在于flatMap中的mapper返回值必须是Optional。调用结束时，flatMap不会对结果用Optional封装。
 		System.out.println(name.map(String::toUpperCase));
 		System.out.println(name.flatMap(x->Optional.of(x.toUpperCase())));
+
+
 		System.out.println(name.filter(x->!x.equals("plf")));
 		
 		
@@ -56,7 +59,34 @@ public class OptionalExample {
 		person.setName("yoooo");
 		System.out.println("PersonName==》"+getNewName(person));
 	}
-	
+
+
+
+	@Test
+	public void testOrElse(){
+		String s = "Test";
+		Optional<String> optional = Optional.ofNullable(s);
+
+		System.out.println(optional.orElse("NOT NULL"));
+
+		System.out.println("=============");
+
+		System.out.println(optional.orElseGet(()->"NOT NULL"));
+
+		System.out.println("<=============>");
+
+		// 不管是否为null函数都会执行
+		System.out.println(optional.orElse(isExist()));
+
+		System.out.println("=============");
+		// orElseGet 只有null的时候才会去执行
+		System.out.println(optional.orElseGet(this::isExist));
+	}
+
+	private String isExist(){
+		System.out.println("execute isExist");
+		return "info";
+	}
 	
 	public static String getNewName(Person p) {
 	    return Optional.ofNullable(p)
