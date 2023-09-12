@@ -185,7 +185,32 @@ public class StreamExample {
 						ArrayList::new));
 		System.out.println(JSON.toJSONString(distinctlist));
 	}
-	
+
+
+	/**
+	 * 累加
+	 */
+	@Test
+	public void accumulation(){
+		List<Person> people=createPeople();
+		int sumAge = people.stream().mapToInt(Person::getAge).sum();
+		System.out.println(sumAge);
+	}
+
+	/**
+	 * 分组求和
+	 */
+	@Test
+	public void groupSum(){
+		List<Person> people=createPeople();
+		Map<Integer, DoubleSummaryStatistics> summaryStatisticsMap = people.stream()
+				.collect(
+						Collectors.groupingBy(Person::getGender,
+								Collectors.summarizingDouble(Person::getHeight))
+				);
+		System.out.println(JSON.toJSONString(summaryStatisticsMap));
+	}
+
 	/**
 	 * Long 数组选取不为Null和大于0的值
 	 * @param t
@@ -203,7 +228,7 @@ public class StreamExample {
 	 */
 	public static String[] removeNullAndZero(String[] t) {
 		List<String> list = Arrays.asList(t);
-		return list.stream().filter(v->v!=null).toArray(String[] :: new);	
+		return list.stream().filter(Objects::nonNull).toArray(String[] :: new);
 	}
 
 }
