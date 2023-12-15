@@ -32,7 +32,6 @@
 #### [Javassist](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/javassist)
 #### [手写Jdbc连接池](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/jdbcpool)
 #### [Java操作Kafka](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/kafka)
-#### [Lomok](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/lombok)
 #### [Java收发mail](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/mail)
 #### [Java操作MongoDB](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/mongodb)
 #### [Netty](https://github.com/Panlf/CommonMethod/tree/master/src/main/java/com/plf/netty)
