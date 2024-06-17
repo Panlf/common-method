@@ -85,11 +85,11 @@ public class SolrExample {
 	    //获取实体对象形式
 	    List<Worker> worker = response.getBeans(Worker.class);
 
-		worker.stream().forEach(System.out::println);
+		worker.forEach(System.out::println);
 
 		//获取返回结果
 	    SolrDocumentList resultList = response.getResults();
 	    
-	    System.out.println(FastJsonUtils.toJSONString(resultList));
+	    System.out.println(FastJsonUtils.toJsonString(resultList));
 	}
 }

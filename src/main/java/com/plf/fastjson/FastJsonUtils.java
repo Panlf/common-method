@@ -11,29 +11,38 @@ import com.alibaba.fastjson.serializer.JSONLibDataFormatSerializer;
 import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
+/**
+ * @author Breeze
+ * @date 2024/1/1
+ */
 public class FastJsonUtils {
 	
-	private static final SerializeConfig config;
+	private static final SerializeConfig CONFIG;
 
 	static {
-		config = new SerializeConfig();
-		config.put(java.util.Date.class, new JSONLibDataFormatSerializer()); // 使用和json-lib兼容的日期输出格式
-		config.put(java.sql.Date.class, new JSONLibDataFormatSerializer()); // 使用和json-lib兼容的日期输出格式
+		CONFIG =  new SerializeConfig();
+		CONFIG.put(java.util.Date.class, new JSONLibDataFormatSerializer());
+		CONFIG.put(java.sql.Date.class, new JSONLibDataFormatSerializer());
 	}
 
-	private static final SerializerFeature[] features = { SerializerFeature.WriteMapNullValue, // 输出空置字段
-			SerializerFeature.WriteNullListAsEmpty, // list字段如果为null，输出为[]，而不是null
-			SerializerFeature.WriteNullNumberAsZero, // 数值字段如果为null，输出为0，而不是null
-			SerializerFeature.WriteNullBooleanAsFalse, // Boolean字段如果为null，输出为false，而不是null
-			SerializerFeature.WriteNullStringAsEmpty // 字符类型字段如果为null，输出为""，而不是null
+	private static final SerializerFeature[] FEATURES = {
+            SerializerFeature.WriteMapNullValue,
+			// list字段如果为null，输出为[]，而不是null
+			SerializerFeature.WriteNullListAsEmpty,
+			// 数值字段如果为null，输出为0，而不是null
+			SerializerFeature.WriteNullNumberAsZero,
+			// Boolean字段如果为null，输出为false，而不是null
+			SerializerFeature.WriteNullBooleanAsFalse,
+			// 字符类型字段如果为null，输出为""，而不是null
+			SerializerFeature.WriteNullStringAsEmpty
 	};
 
-	public static String toJSONString(Object object) {
-		return JSON.toJSONString(object, config, features);
+	public static String toJsonString(Object object) {
+		return JSON.toJSONString(object, CONFIG, FEATURES);
 	}
 
-	public static String toJSONNoFeatures(Object object) {
-		return JSON.toJSONString(object, config);
+	public static String toJsonNoFeatures(Object object) {
+		return JSON.toJSONString(object, CONFIG);
 	}
 
 	public static Object toBean(String text) {
@@ -44,17 +53,34 @@ public class FastJsonUtils {
 		return JSON.parseObject(text, clazz);
 	}
 
-	// 转换为数组
+	/**
+	 * 转换为数组
+	 * @param text
+	 * @return
+	 * @param <T>
+	 */
 	public static <T> Object[] toArray(String text) {
 		return toArray(text, null);
 	}
 
-	// 转换为数组
+	/**
+	 * 转换为数组
+	 * @param text
+	 * @param clazz
+	 * @return
+	 * @param <T>
+	 */
 	public static <T> Object[] toArray(String text, Class<T> clazz) {
 		return JSON.parseArray(text, clazz).toArray();
 	}
 
-	// 转换为List
+	/**
+	 * 转换为List
+	 * @param text
+	 * @param clazz
+	 * @return
+	 * @param <T>
+	 */
 	public static <T> List<T> toList(String text, Class<T> clazz) {
 		return JSON.parseArray(text, clazz);
 	}
@@ -67,8 +93,7 @@ public class FastJsonUtils {
 	 */
 	public static Object beanToJson(KeyValue<?, ?> keyvalue) {
 		String textJson = JSON.toJSONString(keyvalue);
-		Object objectJson = JSON.parse(textJson);
-		return objectJson;
+        return JSON.parse(textJson);
 	}
 
 	/**
@@ -78,19 +103,7 @@ public class FastJsonUtils {
 	 * @return
 	 */
 	public static Object textToJson(String text) {
-		Object objectJson = JSON.parse(text);
-		return objectJson;
-	}
-
-	/**
-	 * json字符串转化为map
-	 * 
-	 * @param s
-	 * @return
-	 */
-	public static Map<?, ?> stringToCollect(String s) {
-		Map<?, ?> m = JSONObject.parseObject(s);
-		return m;
+        return JSON.parse(text);
 	}
 
 	/**
@@ -100,8 +113,7 @@ public class FastJsonUtils {
 	 * @return
 	 */
 	public static String collectToString(Map<?, ?> m) {
-		String s = JSONObject.toJSONString(m);
-		return s;
+        return JSONObject.toJSONString(m);
 	}
 
 }
